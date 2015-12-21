@@ -1,0 +1,2 @@
+module Ygl
+end
