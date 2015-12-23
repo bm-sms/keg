@@ -1,41 +1,47 @@
-# Ygl
+# これは何？
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ygl`. To experiment with that code, run `bin/console` for an interactive prompt.
+[glean](https://github.com/glean/glean) にかわって、コンフィギュレーションなどをうまいこと管理してくれるものです。
 
-TODO: Delete this and the text above, and describe your gem
+glean のように特定のリモートリポジトリを主と期待してローカルにキャッシュを構築するのではなく、ローカルに構築されたデータベースを主として扱います (`glean search` のようなリモートの情報を正とした動作はしません)。
 
-## Installation
+# やりたいこと
 
-Add this line to your application's Gemfile:
+構成管理ツールに載らないコンフィギュレーションの管理を Excel やスプレッドシートからはがしたい。
+メタ情報の管理をする土台を Git にのせて、かつ、共有可能にする。
+そうすると、Pull request ベースでの設定変更依頼が出せるようになる。
+このツールは、その土台となるビューワーを提供する。
 
-```ruby
-gem 'ygl'
-```
+# なにができるの？
 
-And then execute:
+データベースの構築。
 
-    $ bundle
+    mkdir $HOME/.yet_another_glean
+    cd $HOME/.yet_another_glean
+    git clone git@github.com:bm-sms/glean-daimon-lunch.git daimon-lunch
 
-Or install it yourself as:
+ローカルのパス (`$HOME/.yet_another_glean`) にあるデータベース群から必要な項目を検索して表示します。
 
-    $ gem install ygl
+    ygl switch daimon-lunch # データベースの選択
+    ygl show oosaka #=> to show https://github.com/bm-sms/glean-daimon-lunch/blob/master/oosaka.toml
+    ygl show --format=yaml oosaka # show in yaml format
+    ygl show --format=json oosaka # show in json format
+    ygl current #=> daimon-lunch 今いるデータベースの名前の表示
+    ygl show-all #=> show all data in daimon-lunch (like glean does)
+    ygl show-all --format=yaml
+    ygl show-all --format=json
 
-## Usage
+# やらないこと
 
-TODO: Write usage instructions here
+ツールとしてはファイルパスをベースにした対象のピックアップまでをスコープとし、データ内容にたいする汎用的でリッチな検索は、このツールの外で提供するものとして対応しません。
 
-## Development
+# 進め方
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment. Run `bundle exec ygl` to use the gem in this directory, ignoring other installed copies of this gem.
+1. まず、この CLI ツールで必要なライブラリからつくりましょう。どんな役割の部品があれば、ツールがつくれるでしょう？
+1. つくった部品を組み合わせて、CLI から呼び出しましょう。Thor を使って CLI を開発してみてください。
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+# 今後提供したいもの
 
-## Contributing
+* slack bot フロントエンド
+* Web フロントエンド
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ygl. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
-
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 

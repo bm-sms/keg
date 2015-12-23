@@ -1,22 +1,20 @@
 require 'ygl'
 
 module Ygl
+  HOME_PATH = "#{ENV["HOME"]}/.yet_another_glean"
+
   module DB
     def self.switch(name)
-      @path = "#{ENV["HOME"]}/.yet_another_glean/#{name}"
+      @path = "#{HOME_PATH}/#{name}"
       Ygl::Conf.save_db_name(name) if File.exists?(@path)
     end
 
     def self.get_file(filename)
       begin
-        @db = File.open("#{@path}/#{filename}.toml")
+        File.open("#{HOME_PATH}/#{current}/#{filename}.toml", 'r')
       rescue
         false
       end
-    end
-
-    def self.close
-      @db.close
     end
 
     def self.current

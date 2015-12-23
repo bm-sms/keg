@@ -12,6 +12,13 @@ module Ygl
       end
     end
 
+    desc "show --format={yaml or json} filename", "print file"
+    def show(filename)
+      file = Ygl::DB.get_file(filename)
+      file.each {|line| puts line.to_json }
+      file.close
+    end
+
     desc "current", "show current DB name"
     def current
       puts Ygl::DB.current
