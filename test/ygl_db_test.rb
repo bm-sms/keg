@@ -1,17 +1,19 @@
 require_relative './test_helper'
 
-class YglTest < Minitest::Test
+class YglDBTest < Minitest::Test
   def test_that_it_has_a_version_number
     refute_nil ::Ygl::VERSION
   end
 
-  def test_connect_db
+  def test_switch
     assert Ygl::DB.switch("daimon-lunch")
   end
 
-  def test_get_file
+  def test_get_toml
     Ygl::DB.switch("daimon-lunch")
-    assert Ygl::DB.get_file('oosaka')
+    result = {"name" => "東麻布 逢坂",
+                  "url" => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}
+    assert_equal result, Ygl::DB.get_toml('oosaka')
   end
 
   def test_db_name
