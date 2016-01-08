@@ -10,7 +10,7 @@ module Ygl
       if Ygl::DB.switch(name)
         puts "switch DataBase '#{name}'"
       else
-        puts "No such directory '#{name}'"
+        raise "Error: No such directory '#{name}'"
       end
     end
 
