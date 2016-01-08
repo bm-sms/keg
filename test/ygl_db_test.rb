@@ -12,7 +12,7 @@ class YglDBTest < Minitest::Test
   def test_get_toml
     Ygl::DB.switch("daimon-lunch")
     result = {"name" => "東麻布 逢坂",
-                  "url" => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}
+              "url" => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}
     assert_equal result, Ygl::DB.get_toml('oosaka')
   end
 

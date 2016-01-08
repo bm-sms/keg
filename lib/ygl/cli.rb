@@ -1,6 +1,7 @@
 require 'ygl'
 require 'thor'
 require 'json'
+require 'yaml'
 
 module Ygl
   class CLI < Thor
@@ -14,9 +15,14 @@ module Ygl
     end
 
     desc "show --format=(yaml, json) filename", "print file"
+    option "format", default: "json"    
     def show(filename)
       toml = Ygl::DB.get_toml(filename)
-      puts toml.to_json
+      case options["format"]
+      when "json" then puts toml.to_json
+      when "yaml" then puts toml.to_yaml  
+      else raise "Unknow format '#{options["format"]}'"
+      end
     end
 
     desc "current", "show current DB name"
