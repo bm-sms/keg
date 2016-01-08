@@ -4,6 +4,6 @@ require "ygl/db"
 require "ygl/conf"
 require "ygl/formatter"
 
-module Ygl
+module YGL
   # Your code goes here...
 end

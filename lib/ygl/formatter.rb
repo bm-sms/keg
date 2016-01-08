@@ -1,7 +1,6 @@
 require 'ygl'
 
-module Ygl  
+module YGL
   module Formatter
-    
   end
 end

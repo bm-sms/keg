@@ -2,11 +2,11 @@ require_relative 'test_helper'
 
 class YglCLITest < Minitest::Test
   def setup
-    @cli = Ygl::CLI.new
+    @cli = YGL::CLI.new
   end
 
   def test_switch_success
-    assert_output(stdout=%Q(switch DataBase 'daimon-lunch'\n), stderr=nil) do 
+    assert_output(stdout="switch DataBase 'daimon-lunch'\n", stderr=nil) do 
       @cli.switch("daimon-lunch")
     end
   end
