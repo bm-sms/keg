@@ -1,0 +1,1339 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"assert",
+				"assert_equal"
+			],
+			[
+				"std",
+				"stdout"
+			],
+			[
+				"read",
+				"read_ahead"
+			],
+			[
+				"char",
+				"char_buf"
+			],
+			[
+				"di",
+				"dictionary"
+			],
+			[
+				"file",
+				"filename"
+			],
+			[
+				"Home",
+				"HOME_PATH"
+			],
+			[
+				"HOME",
+				"HOME_PATH"
+			],
+			[
+				"pase",
+				"parse_line"
+			],
+			[
+				"get_",
+				"get_first_word"
+			],
+			[
+				"par",
+				"parse_line"
+			],
+			[
+				"parse",
+				"parse_line"
+			],
+			[
+				"split",
+				"split_comma"
+			],
+			[
+				"get",
+				"get_next_word"
+			],
+			[
+				"reqire",
+				"require"
+			],
+			[
+				"Lef",
+				"LeftClosedRightOpenRange"
+			],
+			[
+				"Left",
+				"LeftOpenRightClosedRange"
+			],
+			[
+				"leftopen",
+				"left_open"
+			],
+			[
+				"open",
+				"open_closed_range.rb"
+			],
+			[
+				"new",
+				"new_range"
+			],
+			[
+				"conta",
+				"contains_open"
+			],
+			[
+				"clse",
+				"CloseRange"
+			],
+			[
+				"close",
+				"CloseRange"
+			],
+			[
+				"range",
+				"range"
+			],
+			[
+				"requri",
+				"require_relative"
+			],
+			[
+				"require",
+				"require_relative"
+			],
+			[
+				"text",
+				"text_area"
+			],
+			[
+				"cot",
+				"connected"
+			],
+			[
+				"co",
+				"closed_range"
+			],
+			[
+				"prin",
+				"printf"
+			],
+			[
+				"fizz",
+				"fizzbuzz"
+			],
+			[
+				"ques",
+				"question_params"
+			],
+			[
+				"text_",
+				"text_area"
+			],
+			[
+				"max",
+				"maximum"
+			],
+			[
+				"que",
+				"question"
+			],
+			[
+				"image",
+				"image_url"
+			],
+			[
+				"imga",
+				"image_tag"
+			],
+			[
+				"secre",
+				"secret_key_base"
+			],
+			[
+				"serc",
+				"secret_key_base"
+			],
+			[
+				"answer",
+				"answers"
+			],
+			[
+				"artilce",
+				"article"
+			],
+			[
+				"arti",
+				"article"
+			],
+			[
+				"opp",
+				"opponent_team"
+			],
+			[
+				"json_",
+				"json_encode"
+			],
+			[
+				"b",
+				"bearup_times"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"exe",
+				"execute"
+			],
+			[
+				"game",
+				"game_id"
+			],
+			[
+				"start",
+				"start"
+			],
+			[
+				"checkin",
+				"checkin_now"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"CURLOPT",
+				"CURLOPT_CUSTOMREQUEST"
+			],
+			[
+				"CURLPOT_",
+				"CURLOPT_POSTFIELDS"
+			],
+			[
+				"zd",
+				"ZDAPIKEY"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "lib/ygl/cli.rb",
+			"settings":
+			{
+				"buffer_size": 1018,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/ygl/db.rb",
+			"settings":
+			{
+				"buffer_size": 622,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/ygl/conf.rb",
+			"settings":
+			{
+				"buffer_size": 373,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "aaa",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "exe/ygl",
+			"settings":
+			{
+				"buffer_size": 49,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/ygl_cli_test.rb",
+			"settings":
+			{
+				"buffer_size": 1552,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"last_filter": "co",
+		"selected_items":
+		[
+			[
+				"co",
+				"codic: translate"
+			],
+			[
+				"package lit",
+				"Package Control: List Packages"
+			],
+			[
+				"package reposi",
+				"Package Control: Add Repository"
+			],
+			[
+				"package ins",
+				"Package Control: Install Package"
+			],
+			[
+				"package repository",
+				"Package Control: Add Repository"
+			],
+			[
+				"package r",
+				"Package Control: Remove Package"
+			],
+			[
+				"package in",
+				"Package Control: Install Package"
+			],
+			[
+				"package rep",
+				"Package Control: Add Repository"
+			],
+			[
+				"package li",
+				"Package Control: List Packages"
+			],
+			[
+				"package i",
+				"Package Control: Install Package"
+			],
+			[
+				"package re",
+				"Package Control: Remove Package"
+			],
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"package list",
+				"Package Control: List Packages"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pacak remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"pacak i",
+				"Package Control: Install Package"
+			],
+			[
+				"pacak lis",
+				"Package Control: List Packages"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"packe list",
+				"Package Control: List Packages"
+			],
+			[
+				"package control list",
+				"Package Control: List Packages"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"packagecontrol: li",
+				"Package Control: List Packages"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 465.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/mura/Documents/gitrepos/yet_another_glean",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/config",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/lib/ygl"
+	],
+	"file_history":
+	[
+		"/Users/mura/Library/Application Support/Sublime Text 3/Packages/User/codic.sublime-settings",
+		"/Users/mura/Library/Application Support/Sublime Text 3/Packages/User/OnlineSearch.sublime-settings",
+		"/Users/mura/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/mura/Library/Application Support/Sublime Text 3/Packages/OnlineSearch/OnlineSearch.sublime-settings",
+		"/Users/mura/Library/Application Support/Sublime Text 3/Packages/User/Tag Package.sublime-settings",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/ygl.gemspec",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/lib/ygl/formatter.rb",
+		"/Users/mura/Documents/ranma.toml",
+		"/Users/mura/Documents/gitrepos/glean/lib/glean/dataset.rb",
+		"/Users/mura/Downloads/bencode_parser.rb",
+		"/Users/mura/.yet_another_glean/daimon-lunch/oosaka.toml",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/lib/ygl.rb",
+		"/Users/mura/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/mura/Documents/gitrepos/bencode_parser/bencode_parser.gemspec",
+		"/Users/mura/Documents/gitrepos/bencode_parser/Gemfile",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/Gemfile",
+		"/Users/mura/Documents/gitrepos/CSVParser/test/test_helper.rb",
+		"/Users/mura/Documents/gitrepos/bencode_parser/test/test_helper.rb",
+		"/Users/mura/Documents/gitrepos/bencode_parser/lib/bencode_parser/cli.rb",
+		"/Users/mura/Documents/gitrepos/bencode_parser/lib/bencode_parser.rb",
+		"/Users/mura/Documents/gitrepos/bencode_parser/Gemfile.lock",
+		"/Users/mura/Downloads/ubuntu-ja-12.04.1-desktop-i386.iso.torrent",
+		"/Users/mura/Documents/bencode_parser.rb",
+		"/Users/mura/Downloads/bencode_parser",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/README1.md",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/lib/ygl/db.rb",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/ygl/confing/config.txt",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/ygl/exe/ygl",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/ygl/test/db_test.rb",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/ygl/ygl.gemspec",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/ygl/bin/setup",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/ygl/bin/ygl",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/ygl/lib/db.rb",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/lib/db.rb",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/test/db_test.rb",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/test/core_test.rb",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/lib/core.rb",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/bin/ygl.rb",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/lib/exception.rb",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/lib/file_convert.rb",
+		"/Users/mura/Documents/gitrepos/yet_another_glean/lib/DB.rb",
+		"/Users/mura/Documents/講義資料/データベースII/database.md",
+		"/Users/mura/Documents/講義資料/データベースII/suzaku_org/bin/robot.rb",
+		"/Users/mura/.ssh/config",
+		"/Users/mura/.ssh/authorized_keys.ppk",
+		"/Users/mura/Downloads/chasen-2.4.5.tar",
+		"/Users/mura/Documents/講義資料/データベースII/suzaku_org/search_option.rb",
+		"/Users/mura/Documents/講義資料/データベースII/suzaku_org/admin/master_update.rb",
+		"/Users/mura/Documents/講義資料/データベースII/suzaku_org/admin/master_list_skip.rb",
+		"/Users/mura/.rvm/rubies/ruby-2.0.0-p643/lib/ruby/2.0.0/csv.rb",
+		"/Users/mura/.rvm/src/ruby-2.0.0-p643/lib/csv.rb",
+		"/Users/mura/Documents/gitrepos/CSVParser/Gemfile",
+		"/Users/mura/Documents/gitrepos/CSVParser/test/test.rb",
+		"/Users/mura/Documents/Rails/CodeRefactoring/.git/description",
+		"/Users/mura/Documents/gitrepos/CSVParser/Readme.md",
+		"/Users/mura/Documents/講義資料/データベースII/suzaku_org/lib/suzaku_weblib.rb",
+		"/Users/mura/Documents/講義資料/データベースII/suzaku_org/search1.rb",
+		"/Users/mura/Documents/講義資料/データベースII/suzaku_org/search1.r",
+		"/Users/mura/Documents/Rails/CodeRefactoring/app/views/users/show.html.erb",
+		"/Users/mura/Documents/Rails/CodeRefactoring/config/secrets.yml",
+		"/Users/mura/Documents/Rails/CodeRefactoring/.gitignore",
+		"/Users/mura/Documents/Rails/CodeRefactoring/app/views/questions/show.html.erb",
+		"/Users/mura/Documents/Rails/CodeRefactoring/app/assets/stylesheets/custom.css.scss",
+		"/Users/mura/Documents/Rails/CodeRefactoring/app/views/relationships/create.js.erb",
+		"/Users/mura/Documents/Rails/CodeRefactoring/app/views/layouts/application.html.erb",
+		"/Users/mura/Documents/Rails/CodeRefactoring/vendor/assets/javascripts/bootstrap.min.js",
+		"/Users/mura/Documents/Rails/CodeRefactoring/config/initializers/00_load_config.rb",
+		"/Users/mura/Documents/Rails/CodeRefactoring/config/locales/en.yml",
+		"/Users/mura/Documents/Rails/hackathon2015_div1_a/Gemfile",
+		"/Users/mura/Documents/Rails/CodeRefactoring/config/database.yml",
+		"/Users/mura/Documents/Rails/CodeRefactoring/Gemfile",
+		"/Users/mura/Documents/Rails/hackathon2015_div1_a/config/database.yml",
+		"/Users/mura/Documents/Rails/Bwitter/app/views/questions/index.html.erb",
+		"/Users/mura/Documents/Rails/Bwitter/app/controllers/questions_controller.rb",
+		"/Users/mura/Documents/Rails/Bwitter/app/controllers/users_controller.rb",
+		"/Users/mura/Documents/Rails/Bwitter/app/views/tops/index.html.erb",
+		"/Users/mura/Documents/Rails/Bwitter/app/controllers/tops_controller.rb",
+		"/Users/mura/Documents/Rails/Bwitter/app/views/users/show_follow.html.erb",
+		"/Users/mura/Documents/Rails/Bwitter/app/views/users/show.html.erb",
+		"/Users/mura/Documents/Rails/Bwitter/app/views/users/index.html.erb",
+		"/Users/mura/Documents/Rails/Bwitter/app/assets/stylesheets/custom.css.scss",
+		"/Users/mura/Documents/Rails/Bwitter/app/views/layouts/_header.html.erb",
+		"/Users/mura/Documents/Rails/Bwitter/app/views/layouts/application.html.erb",
+		"/Users/mura/Documents/Rails/Bwitter/Gemfile",
+		"/Users/mura/Documents/gitrepos/TDDBC/lib/open_range.rb",
+		"/Users/mura/Documents/gitrepos/TDDBC/lib/closed_range.rb",
+		"/Users/mura/Documents/gitrepos/TDDBC/lib/left_closed_right_open_range.rb",
+		"/Users/mura/Documents/gitrepos/TDDBC/test/test_open_range.rb",
+		"/Users/mura/Documents/gitrepos/TDDBC/test/test_closed_range.rb",
+		"/Users/mura/Documents/gitrepos/TDDBC/test/test_left_open_right_closed_range.rb",
+		"/Users/mura/Documents/gitrepos/TDDBC/test/test_left_closed_right_open_range.rb",
+		"/Users/mura/Documents/gitrepos/TDDBC/lib/left_open_right_closed_range.rb",
+		"/Users/mura/Documents/gitrepos/TDDBC/lib/infinite_range.rb",
+		"/Users/mura/Documents/gitrepos/TDDBC/test/test_infinite range.rb",
+		"/Users/mura/Documents/gitrepos/TDDBC/lib/int_range.rb",
+		"/Users/mura/Documents/gitrepos/TDDBC/lib/test_left_closed_right_open_range.rb",
+		"/Users/mura/Documents/gitrepos/TDDBC/lib/open_closed_range.rb",
+		"/Users/mura/Documents/gitrepos/glean/lib/glean/version.rb",
+		"/Users/mura/Documents/gitrepos/LeapYear/lib/my_year.rb",
+		"/Users/mura/Documents/gitrepos/FizzBuzz/lib/fizzbuzz.rb",
+		"/Users/mura/Documents/gitrepos/LeapYear/test/test.rb",
+		"/Users/mura/Downloads/suzaku_org/search.rb",
+		"/Users/mura/Documents/Rails/Bwitter/db/migrate/20151113114855_acts_as_taggable_on_migration.acts_as_taggable_on_engine.rb",
+		"/Users/mura/Documents/Rails/Bwitter/app/views/questions/show.html.erb",
+		"/Users/mura/Documents/Rails/Bwitter/app/views/questions/edit.html.erb",
+		"/Users/mura/Documents/Rails/Bwitter/app/views/questions/new.html.erb",
+		"/Users/mura/Documents/Rails/Bwitter/app/assets/stylesheets/application.css",
+		"/Users/mura/Documents/Rails/Bwitter/app/assets/javascripts/application.js",
+		"/Users/mura/Downloads/DSE.md",
+		"/Users/mura/Documents/Rails/Bwitter/app/views/questions/_like_form.html.erb",
+		"/Users/mura/Documents/Rails/Bwitter/config/application.rb",
+		"/Users/mura/Documents/gitrepos/FizzBuzz/README.md",
+		"/Users/mura/Documents/gitrepos/LeapYear/README.md",
+		"/Users/mura/Documents/Rails/Bwitter/app/views/questions/_like.html.erb",
+		"/Users/mura/Documents/Rails/Bwitter/app/controllers/relationships_controller.rb",
+		"/Users/mura/Documents/Rails/BestCode/app/views/questions/new.html.erb",
+		"/Users/mura/Documents/gitrepos/TDDBC/lib/range.rb",
+		"/Users/mura/Documents/gitrepos/TDDBC/test/test.rb",
+		"/Users/mura/Documents/gitrepos/FibonacciSequence/lib/fibnacci.rb",
+		"/Users/mura/Documents/gitrepos/FibonacciSequence/test/test.rb",
+		"/Users/mura/Documents/gitrepos/LeapYear/lib/my-year.rb",
+		"/Users/mura/Dropbox/aa.md",
+		"/Users/mura/Documents/gitrepos/FizzBuzz/test/test.rb",
+		"/Users/mura/Documents/gitrepos/lib/leap_year.rb",
+		"/Users/mura/Documents/gitrepos/test/test.rb",
+		"/Users/mura/Documents/gitrepos/glean/lib/glean/source.rb",
+		"/Users/mura/Documents/gitrepos/glean/lib/glean.rb",
+		"/Users/mura/Documents/gitrepos/glean/bin/glean"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 95.0,
+		"where_history":
+		[
+			"<open folders> .",
+			"<open folders>",
+			"<open folders>hackathon2015_div1_a",
+			"<open folders>fuel",
+			"<open folders>api",
+			"../api<open folders>",
+			"..//api<open folders>",
+			"app<open folders>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"Ygl",
+			"show_encoding",
+			"encoding",
+			"encode",
+			"setup",
+			"tag",
+			"require",
+			"parse_csv",
+			"follow",
+			"(/,\"|\",/)",
+			"get_temp_keyword_table_name",
+			"@table_name_id",
+			"get_temp_keyword_table_name",
+			"word_search",
+			"parse",
+			"parse(t1)",
+			"get_next_keyword",
+			"parse",
+			"search",
+			"setup",
+			"or_temp_tables",
+			"create_temp_keyword_table",
+			"get_temp_keyword_table_name",
+			"or_temp_tables",
+			"or_tem_tables",
+			"split_word",
+			"setup",
+			"idf_k",
+			"@dbh",
+			"count",
+			"@db",
+			"@dn",
+			"idf_k",
+			"@dn",
+			"split",
+			"@dn",
+			"制御文字以外の場合は、knにキーワードが含まれる文書数を格納し、knが0",
+			"select_count_word",
+			"@word",
+			"idf(k)",
+			"eofswでにget_first_keyword",
+			"idfs",
+			"untaint",
+			"list_fooder",
+			"limit",
+			"max_page",
+			"cgi.params",
+			"cgi.params[\"limit\"]",
+			"limit",
+			"max_page",
+			"fooder",
+			"pos",
+			"list_fooder",
+			"read",
+			"parse_csvparse_line",
+			"parse_csv",
+			"init_parsers",
+			"is_a?",
+			"open",
+			"read",
+			"parse",
+			"max_page",
+			"stotal",
+			"pos",
+			"list_fooder",
+			"login",
+			"@open",
+			"open",
+			"@closed",
+			"create",
+			"LeftOpenRightClosedRange",
+			"ClosedRange",
+			"@closed",
+			"_range",
+			"range",
+			"new",
+			"parse",
+			"dump",
+			"gsub",
+			"setup",
+			"search",
+			"jquery-ui-rails",
+			"self.",
+			"good",
+			"create_closed",
+			"Rang",
+			"sysinfo",
+			"Module",
+			"glean",
+			"markdown",
+			"relationships",
+			"@question",
+			"alert-error",
+			"alert-",
+			"curr",
+			"end",
+			"container",
+			"boot",
+			"current",
+			"currnet",
+			"input",
+			"ruby",
+			"img",
+			"2105",
+			"created_at",
+			"updated_at",
+			"$_properties",
+			"\\Model_Crud",
+			"set",
+			"codeCheck",
+			"makecode",
+			"code",
+			"E2102",
+			"exit",
+			"parameters",
+			"json_en",
+			"$key",
+			"var_dump",
+			"exit",
+			"eixt",
+			"old_device_token",
+			"insertGameInfo",
+			"DB",
+			"MessageResources",
+			"errorcode",
+			"E1000",
+			"error",
+			"set"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "lib/ygl/cli.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1018,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1000,
+								1000
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 119.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "lib/ygl/db.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 622,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								500,
+								500
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "lib/ygl/conf.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 373,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								355,
+								355
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "aaa",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "exe/ygl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 49,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 5,
+					"file": "test/ygl_cli_test.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1552,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1542,
+								1542
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 374.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "yet_another_glean.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 145.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
