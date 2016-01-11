@@ -14,8 +14,8 @@ module YGL
       end
     end
 
-    desc "show --format=(yaml, json) filename", "print file by format(default = json)"
-    option "format", default: "json"    
+    desc "show filename", "print file by format"
+    method_option "format", desc: "json, yaml", default: 'json'
     def show(filename)
       toml = YGL::DB.get_toml(filename) # return hash
       case options["format"]
@@ -30,8 +30,8 @@ module YGL
       puts YGL::DB.current
     end
 
-    desc "show-all --format=(yaml, json) filename", "print all toml file"
-    option "format", default: "json"
+    desc "show_all --format=(yaml, json) filename", "print all toml file"
+    method_option "format", desc: "json, yaml", default: 'json'
     def show_all
       
     end

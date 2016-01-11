@@ -5,7 +5,7 @@ require 'ygl/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "ygl"
-  spec.version       = Ygl::VERSION
+  spec.version       = YGL::VERSION
   spec.authors       = ["s1513114"]
   spec.email         = ["s1513114@u.tsukuba.ac.jp"]
 
