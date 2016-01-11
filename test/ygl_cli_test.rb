@@ -5,7 +5,8 @@ class YglCLITest < Minitest::Test
   def setup
     @cli = YGL::CLI.new
     YGL::DB.switch('daimon-lunch')
-    @output = YGL::DB.get_toml('oosaka')
+    @oosaka = YGL::DB.get_toml('oosaka')
+    @ranma  = YGL::DB.get_toml('ranma')
   end
 
   def test_switch_success
@@ -20,17 +21,17 @@ class YglCLITest < Minitest::Test
 
   def test_show_defalut
     out, err = capture_io { @cli.invoke(:show, ['oosaka']) }
-    assert_equal @output.to_json + "\n", out
+    assert_equal @oosaka.to_json + "\n", out
   end
 
   def test_show_json
     out, err = capture_io { @cli.invoke(:show, ['oosaka'], { format: 'json'}) }
-    assert_equal @output.to_json + "\n", out
+    assert_equal @oosaka.to_json + "\n", out
   end
 
   def test_show_yaml
     out, err = capture_io { @cli.invoke(:show, ['oosaka'], { format: 'yaml' }) }
-    assert_equal @output.to_yaml, out
+    assert_equal @oosaka.to_yaml, out
   end
 
   def test_show_unkwon_format
@@ -46,5 +47,27 @@ class YglCLITest < Minitest::Test
   def test_current_faild
     YGL::Conf.save_db_name('')
     assert_raises(RuntimeError) { @cli.current } 
+  end
+
+  def test_show_all_defalut
+    out, err = capture_io { @cli.invoke(:show_all) }
+    assert_equal @oosaka.to_json + "\n" + 
+                 @ranma.to_json  + "\n", out
+  end
+
+  def test_show_all_json
+    out, err = capture_io { @cli.invoke(:show_all, [], { format: 'json' }) }
+    assert_equal @oosaka.to_json + "\n" +
+                 @ranma.to_json  + "\n", out
+  end
+
+  def test_show_all_yaml
+    out, err = capture_io { @cli.invoke(:show_all, [], { format: 'yaml'}) }
+    assert_equal @oosaka.to_yaml + @ranma.to_yaml, out
+  end
+
+  def test_show_all_unkwon_format
+    # TODO: modify RuntimeError to correct    
+    assert_raises(RuntimeError) { @cli.invoke(:show_all, [], { format: 'aaa' }) }
   end
 end

@@ -23,7 +23,6 @@ class YglDBTest < Minitest::Test
 
   def test_get_toml_all
     YGL::DB.switch('daimon-lunch')
-    path = File.join(ENV["HOME"], '.yet_another_glean', YGL::DB::current)
-    assert_equal ["#{path}/oosaka.toml", "#{path}/ranma.toml"], YGL::DB.get_toml_all
+    assert_equal {}, YGL::DB.get_toml_all
   end
 end

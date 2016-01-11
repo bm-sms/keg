@@ -33,10 +33,16 @@ module YGL
       puts db_name
     end
 
-    desc "show_all --format=(yaml, json) filename", "print all toml file"
+    desc "show_all filename", "print all toml file"
     method_option "format", desc: "json, yaml", default: 'json'
     def show_all
-      
+      YGL::DB.each do |toml|
+        case options["format"]
+        when "json" then puts toml.to_json
+        when "yaml" then puts toml.to_yaml
+        else raise "Unknow format '#{options["format"]}'"
+        end
+      end
     end
   end
 end

@@ -5,6 +5,8 @@ module YGL
   HOME_PATH = "#{ENV["HOME"]}/.yet_another_glean"
 
   module DB
+    include Enumerable
+    
     def self.switch(name)
       path = File.join(HOME_PATH, name)
       YGL::Conf.save_db_name(name) if File.exists?(path)
@@ -20,8 +22,10 @@ module YGL
       YGL::Conf.load_db_name
     end
 
-    def self.get_toml_all
-      Dir.glob(File.join(strong_path, '**', '*.toml'))
+    def self.each
+      Dir.glob(File.join(strong_path, '**', '*.toml')) do |path|
+        yield TOML.load_file(path)
+      end
     end
 
     private
