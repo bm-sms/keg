@@ -20,9 +20,4 @@ class YglDBTest < Minitest::Test
     YGL::DB.switch("daimon-lunch")
     assert_equal "daimon-lunch", YGL::DB.current
   end
-
-  def test_get_toml_all
-    YGL::DB.switch('daimon-lunch')
-    assert_equal {}, YGL::DB.get_toml_all
-  end
 end
