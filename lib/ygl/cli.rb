@@ -27,7 +27,10 @@ module YGL
 
     desc "current", "show current DB name"
     def current
-      puts YGL::DB.current
+      db_name = YGL::DB.current
+      raise 'DB dose not set' if db_name == ''
+
+      puts db_name
     end
 
     desc "show_all --format=(yaml, json) filename", "print all toml file"

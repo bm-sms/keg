@@ -37,4 +37,14 @@ class YglCLITest < Minitest::Test
     # TODO: modify RuntimeError to correct    
     assert_raises(RuntimeError) { @cli.invoke(:show, ['oosaka'], { format: 'aaa'} ) }
   end
+
+  def test_current_success
+    out, err = capture_io { @cli.current }
+    assert_equal "daimon-lunch\n", out
+  end
+
+  def test_current_faild
+    YGL::Conf.save_db_name('')
+    assert_raises(RuntimeError) { @cli.current } 
+  end
 end

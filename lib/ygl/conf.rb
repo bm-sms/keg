@@ -11,7 +11,12 @@ module YGL
     end
 
     def self.load_db_name
-      File.open('config/config.txt', &:read)
+      begin
+        File.open('config/config.txt', &:read)
+      rescue
+        File.write('config/config.txt', '')
+        retry
+      end
     end
   end
 end
