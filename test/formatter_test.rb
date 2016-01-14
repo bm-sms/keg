@@ -6,6 +6,10 @@ class FormatterTest < Minitest::Test
   end
 
   def test_submodules
-    assert_equal YGL::Formatter::JSON, @formatter.format('json')
+    assert_equal [:JSON, :YAML], @formatter.submodules
+  end
+
+  def test_format
+    assert_equal :JSON, @formatter.format('json')
   end
 end

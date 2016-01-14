@@ -4,7 +4,7 @@ module YGL
   module Formatter
     def self.format(format)
       submodules.find do |submodule|
-        format.downcase == submodule.split("::").last.downcase
+        format.downcase == submodule.to_s.downcase
       end
     end
 
