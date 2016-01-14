@@ -6,5 +6,5 @@ require "ygl/formatter/json"
 require "ygl/formatter/yaml"
 
 module YGL
-  # Your code goes here...
+  
 end
