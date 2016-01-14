@@ -1,14 +1,16 @@
 require 'ygl'
-require 'json'
-require 'yaml'
 
 module YGL
   module Formatter
-    def self.to_format(format, hash)
-      case format
-      when 'json' then hash.to_json
-      when 'yaml' then hash.to_yaml
-      else raise "Unkwon format '#{format}'"
+    def self.format(format)
+      submodules.find do |submodule|
+        format.downcase == submodule.split("::").last.downcase
+      end
+    end
+
+    def self.submodules
+      constants.select do |const_name| 
+        const_get(const_name).class == Module
       end
     end
   end

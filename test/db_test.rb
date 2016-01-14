@@ -5,8 +5,12 @@ class YglDBTest < Minitest::Test
     refute_nil ::YGL::VERSION
   end
 
-  def test_switch
-    assert YGL::DB.switch("daimon-lunch")
+  def test_switch_success
+    assert_equal true, YGL::DB.switch("daimon-lunch")
+  end
+
+  def test_switch_faild
+    assert_equal nil, YGL::DB.switch("aaa")
   end
 
   def test_get_toml
