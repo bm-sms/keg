@@ -44,11 +44,6 @@ class YglCLITest < Minitest::Test
     assert_equal "daimon-lunch\n", out
   end
 
-  def test_current_faild
-    YGL::Conf.save_db_name('')
-    assert_raises(RuntimeError) { @cli.current } 
-  end
-
   def test_show_all_defalut
     out, err = capture_io { @cli.invoke(:show_all) }
     assert_equal @oosaka.to_json + "\n" + 

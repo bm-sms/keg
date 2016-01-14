@@ -9,7 +9,7 @@ module YGL
     
     def self.switch(name)
       path = File.join(HOME_PATH, name)
-      YGL::Conf.save_db_name(name) if File.exists?(path)
+      save_db_name(name) if File.exists?(path)
     end
 
     def self.get_toml(filename)
@@ -19,7 +19,7 @@ module YGL
     end
 
     def self.current
-      YGL::Conf.load_db_name
+      load_db_name
     end
 
     def self.each
@@ -32,6 +32,23 @@ module YGL
 
     def self.strong_path
       File.join(HOME_PATH, current)
+    end
+
+    def self.save_db_name(name)
+      if File.write('config/config.txt', name)
+        return true
+      else
+        return false
+      end
+    end
+
+    def self.load_db_name
+      begin
+        File.open('config/config.txt', &:read)
+      rescue
+        File.write('config/config.txt', '')
+        retry
+      end
     end
   end
 end
