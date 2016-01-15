@@ -16,7 +16,9 @@ module YGL
     method_option "format", desc: "json, yaml", default: 'json'
     def show(filename)
       toml = YGL::DB.get_toml(filename)
-      puts YGL::Formatter.to_format(options["format"], toml)
+      formatter =  YGL::Formatter.format(options["format"])
+      raise 'unknown format' if formatter == nil
+      puts formatter.format(toml) 
     end
 
     desc "current", "show current DB name"
@@ -30,8 +32,10 @@ module YGL
     desc "show_all filename", "output all toml file"
     method_option "format", desc: "json, yaml", default: 'json'
     def show_all
+      formatter =  YGL::Formatter.format(options["format"])
+      raise 'unknown format' if formatter == nil
       YGL::DB.each do |toml|
-        puts YGL::Formatter.to_format(options["format"], toml)
+        puts formatter.format(toml)
       end
     end
   end

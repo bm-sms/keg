@@ -4,7 +4,7 @@ require 'yaml'
 module YGL
   module Formatter
     module YAML
-      def formatter(obj)
+      def self.format(obj)
         obj.to_yaml
       end
     end
