@@ -16,7 +16,11 @@ module YGL
 
     def self.get_toml(filename)
       path = File.join(strong_path, filename+'.toml')
-      TOML.load_file(path)
+      begin
+        TOML.load_file(path)
+      rescue
+        raise IOError, "No such file or directory '#{filename}'"
+      end
     end
 
     def self.current
@@ -24,7 +28,7 @@ module YGL
       if db_name.empty?
         raise ArgumentError, 'DB dose not set'
       end
-      
+
       db_name
     end
 

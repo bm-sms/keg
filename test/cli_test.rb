@@ -5,8 +5,10 @@ class YglCLITest < Minitest::Test
   def setup
     @cli = YGL::CLI.new
     YGL::DB.switch('daimon-lunch')
-    @oosaka = YGL::DB.get_toml('oosaka')
-    @ranma  = YGL::DB.get_toml('ranma')
+    @oosaka = {"name" => "東麻布 逢坂",
+               "url"  => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}
+    @ranma  = {"name" => "蘭麻",
+               "url"  =>"http://tabelog.com/tokyo/A1314/A131401/13034212/"}   
   end
 
   def test_switch_success
@@ -37,9 +39,23 @@ class YglCLITest < Minitest::Test
     assert_raises(ArgumentError) { @cli.invoke(:show, ['oosaka'], { format: 'aaa'} ) }
   end
 
+  def test_show_no_such_file
+    assert_raises(IOError) { @cli.show('aaa') }
+  end
+
+  def test_show_does_not_select_db
+    File.write('config/config.txt', '')
+    assert_raises(ArgumentError) { @cli.show('oosaka') }
+  end
+
   def test_current_success
     out, err = capture_io { @cli.current }
     assert_equal "daimon-lunch\n", out
+  end
+
+  def test_current_does_not_select_db
+    File.write('config/config.txt', '')
+    assert_raises(ArgumentError) { @cli.current }
   end
 
   def test_show_all_defalut
@@ -61,5 +77,11 @@ class YglCLITest < Minitest::Test
 
   def test_show_all_unkwon_format
     assert_raises(ArgumentError) { @cli.invoke(:show_all, [], { format: 'aaa' }) }
+  end
+
+  def test_show_all_empty
+    @cli.switch("empty")
+    out, err = capture_io { @cli.invoke(:show_all) }
+    assert_equal '', out
   end
 end

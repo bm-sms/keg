@@ -22,7 +22,7 @@ class YglDBTest < Minitest::Test
 
   def test_get_toml_no_such_file
     @db.switch("daimon-lunch")
-    assert_raises(IOError) { @db.switch('aaa') }
+    assert_raises(IOError) { @db.get_toml('aaa') }
   end
 
   def test_get_toml_db_does_not_select
