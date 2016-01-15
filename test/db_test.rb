@@ -6,11 +6,11 @@ class YglDBTest < Minitest::Test
   end
 
   def test_switch_success
-    assert_equal true, YGL::DB.switch("daimon-lunch")
+    assert YGL::DB.switch("daimon-lunch")
   end
 
-  def test_switch_faild
-    assert_equal nil, YGL::DB.switch("aaa")
+  def test_switch_no_such_directroy
+    assert_raises(IOError) { YGL::DB.switch("aaa") }
   end
 
   def test_get_toml
@@ -20,7 +20,7 @@ class YglDBTest < Minitest::Test
     assert_equal result, YGL::DB.get_toml('oosaka')
   end
 
-  def test_db_name
+  def test_current_success
     YGL::DB.switch("daimon-lunch")
     assert_equal "daimon-lunch", YGL::DB.current
   end

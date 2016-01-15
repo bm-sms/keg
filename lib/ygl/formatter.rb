@@ -2,13 +2,21 @@ require 'ygl'
 
 module YGL
   module Formatter
-    def self.format(format)
-      submodules.find do |submodule|
-        format.downcase == last_module_name(submodule)
+    def self.formatter(format)
+      if formatter = find_submodule(format)
+        return formatter
+      else
+        raise ArgumentError, "unknown format '#{formatter}'"
       end
     end
 
     private
+
+    def self.find_submodule(format)
+      submodules.find do |submodule|
+        format.downcase == last_module_name(submodule)
+      end
+    end
 
     def self.submodules
       consts = constants.map do |const_name| 

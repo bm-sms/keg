@@ -14,9 +14,8 @@ class YglCLITest < Minitest::Test
     assert_equal %Q(switch DataBase 'daimon-lunch'\n), out
   end
 
-  def test_switch_failure
-    # TODO: modify RuntimeError to correct
-    assert_raises(RuntimeError) { @cli.switch("aaa") }
+  def test_switch_faild
+    assert_raises(IOError) { @cli.switch("aaa") }
   end
 
   def test_show_defalut
@@ -35,8 +34,7 @@ class YglCLITest < Minitest::Test
   end
 
   def test_show_unkwon_format
-    # TODO: modify RuntimeError to correct    
-    assert_raises(RuntimeError) { @cli.invoke(:show, ['oosaka'], { format: 'aaa'} ) }
+    assert_raises(ArgumentError) { @cli.invoke(:show, ['oosaka'], { format: 'aaa'} ) }
   end
 
   def test_current_success
@@ -62,7 +60,6 @@ class YglCLITest < Minitest::Test
   end
 
   def test_show_all_unkwon_format
-    # TODO: modify RuntimeError to correct    
-    assert_raises(RuntimeError) { @cli.invoke(:show_all, [], { format: 'aaa' }) }
+    assert_raises(ArgumentError) { @cli.invoke(:show_all, [], { format: 'aaa' }) }
   end
 end

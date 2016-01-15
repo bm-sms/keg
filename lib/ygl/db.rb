@@ -2,24 +2,30 @@ require 'ygl'
 require 'toml'
 
 module YGL
-  HOME_PATH = "#{ENV["HOME"]}/.yet_another_glean"
-
   module DB
-    include Enumerable
+    HOME_PATH = "#{ENV["HOME"]}/.yet_another_glean"
     
-    def self.switch(name)
-      path = File.join(HOME_PATH, name)
-      save_db_name(name) if File.exists?(path)
+    def self.switch(db_name)
+      path = File.join(HOME_PATH, db_name)
+      if File.exists?(path)
+        save_db_name(db_name)
+      else
+        raise IOError, "No such file or directory '#{db_name}'"
+      end
     end
 
     def self.get_toml(filename)
       path = File.join(strong_path, filename+'.toml')
       TOML.load_file(path)
-      rescue raise
     end
 
     def self.current
-      load_db_name
+      db_name = load_db_name
+      if db_name.empty?
+        raise ArgumentError, 'DB dose not set'
+      end
+      
+      db_name
     end
 
     def self.each
@@ -35,20 +41,11 @@ module YGL
     end
 
     def self.save_db_name(name)
-      if File.write('config/config.txt', name)
-        return true
-      else
-        return false
-      end
+      File.write('config/config.txt', name)
     end
 
     def self.load_db_name
-      begin
-        File.open('config/config.txt', &:read)
-      rescue
-        File.write('config/config.txt', '')
-        retry
-      end
+      File.open('config/config.txt', &:read)
     end
   end
 end
