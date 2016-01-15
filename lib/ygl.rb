@@ -4,6 +4,7 @@ require "ygl/db"
 require "ygl/formatter"
 require "ygl/formatter/json"
 require "ygl/formatter/yaml"
+require "ygl/conf"
 
 module YGL
   
