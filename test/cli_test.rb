@@ -17,7 +17,8 @@ class YglCLITest < Minitest::Test
   end
 
   def test_switch_faild
-    assert_raises(IOError) { @cli.switch("aaa") }
+    out, err = capture_io { @cli.switch("aaa") }
+    assert_equal "No such directroy 'aaa'\n", out
   end
 
   def test_show_defalut
@@ -36,16 +37,19 @@ class YglCLITest < Minitest::Test
   end
 
   def test_show_unkwon_format
-    assert_raises(ArgumentError) { @cli.invoke(:show, ['oosaka'], { format: 'aaa'} ) }
+    out, err = capture_io { @cli.invoke(:show, ['oosaka'], { format: 'aaa'} ) }
+    assert_equal @oosaka.to_json + "\n", out
   end
 
   def test_show_no_such_file
-    assert_raises(IOError) { @cli.show('aaa') }
+    out, err = capture_io { @cli.show('aaa') }
+    assert_equal "No such file 'aaa'\n", out
   end
 
   def test_show_does_not_select_db
     YGL::Config.save_db_name('')
-    assert_raises(ArgumentError) { @cli.show('oosaka') }
+    out, err = capture_io { @cli.show('oosaka') }
+    assert_equal "No such file 'oosaka'\n", out
   end
 
   def test_current_success
@@ -55,7 +59,8 @@ class YglCLITest < Minitest::Test
 
   def test_current_does_not_select_db
     YGL::Config.save_db_name('')
-    assert_raises(ArgumentError) { @cli.current }
+    out, err = capture_io { @cli.current }
+    assert_equal "DB does not set\n", out
   end
 
   def test_show_all_defalut
@@ -76,12 +81,21 @@ class YglCLITest < Minitest::Test
   end
 
   def test_show_all_unkwon_format
-    assert_raises(ArgumentError) { @cli.invoke(:show_all, [], { format: 'aaa' }) }
+    out, err = capture_io { @cli.invoke(:show_all, [], { format: 'aaa' }) }
+    assert_equal @oosaka.to_json + "\n" +
+                 @ranma.to_json  + "\n", out
   end
 
   def test_show_all_empty
     @cli.switch("empty")
-    out, err = capture_io { @cli.invoke(:show_all) }
+    out, err = capture_io { @cli.show_all }
     assert_equal '', out
+  end
+
+  def test_show_all_db_does_not_set
+    YGL::Config.save_db_name('')
+    out, err = capture_io { @cli.show_all }
+    assert_equal @oosaka.to_json + "\n" +
+                 @ranma.to_json  + "\n", out
   end
 end

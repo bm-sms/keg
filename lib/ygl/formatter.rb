@@ -3,20 +3,19 @@ require 'ygl'
 module YGL
   module Formatter
     def self.formatter(format)
-      if formatter = find_submodule(format)
-        return formatter
-      else
-        raise ArgumentError, "unknown format '#{formatter}'"
+      submodules.find do |submodule|
+        format.downcase == last_module(submodule)
+      end    
+    end
+
+    def self.available?(format)
+      modules = submodules.map do |submodule|
+        last_module(submodule)
       end
+      modules.include?(format.to_s.downcase)
     end
 
     private
-
-    def self.find_submodule(format)
-      submodules.find do |submodule|
-        format.downcase == last_module_name(submodule)
-      end
-    end
 
     def self.submodules
       consts = constants.map do |const_name| 
@@ -27,7 +26,7 @@ module YGL
       end
     end
 
-    def self.last_module_name(submodule)
+    def self.last_module(submodule)
       submodule.name.split('::').last.downcase
     end
   end

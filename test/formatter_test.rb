@@ -14,6 +14,6 @@ class FormatterTest < Minitest::Test
   end
 
   def test_format_faild
-    assert_raises(ArgumentError) { @formatter.formatter('aaa') }
+    assert_equal nil, @formatter.formatter('aaa')
   end
 end

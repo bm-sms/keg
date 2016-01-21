@@ -13,7 +13,6 @@ module YGL
         unless Dir.exists?(File.join(@home, 'config'))
           Dir.mkdir(File.join(@home, 'config'))
         end
-        
         save_db_name('')
         retry
       end

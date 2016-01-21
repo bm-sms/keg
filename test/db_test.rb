@@ -10,7 +10,7 @@ class YglDBTest < Minitest::Test
   end
 
   def test_switch_no_such_directroy
-    assert_raises(IOError) { @db.switch("aaa") }
+    assert_raises(Errno::ENOENT) { @db.switch("aaa") }
   end
 
   def test_get_toml_success
@@ -22,22 +22,12 @@ class YglDBTest < Minitest::Test
 
   def test_get_toml_no_such_file
     @db.switch("daimon-lunch")
-    assert_raises(IOError) { @db.get_toml('aaa') }
-  end
-
-  def test_get_toml_db_does_not_select
-    YGL::Config.save_db_name('')
-    assert_raises(ArgumentError) { @db.get_toml('oosaka')}
+    assert_raises(Errno::ENOENT) { @db.get_toml('aaa') }
   end
 
   def test_current_success
     @db.switch("daimon-lunch")
     assert_equal "daimon-lunch", @db.current
-  end
-
-  def test_current_faild
-    YGL::Config.save_db_name('')
-    assert_raises(ArgumentError) { @db.current }
   end
 
   def test_each
@@ -52,10 +42,5 @@ class YglDBTest < Minitest::Test
       assert_equal result[i], toml
       i += 1
     end
-  end
-
-  def test_each_db_does_not_select
-    YGL::Config.save_db_name('')
-    assert_raises(ArgumentError) { @db.each }
   end
 end
