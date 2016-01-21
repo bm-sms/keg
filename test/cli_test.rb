@@ -44,7 +44,7 @@ class YglCLITest < Minitest::Test
   end
 
   def test_show_does_not_select_db
-    File.write('config/config.txt', '')
+    YGL::Config.save_db_name('')
     assert_raises(ArgumentError) { @cli.show('oosaka') }
   end
 
@@ -54,7 +54,7 @@ class YglCLITest < Minitest::Test
   end
 
   def test_current_does_not_select_db
-    File.write('config/config.txt', '')
+    YGL::Config.save_db_name('')
     assert_raises(ArgumentError) { @cli.current }
   end
 

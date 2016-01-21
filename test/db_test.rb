@@ -26,7 +26,7 @@ class YglDBTest < Minitest::Test
   end
 
   def test_get_toml_db_does_not_select
-    File.write('config/config.txt', '')
+    YGL::Config.save_db_name('')
     assert_raises(ArgumentError) { @db.get_toml('oosaka')}
   end
 
@@ -36,7 +36,7 @@ class YglDBTest < Minitest::Test
   end
 
   def test_current_faild
-    File.write('config/config.txt', '')
+    YGL::Config.save_db_name('')
     assert_raises(ArgumentError) { @db.current }
   end
 
@@ -55,7 +55,7 @@ class YglDBTest < Minitest::Test
   end
 
   def test_each_db_does_not_select
-    File.write('config/config.txt', '')
+    YGL::Config.save_db_name('')
     assert_raises(ArgumentError) { @db.each }
   end
 end
