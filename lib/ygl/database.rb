@@ -3,10 +3,8 @@ require 'toml'
 
 module YGL
   module Database
-    HOME_PATH = "#{ENV["HOME"]}/.yet_another_glean"
-    
     def self.switch(db_name)
-      path = File.join(HOME_PATH, db_name)
+      path = File.join(home_path, db_name)
       if File.exists?(path)
         YGL::Config.save_db_name(db_name)
       else
@@ -41,7 +39,16 @@ module YGL
     private
 
     def self.strong_path
-      File.join(HOME_PATH, current)
+      File.join(home_path, current)
+    end
+
+    def self.home_path
+      set_home if @home == nil
+      File.join(@home, '.yet_another_glean')
+    end
+
+    def self.set_home
+      @home = ENV["HOME"]
     end
   end
 end
