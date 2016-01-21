@@ -6,11 +6,11 @@ class FormatterTest < Minitest::Test
   end
 
   def test_format_json
-    assert_equal @formatter::JSON, @formatter.formatter('json')
+    assert_equal @formatter::Json, @formatter.formatter('json')
   end
 
   def test_format_yaml
-    assert_equal @formatter::YAML, @formatter.formatter('yaml')
+    assert_equal @formatter::Yaml, @formatter.formatter('yaml')
   end
 
   def test_format_faild

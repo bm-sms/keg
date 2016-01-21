@@ -1,7 +1,7 @@
 require 'ygl'
 
 module YGL
-  module Conf
+  module Config
     def self.save_db_name(name)
       File.write('config/config.txt', name)
     end

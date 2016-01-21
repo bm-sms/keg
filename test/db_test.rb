@@ -2,7 +2,7 @@ require_relative './test_helper'
 
 class YglDBTest < Minitest::Test
   def setup
-    @db = YGL::DB
+    @db = YGL::Database
   end
 
   def test_switch_success

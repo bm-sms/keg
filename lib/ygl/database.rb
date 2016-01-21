@@ -2,13 +2,13 @@ require 'ygl'
 require 'toml'
 
 module YGL
-  module DB
+  module Database
     HOME_PATH = "#{ENV["HOME"]}/.yet_another_glean"
     
     def self.switch(db_name)
       path = File.join(HOME_PATH, db_name)
       if File.exists?(path)
-        YGL::Conf.save_db_name(db_name)
+        YGL::Config.save_db_name(db_name)
       else
         raise IOError, "No such file or directory '#{db_name}'"
       end
@@ -24,7 +24,7 @@ module YGL
     end
 
     def self.current
-      db_name = YGL::Conf.load_db_name
+      db_name = YGL::Config.load_db_name
       if db_name.empty?
         raise ArgumentError, 'DB dose not set'
       end

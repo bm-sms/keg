@@ -4,7 +4,7 @@ require 'yaml'
 class YglCLITest < Minitest::Test
   def setup
     @cli = YGL::CLI.new
-    YGL::DB.switch('daimon-lunch')
+    YGL::Database.switch('daimon-lunch')
     @oosaka = {"name" => "東麻布 逢坂",
                "url"  => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}
     @ranma  = {"name" => "蘭麻",

@@ -1,10 +1,10 @@
 require "ygl/version"
 require "ygl/cli"
-require "ygl/db"
+require "ygl/database"
 require "ygl/formatter"
 require "ygl/formatter/json"
 require "ygl/formatter/yaml"
-require "ygl/conf"
+require "ygl/config"
 
 module YGL
   
