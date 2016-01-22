@@ -8,7 +8,7 @@ module YGL
 
     def self.load_db_name
       begin
-        File.open(path, &:read)
+        File.read(path)
       rescue Errno::ENOENT
         recovery_open_err
         retry

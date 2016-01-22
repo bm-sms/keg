@@ -5,7 +5,7 @@ module YGL
   module Database
     def self.switch(db_name)
       path = File.join(home_path, db_name)
-      if File.exists?(path)
+      if File.directory?(path)
         YGL::Config.save_db_name(db_name)
       end
     end
