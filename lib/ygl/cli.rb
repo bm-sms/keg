@@ -7,22 +7,17 @@ module YGL
 
     desc "switch DB_NAME", "switching Database to DB_NAME"
     def switch(db_name)
-      begin
-        YGL::Database.switch(db_name)
-      rescue Errno::ENOENT
+      if YGL::Database.switch(db_name)
+        puts "switch DataBase '#{db_name}'"
+      else
         puts "No such directroy '#{db_name}'"
-        return
       end
-
-      puts "switch DataBase '#{db_name}'"
     end
 
     desc "show filename", "output toml file"
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
-      begin
-        toml = YGL::Database.get_toml(filename)
-      rescue Errno::ENOENT
+      unless toml = YGL::Database.get_toml(filename)
         puts "No such file '#{filename}'"
         return
       end
@@ -53,7 +48,7 @@ module YGL
       else
         formatter = YGL::Formatter.formatter(DEFAULT_FORMAT)
       end
-      
+
       YGL::Database.each do |toml|
         puts formatter.format(toml)
       end

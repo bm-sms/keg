@@ -6,11 +6,11 @@ class YglDBTest < Minitest::Test
   end
 
   def test_switch_success
-    assert @db.switch("daimon-lunch")
+    assert_equal "daimon-lunch".size, @db.switch("daimon-lunch")
   end
 
   def test_switch_no_such_directroy
-    assert_raises(Errno::ENOENT) { @db.switch("aaa") }
+    assert_equal nil, @db.switch("aaa")
   end
 
   def test_get_toml_success
@@ -22,7 +22,7 @@ class YglDBTest < Minitest::Test
 
   def test_get_toml_no_such_file
     @db.switch("daimon-lunch")
-    assert_raises(Errno::ENOENT) { @db.get_toml('aaa') }
+    assert_equal nil, @db.get_toml('aaa')
   end
 
   def test_current_success

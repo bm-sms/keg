@@ -7,14 +7,14 @@ module YGL
       path = File.join(home_path, db_name)
       if File.exists?(path)
         YGL::Config.save_db_name(db_name)
-      else
-        raise Errno::ENOENT, "No such file or directory '#{db_name}'"
       end
     end
 
     def self.get_toml(filename)
       path = File.join(db_path, filename+'.toml')
-      TOML.load_file(path)
+      if File.exists?(path)
+        TOML.load_file(path)
+      end
     end
 
     def self.current
