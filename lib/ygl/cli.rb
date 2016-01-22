@@ -23,7 +23,7 @@ module YGL
       end
 
       if YGL::Formatter.available?(options["format"])
-        formatter =  YGL::Formatter.formatter(options["format"])
+        formatter = YGL::Formatter.formatter(options["format"])
       else
         formatter = YGL::Formatter.formatter(DEFAULT_FORMAT)
       end
@@ -33,18 +33,19 @@ module YGL
     desc "current", "show current Database name"
     def current
       db_name = YGL::Database.current
-      unless db_name.empty?
-        puts db_name
-      else
+      if db_name.empty?
         puts 'DB does not set'
+        return
       end
+
+      puts db_name
     end
 
     desc "show_all filename", "output all toml file"
-    method_option "format", desc: "json, yaml", default: 'json'
+    method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show_all
       if YGL::Formatter.available?(options["format"])
-        formatter =  YGL::Formatter.formatter(options["format"])
+        formatter = YGL::Formatter.formatter(options["format"])
       else
         formatter = YGL::Formatter.formatter(DEFAULT_FORMAT)
       end

@@ -6,7 +6,7 @@ class YglDBTest < Minitest::Test
   end
 
   def test_switch_success
-    assert_equal "daimon-lunch".size, @db.switch("daimon-lunch")
+    assert @db.switch("daimon-lunch")
   end
 
   def test_switch_no_such_directroy
@@ -28,6 +28,11 @@ class YglDBTest < Minitest::Test
   def test_current_success
     @db.switch("daimon-lunch")
     assert_equal "daimon-lunch", @db.current
+  end
+
+  def test_current_faild
+    YGL::Config.save_db_name('')
+    assert_equal '', @db.current
   end
 
   def test_each

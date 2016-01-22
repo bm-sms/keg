@@ -87,7 +87,7 @@ class YglCLITest < Minitest::Test
   end
 
   def test_show_all_empty
-    @cli.switch("empty")
+    YGL::Config.save_db_name("empty")
     out, err = capture_io { @cli.show_all }
     assert_equal '', out
   end

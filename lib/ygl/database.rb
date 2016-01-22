@@ -23,7 +23,7 @@ module YGL
 
     def self.each
       Dir.glob(File.join(db_path, '**', '*.toml')) do |path|
-        yield TOML.load_file(path)
+          yield TOML.load_file(path)
       end
     end
 
@@ -34,12 +34,7 @@ module YGL
     end
 
     def self.home_path
-      set_home if @home == nil
-      File.join(@home, '.yet_another_glean')
-    end
-
-    def self.set_home
-      @home = ENV["HOME"]
+      File.join(ENV["HOME"], '.yet_another_glean')
     end
   end
 end
