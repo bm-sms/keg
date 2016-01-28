@@ -1,8 +1,7 @@
 require "ygl/version"
 require "ygl/cli"
-require "ygl/db"
+require "ygl/database"
 require "ygl/formatter"
-
-module YGL
-  # Your code goes here...
-end
+require "ygl/formatter/json"
+require "ygl/formatter/yaml"
+require "ygl/config"

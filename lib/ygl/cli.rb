@@ -3,35 +3,55 @@ require 'thor'
 
 module YGL
   class CLI < Thor
-    desc "switch DB_NAME", "switching DB to DB_NAME"
-    def switch(name)
-      if YGL::DB.switch(name)
-        puts "switch DataBase '#{name}'"
+    DEFAULT_FORMAT = 'json'
+
+    desc "switch DB_NAME", "switching Database to DB_NAME"
+    def switch(db_name)
+      if YGL::Database.switch(db_name)
+        puts "switch DataBase '#{db_name}'"
       else
-        raise "Error: No such directory '#{name}'"
+        puts "No such directroy '#{db_name}'"
       end
     end
 
     desc "show filename", "output toml file"
-    method_option "format", desc: "json, yaml", default: 'json'
+    method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
-      toml = YGL::DB.get_toml(filename)
-      puts YGL::Formatter.to_format(options["format"], toml)
+      unless toml = YGL::Database.get_toml(filename)
+        puts "No such file '#{filename}'"
+        return
+      end
+
+      if YGL::Formatter.available?(options["format"])
+        formatter = YGL::Formatter.formatter(options["format"])
+      else
+        formatter = YGL::Formatter.formatter(DEFAULT_FORMAT)
+      end
+      puts formatter.format(toml) 
     end
 
-    desc "current", "show current DB name"
+    desc "current", "show current Database name"
     def current
-      db_name = YGL::DB.current
-      raise 'DB dose not set' if db_name == ''
+      db_name = YGL::Database.current
+      if db_name.empty?
+        puts 'DB does not set'
+        return
+      end
 
       puts db_name
     end
 
     desc "show_all filename", "output all toml file"
-    method_option "format", desc: "json, yaml", default: 'json'
+    method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show_all
-      YGL::DB.each do |toml|
-        puts YGL::Formatter.to_format(options["format"], toml)
+      if YGL::Formatter.available?(options["format"])
+        formatter = YGL::Formatter.formatter(options["format"])
+      else
+        formatter = YGL::Formatter.formatter(DEFAULT_FORMAT)
+      end
+
+      YGL::Database.each do |toml|
+        puts formatter.format(toml)
       end
     end
   end
