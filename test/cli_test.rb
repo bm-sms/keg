@@ -47,7 +47,7 @@ class YglCLITest < Minitest::Test
   end
 
   def test_show_does_not_select_db
-    YGL::Config.save_db_name('')
+    YGL::Configuration.save_db_name('')
     out, err = capture_io { @cli.show('oosaka') }
     assert_equal "No such file 'oosaka'\n", out
   end
@@ -58,7 +58,7 @@ class YglCLITest < Minitest::Test
   end
 
   def test_current_does_not_select_db
-    YGL::Config.save_db_name('')
+    YGL::Configuration.save_db_name('')
     out, err = capture_io { @cli.current }
     assert_equal "DB does not set\n", out
   end
@@ -87,13 +87,13 @@ class YglCLITest < Minitest::Test
   end
 
   def test_show_all_empty
-    YGL::Config.save_db_name("empty")
+    YGL::Configuration.save_db_name("empty")
     out, err = capture_io { @cli.show_all }
     assert_equal '', out
   end
 
   def test_show_all_db_does_not_set
-    YGL::Config.save_db_name('')
+    YGL::Configuration.save_db_name('')
     out, err = capture_io { @cli.show_all }
     assert_equal @oosaka.to_json + "\n" +
                  @ranma.to_json  + "\n", out

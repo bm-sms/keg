@@ -17,17 +17,17 @@ module YGL
     desc "show filename", "output toml file"
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
-      unless toml = YGL::Database.get_toml(filename)
+      unless hash = YGL::Database.contents(filename)
         puts "No such file '#{filename}'"
         return
       end
 
-      if YGL::Formatter.available?(options["format"])
+      if YGL::Formatter.available_format?(options["format"])
         formatter = YGL::Formatter.formatter(options["format"])
       else
         formatter = YGL::Formatter.formatter(DEFAULT_FORMAT)
       end
-      puts formatter.format(toml) 
+      puts formatter.format(hash) 
     end
 
     desc "current", "show current Database name"
@@ -44,14 +44,14 @@ module YGL
     desc "show_all filename", "output all toml file"
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show_all
-      if YGL::Formatter.available?(options["format"])
+      if YGL::Formatter.available_format?(options["format"])
         formatter = YGL::Formatter.formatter(options["format"])
       else
         formatter = YGL::Formatter.formatter(DEFAULT_FORMAT)
       end
 
-      YGL::Database.each do |toml|
-        puts formatter.format(toml)
+      YGL::Database.each do |hash|
+        puts formatter.format(hash)
       end
     end
   end

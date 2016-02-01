@@ -1,7 +1,7 @@
 require 'ygl'
 
 module YGL
-  module Config
+  module Configuration
     def self.save_db_name(name)
       File.write(path, name)
     end
@@ -10,7 +10,7 @@ module YGL
       begin
         File.read(path)
       rescue Errno::ENOENT
-        recovery_open_err
+        recover_form_open_err
         retry
       end
     end
@@ -18,17 +18,16 @@ module YGL
     private
 
     def self.path
-      set_home if @home == nil
-      File.join(@home, 'config')
+      File.join(root_path, 'config')
     end
 
-    def self.set_home
-      @home = File.join(ENV["HOME"], '.yet_another_glean')
+    def self.root_path
+      File.join(ENV["HOME"], '.yet_another_glean')
     end
 
-    def recovery_open_err
-      unless Dir.exists?(@home)
-        Dir.mkdir(@home)
+    def recover_form_open_err
+      unless Dir.exists?(root_path)
+        Dir.mkdir(root_path)
       end
       save_db_name('')
     end

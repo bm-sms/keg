@@ -13,16 +13,16 @@ class YglDBTest < Minitest::Test
     assert_equal nil, @db.switch("aaa")
   end
 
-  def test_get_toml_success
+  def test_contents_success
     @db.switch("daimon-lunch")
     result = {"name" => "東麻布 逢坂",
               "url" => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}
-    assert_equal result, @db.get_toml('oosaka')
+    assert_equal result, @db.contents('oosaka')
   end
 
-  def test_get_toml_no_such_file
+  def test_contents_no_such_file
     @db.switch("daimon-lunch")
-    assert_equal nil, @db.get_toml('aaa')
+    assert_equal nil, @db.contents('aaa')
   end
 
   def test_current_success
@@ -31,7 +31,7 @@ class YglDBTest < Minitest::Test
   end
 
   def test_current_faild
-    YGL::Config.save_db_name('')
+    YGL::Configuration.save_db_name('')
     assert_equal '', @db.current
   end
 

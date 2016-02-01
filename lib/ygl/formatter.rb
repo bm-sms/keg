@@ -4,11 +4,11 @@ module YGL
   module Formatter
     def self.formatter(format)
       submodules.find do |submodule|
-        format.downcase == last_module(submodule)
+        format.downcase == last_module_name(submodule)
       end    
     end
 
-    def self.available?(format)
+    def self.available_format?(format)
       modules = submodules.map do |submodule|
         last_module(submodule)
       end
@@ -26,7 +26,7 @@ module YGL
       end
     end
 
-    def self.last_module(submodule)
+    def self.last_module_name(submodule)
       submodule.name.split('::').last.downcase
     end
   end

@@ -6,11 +6,11 @@ module YGL
     def self.switch(db_name)
       path = File.join(home_path, db_name)
       if File.directory?(path)
-        YGL::Config.save_db_name(db_name)
+        YGL::Configuration.save_db_name(db_name)
       end
     end
 
-    def self.get_toml(filename)
+    def self.contents(filename)
       path = File.join(db_path, filename+'.toml')
       if File.exists?(path)
         TOML.load_file(path)
@@ -18,11 +18,11 @@ module YGL
     end
 
     def self.current
-      YGL::Config.load_db_name
+      YGL::Configuration.load_db_name
     end
 
     def self.each
-      Dir.glob(File.join(db_path, '**', '*.toml')) do |path|
+      Dir.glob("#{db_path}/**/*.toml") do |path|
           yield TOML.load_file(path)
       end
     end
