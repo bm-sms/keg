@@ -2,3 +2,12 @@ machine:
     timezone: Asia/Tokyo
     ruby:
       version: 2.2.3
+
+dependencies:
+  pre:
+    - gem uninstall bundler
+    - gem install bundler --pre
+
+test:
+  post:
+    - bundle exec rake test
