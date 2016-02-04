@@ -12,3 +12,7 @@ dependencies:
     - mkdir $HOME/.yet_another_glean
     - cd $HOME/.yet_another_glean
     - git clone git@github.com:bm-sms/glean-daimon-lunch.git
+
+test:
+  override:
+    - bundle exec rake test
