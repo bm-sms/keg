@@ -10,4 +10,5 @@ dependencies:
     - gem install --local pkg/ygl-0.1.0.gem
     - ygl --help
     - mkdir $HOME/.yet_another_glean
+    - cd $HOME/.yet_another_glean
     - git clone git@github.com:bm-sms/glean-daimon-lunch.git
