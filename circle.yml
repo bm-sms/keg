@@ -4,7 +4,7 @@ machine:
       version: 2.2.3
 
 dependencies:
-  pre:
+  override:
     - gem install minitest minitest-reporters toml thor
     - rake build
     - gem install --local pkg/ygl-0.1.0.gem
