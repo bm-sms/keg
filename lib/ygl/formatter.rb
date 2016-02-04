@@ -10,7 +10,7 @@ module YGL
 
     def self.available_format?(format)
       modules = submodules.map do |submodule|
-        last_module(submodule)
+        last_module_name(submodule)
       end
       modules.include?(format.to_s.downcase)
     end

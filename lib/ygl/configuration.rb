@@ -10,7 +10,7 @@ module YGL
       begin
         File.read(path)
       rescue Errno::ENOENT
-        recover_form_open_err
+        recover_form_open_error
         retry
       end
     end
@@ -25,7 +25,7 @@ module YGL
       File.join(ENV["HOME"], '.yet_another_glean')
     end
 
-    def recover_form_open_err
+    def recover_form_open_error
       unless Dir.exists?(root_path)
         Dir.mkdir(root_path)
       end
