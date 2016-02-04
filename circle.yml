@@ -5,12 +5,9 @@ machine:
 
 dependencies:
   pre:
-    - gem install bundler --pre
-    - mkdir ~/.yet_another_glean
-    - mkdir ~/.yet_another_glean/daimon-lunch
-    - echo -e "name = '東麻布 逢坂'\nurl = 'http://tabelog.com/tokyo/A1314/A131401/13044558/'" > ~/.yet_another_glean/daimon-lunch/oosaka.toml    
-    - echo -e "name = '蘭麻'\nurl = 'http://tabelog.com/tokyo/A1314/A131401/13034212/'" > ~/.yet_another_glean/daimon-lunch/ranma.toml
-
-test:
-  post:
-    - bundle exec rake test
+    - gem install minitest minitest-reporters toml thor
+    - rake build
+    - gem install --local pkg/ygl-0.1.0.gem
+    - ygl --help
+    - mkdir $HOME/.yet_another_glean
+    - git clone git@github.com:bm-sms/glean-daimon-lunch.git

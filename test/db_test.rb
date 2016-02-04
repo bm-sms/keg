@@ -6,7 +6,7 @@ class YglDBTest < Minitest::Test
   end
 
   def test_switch_success
-    assert @db.switch("daimon-lunch")
+    assert @db.switch("glean-daimon-lunch")
   end
 
   def test_switch_no_such_directroy
@@ -14,20 +14,20 @@ class YglDBTest < Minitest::Test
   end
 
   def test_contents_success
-    @db.switch("daimon-lunch")
+    @db.switch("glean-daimon-lunch")
     result = {"name" => "東麻布 逢坂",
               "url" => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}
     assert_equal result, @db.contents('oosaka')
   end
 
   def test_contents_no_such_file
-    @db.switch("daimon-lunch")
+    @db.switch("glean-daimon-lunch")
     assert_equal nil, @db.contents('aaa')
   end
 
   def test_current_success
-    @db.switch("daimon-lunch")
-    assert_equal "daimon-lunch", @db.current
+    @db.switch("glean-daimon-lunch")
+    assert_equal "glean-daimon-lunch", @db.current
   end
 
   def test_current_faild
@@ -36,7 +36,7 @@ class YglDBTest < Minitest::Test
   end
 
   def test_each
-    @db.switch("daimon-lunch")
+    @db.switch("glean-daimon-lunch")
     result = []
     result[0] = {"name" => "東麻布 逢坂",
                  "url"  => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}
