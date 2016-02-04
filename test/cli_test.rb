@@ -12,8 +12,8 @@ class YglCLITest < Minitest::Test
   end
 
   def test_switch_success
-    out, err = capture_io { @cli.switch("daimon-lunch") }
-    assert_equal %Q(switch DataBase 'daimon-lunch'\n), out
+    out, err = capture_io { @cli.switch("glean-daimon-lunch") }
+    assert_equal %Q(switch DataBase 'glean-daimon-lunch'\n), out
   end
 
   def test_switch_faild
@@ -54,7 +54,7 @@ class YglCLITest < Minitest::Test
 
   def test_current_success
     out, err = capture_io { @cli.current }
-    assert_equal "daimon-lunch\n", out
+    assert_equal "glean-daimon-lunch\n", out
   end
 
   def test_current_does_not_select_db
