@@ -6,6 +6,10 @@ machine:
 dependencies:
   pre:
     - gem install bundler --pre
+    - mkdir ~/.yet_another_glean
+    - mkdir ~/.yet_another_glean/daimon-lunch
+    - echo -e "name = '東麻布 逢坂'\nurl = 'http://tabelog.com/tokyo/A1314/A131401/13044558/'" > ~/.yet_another_glean/daimon-lunch/oosaka.toml    
+    - echo -e "name = '蘭麻'\nurl = 'http://tabelog.com/tokyo/A1314/A131401/13034212/'" > ~/.yet_another_glean/daimon-lunch/ranma.toml
 
 test:
   post:
