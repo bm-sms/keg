@@ -6,6 +6,7 @@ machine:
 dependencies:
   override:
     - gem install minitest minitest-reporters toml thor
+    - gem install bundler -v 1.10
     - rake build
     - gem install --local pkg/ygl-0.1.0.gem
     - ygl --help
