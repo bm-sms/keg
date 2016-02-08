@@ -8,7 +8,7 @@ machine:
 
 dependencies:
   pre:
-    - gem uninstall bundler # use a custom version of bundler
-    - gem install bundler --pre
+    - gem uninstall -i /home/ubuntu/.rvm/gems/ruby-2.2.3@global bundler
+    - gem install bundler
     - mkdir $HOME/.yet_another_glean
-    - git clone git@github.com:bm-sms/glean-daimon-lunch.git $HOME/.yet_another_glean
+    - git clone git@github.com:bm-sms/glean-daimon-lunch.git $HOME/.yet_another_glean/glean-daimon-lunch
