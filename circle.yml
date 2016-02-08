@@ -2,13 +2,13 @@ machine:
     timezone: Asia/Tokyo
     ruby:
       version: 2.2.3
+    post:
+      - sudo service mysql stop
+      - sudo service postgresql stop
 
 dependencies:
-  override:
-    - gem install bundler -v 1.10
-    - gem install rake -v 10.4.2
-    - rake build
-    - rake install
+  pre:
+    - gem uninstall bundler # use a custom version of bundler
+    - gem install bundler --pre
     - mkdir $HOME/.yet_another_glean
-    - cd $HOME/.yet_another_glean
-    - git clone git@github.com:bm-sms/glean-daimon-lunch.git glean-daimon-lunch
+    - git clone git@github.com:bm-sms/glean-daimon-lunch.git $HOME/.yet_another_glean
