@@ -1,7 +1,5 @@
 machine:
     timezone: Asia/Tokyo
-    ruby:
-      version: 2.2.3
     post:
       - sudo service mysql stop
       - sudo service postgresql stop
@@ -10,6 +8,11 @@ dependencies:
   pre:
     - gem install bundler
     - bundle install
-    - mkdir $HOME/.yet_another_glean
-    - mkdir $HOME/.yet_another_glean/glean-daimon-lunch
+    - mkdir -p $HOME/.yet_another_glean/glean-daimon-lunch
     - git clone git@github.com:bm-sms/glean-daimon-lunch.git $HOME/.yet_another_glean/glean-daimon-lunch
+    - |
+    case $CIRCLE_NODE_INDEX in
+      0) rmv use 2.2.3 --default ;;
+      1) rmv use 2.1   --default ;;
+      2) rmv use 2.0   --default ;;
+      3) rmv use 1.9   --default ;;
