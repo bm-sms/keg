@@ -11,6 +11,7 @@ dependencies:
     - |
     case $CIRCLE_NODE_INDEX in
       0) rmv use 2.2.3 --default ;;
-      1) rmv use 2.1   --default ;;
-      2) rmv use 2.0   --default ;;
-      3) rmv use 1.9   --default ;;
+      1) rmv use 2.1 --default ;;
+      2) rmv use 2.0 --default ;;
+      3) rmv use 1.9 --default ;;
+      esac
