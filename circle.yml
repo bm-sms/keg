@@ -5,20 +5,10 @@ machine:
 
 dependencies:
   override:
-    - gem install minitest minitest-reporters toml thor
     - gem install bundler -v 1.10
     - gem install rake -v 10.4.2
     - rake build
-    - gem install --local pkg/ygl-0.1.0.gem
-    - ygl --help
+    - rake install
     - mkdir $HOME/.yet_another_glean
     - cd $HOME/.yet_another_glean
     - git clone git@github.com:bm-sms/glean-daimon-lunch.git glean-daimon-lunch
-    - ls
-    - ls glean-daimon-lunch
-    - ygl switch glean-daimon-lunch
-    - ygl show oosaka
-
-test:
-  override:
-    - bundle exec rake test
