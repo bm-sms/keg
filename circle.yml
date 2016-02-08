@@ -11,10 +11,14 @@ dependencies:
 test:
   override:
       - rvm --default use 2.2.3
+      - bundle install
       - rake test
       - rvm --default use 2.1.7
+      - bundle install
       - rake test
       - rvm --default use 2.0.0
+      - bundle install
       - rake test
       - rvm --default use 1.9.3
+      - bundle install
       - rake test
