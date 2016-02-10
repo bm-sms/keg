@@ -8,22 +8,22 @@ machine:
 
 dependencies:
   pre:
-    - rvm gemset create ygl
+    - rvm gemset create keg
     - gem install bundler
     - bundle install
-    - rvm gemset export ygl
+    - rvm gemset export keg
     - rake setup_test
 test:
   override:
       - rvm use 2.2.3
-      - rvm gemset import ygl
+      - rvm gemset import keg
       - rake test
       - rvm use 2.1.7
-      - rvm gemset import ygl
+      - rvm gemset import keg
       - rake test
       - rvm use 2.0.0
-      - rvm gemset import ygl
+      - rvm gemset import keg
       - rake test
       - rvm use 1.9.3
-      - rvm gemset import ygl
+      - rvm gemset import keg
       - rake test
