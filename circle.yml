@@ -8,17 +8,18 @@ dependencies:
   pre:
     - gem install bundler
     - bundle install
+    - rvm gemset export
 test:
   override:
-      - rvm --default use 2.2.3
-      - bundle install
+      - rvm use 2.2.3
+      - rvm gemset import
       - rake test
-      - rvm --default use 2.1.7
-      - bundle install
+      - rvm use 2.1.7
+      - rvm gemset import
       - rake test
-      - rvm --default use 2.0.0
-      - bundle install
+      - rvm use 2.0.0
+      - rvm gemset import
       - rake test
-      - rvm --default use 1.9.3
-      - bundle install
+      - rvm use 1.9.3
+      - rvm gemset import
       - rake test
