@@ -3,8 +3,8 @@ require 'yaml'
 
 class YglCLITest < Minitest::Test
   def setup
-    @cli = YGL::CLI.new
-    YGL::Database.switch('glean-daimon-lunch')
+    @cli = Keg::CLI.new
+    Keg::Database.switch('glean-daimon-lunch')
     @oosaka = {"name" => "東麻布 逢坂",
                "url"  => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}
     @ranma  = {"name" => "蘭麻",
@@ -47,7 +47,7 @@ class YglCLITest < Minitest::Test
   end
 
   def test_show_does_not_select_db
-    YGL::Configuration.save_db_name('')
+    Keg::Configuration.save_db_name('')
     out, err = capture_io { @cli.show('oosaka') }
     assert_equal "No such file 'oosaka'\n", out
   end
@@ -58,7 +58,7 @@ class YglCLITest < Minitest::Test
   end
 
   def test_current_does_not_select_db
-    YGL::Configuration.save_db_name('')
+    Keg::Configuration.save_db_name('')
     out, err = capture_io { @cli.current }
     assert_equal "DB does not set\n", out
   end
@@ -87,13 +87,13 @@ class YglCLITest < Minitest::Test
   end
 
   def test_show_all_empty
-    YGL::Configuration.save_db_name("empty")
+    Keg::Configuration.save_db_name("empty")
     out, err = capture_io { @cli.show_all }
     assert_equal '', out
   end
 
   def test_show_all_db_does_not_set
-    YGL::Configuration.save_db_name('')
+    Keg::Configuration.save_db_name('')
     out, err = capture_io { @cli.show_all }
     assert_equal @oosaka.to_json + "\n" +
                  @ranma.to_json  + "\n", out

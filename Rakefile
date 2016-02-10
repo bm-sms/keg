@@ -8,8 +8,8 @@ Rake::TestTask.new(:test) do |t|
 end
 
 task :setup_test do 
-    sh "mkdir -p $HOME/.yet_another_glean/glean-daimon-lunch"
-    sh "git clone git@github.com:bm-sms/glean-daimon-lunch.git $HOME/.yet_another_glean/glean-daimon-lunch "
+    sh "mkdir -p $HOME/.keg/glean-daimon-lunch"
+    sh "git clone git@github.com:bm-sms/glean-daimon-lunch.git $HOME/.keg/glean-daimon-lunch "
 end
 
 task :default => :test

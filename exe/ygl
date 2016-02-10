@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
-require "ygl"
+require "keg"
 
-YGL::CLI.start
+Keg::CLI.start

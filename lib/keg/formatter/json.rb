@@ -1,7 +1,7 @@
-require 'ygl'
+require 'keg'
 require 'json'
 
-module YGL
+module Keg
   module Formatter
     module Json
       def self.format(obj)

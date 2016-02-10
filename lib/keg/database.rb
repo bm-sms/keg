@@ -1,12 +1,12 @@
-require 'ygl'
+require 'keg'
 require 'toml'
 
-module YGL
+module Keg
   module Database
     def self.switch(db_name)
       path = File.join(home_path, db_name)
       if File.directory?(path)
-        YGL::Configuration.save_db_name(db_name)
+        Keg::Configuration.save_db_name(db_name)
       end
     end
 
@@ -18,7 +18,7 @@ module YGL
     end
 
     def self.current
-      YGL::Configuration.load_db_name
+      Keg::Configuration.load_db_name
     end
 
     def self.each
@@ -34,7 +34,7 @@ module YGL
     end
 
     def self.home_path
-      File.join(ENV["HOME"], '.yet_another_glean')
+      File.join(ENV["HOME"], '.keg')
     end
   end
 end
