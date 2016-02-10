@@ -4,11 +4,12 @@ require "rake/testtask"
 Rake::TestTask.new(:test) do |t|
   t.libs << "test"
   t.libs << "lib"
-  if File.directory?("#{$HOME}/.yet_another_glean/glean-daimon-lunch")
+  t.test_files = FileList['test/**/*_test.rb']
+end
+
+Rake::TestTask.new(:setup_test) do |t|
     sh "mkdir -p $HOME/.yet_another_glean/glean-daimon-lunch"
     sh "git clone git@github.com:bm-sms/glean-daimon-lunch.git $HOME/.yet_another_glean/glean-daimon-lunch "
-  end
-  t.test_files = FileList['test/**/*_test.rb']
 end
 
 task :default => :test

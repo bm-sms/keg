@@ -8,7 +8,6 @@ machine:
 
 dependencies:
   pre:
-    - rvm get stable --auto-dotfiles
     - rvm gemset create ygl
     - gem install bundler
     - bundle install
