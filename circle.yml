@@ -12,6 +12,7 @@ dependencies:
     - gem install bundler
     - bundle install
     - rvm gemset export ygl
+    - rake setup_test
 test:
   override:
       - rvm use 2.2.3
