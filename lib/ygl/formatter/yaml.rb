@@ -3,7 +3,7 @@ require 'yaml'
 
 module YGL
   module Formatter
-    module YAML
+    module Yaml
       def self.format(obj)
         obj.to_yaml
       end

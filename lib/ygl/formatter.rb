@@ -2,10 +2,17 @@ require 'ygl'
 
 module YGL
   module Formatter
-    def self.format(format)
+    def self.formatter(format)
       submodules.find do |submodule|
         format.downcase == last_module_name(submodule)
+      end    
+    end
+
+    def self.available_format?(format)
+      modules = submodules.map do |submodule|
+        last_module_name(submodule)
       end
+      modules.include?(format.to_s.downcase)
     end
 
     private

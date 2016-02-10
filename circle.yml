@@ -1,0 +1,29 @@
+machine:
+    timezone: Asia/Tokyo
+    ruby:
+      version: 2.2.3
+    post:
+      - sudo service mysql stop
+      - sudo service postgresql stop
+
+dependencies:
+  pre:
+    - rvm gemset create ygl
+    - gem install bundler
+    - bundle install
+    - rvm gemset export ygl
+    - rake setup_test
+test:
+  override:
+      - rvm use 2.2.3
+      - rvm gemset import ygl
+      - rake test
+      - rvm use 2.1.7
+      - rvm gemset import ygl
+      - rake test
+      - rvm use 2.0.0
+      - rvm gemset import ygl
+      - rake test
+      - rvm use 1.9.3
+      - rvm gemset import ygl
+      - rake test
