@@ -2,7 +2,7 @@ require_relative './test_helper'
 
 class YglDBTest < Minitest::Test
   def setup
-    @db = YGL::Database
+    @db = Keg::Database
   end
 
   def test_switch_success
@@ -31,7 +31,7 @@ class YglDBTest < Minitest::Test
   end
 
   def test_current_faild
-    YGL::Configuration.save_db_name('')
+    Keg::Configuration.save_db_name('')
     assert_equal '', @db.current
   end
 

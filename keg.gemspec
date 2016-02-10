@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'ygl/version'
+require 'keg/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "ygl"
-  spec.version       = YGL::VERSION
+  spec.name          = "keg"
+  spec.version       = Keg::VERSION
   spec.authors       = ["s1513114"]
   spec.email         = ["s1513114@u.tsukuba.ac.jp"]
 

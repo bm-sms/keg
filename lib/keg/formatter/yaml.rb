@@ -1,7 +1,7 @@
-require 'ygl'
+require 'keg'
 require 'yaml'
 
-module YGL
+module Keg
   module Formatter
     module Yaml
       def self.format(obj)

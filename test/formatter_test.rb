@@ -2,7 +2,7 @@ require_relative 'test_helper'
 
 class FormatterTest < Minitest::Test
   def setup
-    @formatter = YGL::Formatter
+    @formatter = Keg::Formatter
   end
 
   def test_format_json

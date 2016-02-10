@@ -1,6 +1,6 @@
-require 'ygl'
+require 'keg'
 
-module YGL
+module Keg
   module Configuration
     def self.save_db_name(name)
       File.write(path, name)
@@ -22,7 +22,7 @@ module YGL
     end
 
     def self.root_path
-      File.join(ENV["HOME"], '.yet_another_glean')
+      File.join(ENV["HOME"], '.keg')
     end
 
     def self.recover_form_open_error

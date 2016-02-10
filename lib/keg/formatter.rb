@@ -1,6 +1,6 @@
-require 'ygl'
+require 'keg'
 
-module YGL
+module Keg
   module Formatter
     def self.formatter(format)
       submodules.find do |submodule|
