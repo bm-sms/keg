@@ -1,7 +1,7 @@
 require_relative 'test_helper'
 require 'yaml'
 
-class YglCLITest < Minitest::Test
+class CLITest < Minitest::Test
   def setup
     @cli = Keg::CLI.new
     Keg::Database.switch('glean-daimon-lunch')
