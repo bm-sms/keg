@@ -1,23 +1,25 @@
 machine:
-    timezone: Asia/Tokyo
-    post:
-      - sudo service mysql stop
-      - sudo service postgresql stop
+  timezone: Asia/Tokyo
+  ruby:
+    version: '2.2.3'
+  post:
+    - sudo service mysql stop
+    - sudo service postgresql stop
 
 dependencies:
-  pre:
+  override:
     - rake test_init
 test:
   override:
-      - rvm use 2.2.3
-      - gem install bundler
-      - bundle install
-      - rake test
-      - rvm use 2.1.7
-      - gem install bundler
-      - bundle install
-      - rake test
-      - rvm use 2.0.0
-      - gem install bundler
-      - bundle install
-      - rake test
+    - rvm use 2.2.3
+    - gem install bundler
+    - bundle install
+    - rake test
+    - rvm use 2.1.7
+    - gem install bundler
+    - bundle install
+    - rake test
+    - rvm use 2.0.0
+    - gem install bundler
+    - bundle install
+    - rake test
