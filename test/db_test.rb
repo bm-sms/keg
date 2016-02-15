@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-class YglDBTest < Minitest::Test
+class DBTest < Minitest::Test
   def setup
     @db = Keg::Database
   end
