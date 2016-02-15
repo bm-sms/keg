@@ -1,4 +1,5 @@
 require 'keg'
+require 'yaml'
 
 module Keg
   module Configuration
@@ -7,18 +8,15 @@ module Keg
     end
 
     def self.load_db_name
-      begin
-        File.read(path)
-      rescue Errno::ENOENT
-        recover_form_open_error
-        retry
-      end
+      yaml = File.read(path)
+      config = Keg::Formatter::Yaml.parse(yaml)
+      config['database']
     end
 
     private
 
     def self.path
-      File.join(root_path, 'config')
+      File.join(root_path, 'config.yml')
     end
 
     def self.root_path
