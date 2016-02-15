@@ -22,8 +22,8 @@ class CLITest < Minitest::Test
   end
 
   def test_switch_blank
-    out, err = capture_io { @cli.switch('') }
-    assert_equal "No such directory ''\n", out
+    out, err = capture_io { @cli.switch("") }
+    assert_equal "No such directroy ''\n", out
   end
 
   def test_show_defalut
