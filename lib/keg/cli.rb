@@ -17,7 +17,7 @@ module Keg
     desc "show filename", "output toml file"
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
-      unless hash = Keg::Database.contents(filename)
+      unless contents = Keg::Database.contents(filename)
         puts "No such file '#{filename}'"
         return
       end
@@ -27,7 +27,7 @@ module Keg
       else
         formatter = Keg::Formatter.formatter(DEFAULT_FORMAT)
       end
-      puts formatter.format(hash) 
+      puts formatter.format(contents) 
     end
 
     desc "current", "show current Database name"
@@ -50,8 +50,8 @@ module Keg
         formatter = Keg::Formatter.formatter(DEFAULT_FORMAT)
       end
 
-      Keg::Database.each do |hash|
-        puts formatter.format(hash)
+      Keg::Database.each do |contents|
+        puts formatter.format(contents)
       end
     end
   end

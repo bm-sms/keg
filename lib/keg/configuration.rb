@@ -1,33 +1,23 @@
 require 'keg'
-require 'yaml'
 
 module Keg
   module Configuration
     def self.save_db_name(name)
-      File.write(path, name)
+      hash = { "database" => name }
+      config = Keg::Formatter::Yaml.format(hash)
+      File.write(config_path, config)
     end
 
     def self.load_db_name
-      yaml = File.read(path)
+      yaml = File.read(config_path)
       config = Keg::Formatter::Yaml.parse(yaml)
-      config['database']
+      config['database'] if config
     end
 
     private
 
-    def self.path
-      File.join(root_path, 'config.yml')
-    end
-
-    def self.root_path
-      File.join(ENV["HOME"], '.keg')
-    end
-
-    def self.recover_form_open_error
-      unless Dir.exists?(root_path)
-        Dir.mkdir(root_path)
-      end
-      save_db_name('')
+    def self.config_path
+      File.join(ENV["HOME"], '.keg', 'config.yml')
     end
   end
 end
