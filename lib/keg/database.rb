@@ -4,7 +4,7 @@ require 'toml'
 module Keg
   module Database
     def self.switch(db_name)
-      path = File.join(home_path, db_name)
+      path = File.join(root_path, db_name)
       if File.directory?(path)
         Keg::Configuration.save_db_name(db_name)
       end
@@ -30,11 +30,11 @@ module Keg
     private
 
     def self.db_path
-      File.join(home_path, current)
+      File.join(root_path, current)
     end
 
-    def self.home_path
-      File.join(ENV["HOME"], '.keg')
+    def self.root_path
+      File.join(ENV["HOME"], '.keg', 'databases')
     end
   end
 end
