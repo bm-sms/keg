@@ -6,14 +6,22 @@ class FormatterTest < Minitest::Test
   end
 
   def test_format_json
-    assert_equal Keg::Formatter::Json.new, @formatter.formatter('json')
+    assert_equal @formatter.formatter('json').instance_of?(Keg::Formatter::Json), true
   end
 
   def test_format_yaml
-    assert_equal Keg::Formatter::Yaml.new, @formatter.formatter('yaml')
+    assert_equal @formatter.formatter('yaml').instance_of?(Keg::Formatter::Yaml), true
   end
 
-  def test_format_faild
-    assert_equal nil, @formatter.formatter('aaa')
+  def test_available_format_json
+    assert_equal @formatter.available_format?('json'), true
+  end
+
+  def test_available_format_yaml
+    assert_equal @formatter.available_format?('yaml'), true
+  end
+
+  def test_available_format_none
+    assert_equal @formatter.available_format?('aaaa'), false
   end
 end

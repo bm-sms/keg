@@ -3,13 +3,15 @@ require 'keg'
 module Keg
   class Formatter
     def formatter(format)
-      submodules.find do |submodule|
+      result = submodules.find(ifnone = Keg::Formatter::Json) do |submodule|
         format.downcase == last_module_name(submodule)
       end
+
+      result.new
     end
 
     def available_format?(format)
-      self.class.const_define?(format)
+      self.class.const_defined?(format.upcase)
     end
 
     private
