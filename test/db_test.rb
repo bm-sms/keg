@@ -3,6 +3,7 @@ require_relative 'test_helper'
 class DBTest < Minitest::Test
   def setup
     @db = Keg::Database
+    @path = File.join(ENV["HOME"], '.keg', 'config.yml')
   end
 
   def test_switch_success
@@ -25,6 +26,11 @@ class DBTest < Minitest::Test
     assert_equal nil, @db.contents('aaa')
   end
 
+  def test_contents_invalid_config
+    File.write(@path, 'aaa')
+    assert_raises(TypeError) { @db.contents('oosaka') }
+  end
+
   def test_current_success
     @db.switch("glean-daimon-lunch")
     assert_equal "glean-daimon-lunch", @db.current
@@ -35,9 +41,14 @@ class DBTest < Minitest::Test
     assert_equal '', @db.current
   end
 
+  def test_current_invaild_config
+    File.write(@path, 'aaa')
+    assert_equal nil, @db.current
+  end
+
   def test_each
     @db.switch("glean-daimon-lunch")
-    result = []
+    result = Array.new
     result[0] = {"name" => "東麻布 逢坂",
                  "url"  => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}
     result[1] = {"name" => "蘭麻",

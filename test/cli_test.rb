@@ -21,6 +21,11 @@ class CLITest < Minitest::Test
     assert_equal "No such directroy 'aaa'\n", out
   end
 
+  def test_switch_blank
+    out, err = capture_io { @cli.switch("") }
+    assert_equal "No such directroy ''\n", out
+  end
+
   def test_show_defalut
     out, err = capture_io { @cli.invoke(:show, ['oosaka']) }
     assert_equal @oosaka.to_json + "\n", out
