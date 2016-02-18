@@ -10,9 +10,10 @@ module Keg
     def switch(db_name)
       return if db_name.empty?
       
+      configuration = Keg::Configuration.new(@root)
       path = File.join(databases_path, db_name)
       if File.directory?(path)
-        Keg::Configuration.save_db_name(db_name)
+        configuration.save_db_name(db_name)
       end
     end
 
@@ -24,7 +25,8 @@ module Keg
     end
 
     def current
-      Keg::Configuration.load_db_name
+      configuration = Keg::Configuration.new(@root)
+      configuration.load_db_name
     end
 
     def each

@@ -5,7 +5,9 @@ module Keg
   class CLI < Thor
     DEFAULT_FORMAT = 'json'
 
-    def initialize
+    def initialize(*arg)
+      super
+
       @database = Keg::Database.new(ENV["HOME"])
     end
 
@@ -31,11 +33,9 @@ module Keg
         return
       end
 
-      if Keg::Formatter.available_format?(options["format"])
-        format = Keg::Formatter.formatter(options["format"])
-      else
-        format = Keg::Formatter.formatter(DEFAULT_FORMAT)
-      end
+      formetter = Keg::Formatter.new(options["format"])
+      format = formatter.formatter
+
       puts format.format(contents) 
     end
 
@@ -58,11 +58,8 @@ module Keg
         return
       end
 
-      if Keg::Formatter.available_format?(options["format"])
-        format = Keg::Formatter.formatter(options["format"])
-      else
-        format = Keg::Formatter.formatter(DEFAULT_FORMAT)
-      end
+      formatter = Keg::Formatter.new(options["format"])
+      format = formatter.formatter
 
       @database.each do |contents|
         puts format.format(contents)

@@ -2,7 +2,7 @@ require_relative 'test_helper'
 
 class DBTest < Minitest::Test
   def setup
-    @db = Keg::Database
+    @db = Keg::Database.new(ENV["HOME"])
     @path = File.join(ENV["HOME"], '.keg', 'config.yml')
   end
 
@@ -37,7 +37,8 @@ class DBTest < Minitest::Test
   end
 
   def test_current_faild
-    Keg::Configuration.save_db_name('')
+    config = Keg::Configuration.new(ENV["HOME"])
+    config.save_db_name('')
     assert_equal '', @db.current
   end
 

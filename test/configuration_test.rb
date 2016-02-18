@@ -2,7 +2,7 @@ require_relative 'test_helper'
 
 class ConfigureTest < Minitest::Test
   def setup
-    @config = Keg::Configuration
+    @config = Keg::Configuration.new(ENV["HOME"])
     @path = File.join(ENV["HOME"], '.keg', 'config.yml')
   end
 
