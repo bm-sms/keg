@@ -2,9 +2,9 @@ require 'keg'
 require 'yaml'
 
 module Keg
-  module Formatter
-    module Yaml
-      def self.format(obj)
+  class Formatter
+    class Yaml
+      def format(obj)
         obj.to_yaml
       end
     end

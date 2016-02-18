@@ -1,32 +1,29 @@
 require 'keg'
 
 module Keg
-  module Formatter
-    def self.formatter(format)
+  class Formatter
+    def formatter(format)
       submodules.find do |submodule|
         format.downcase == last_module_name(submodule)
-      end    
+      end
     end
 
-    def self.available_format?(format)
-      modules = submodules.map do |submodule|
-        last_module_name(submodule)
-      end
-      modules.include?(format.to_s.downcase)
+    def available_format?(format)
+      self.class.const_define?(format)
     end
 
     private
 
-    def self.submodules
-      consts = constants.map do |const_name| 
-        const = const_get(const_name)
+    def submodules
+      consts = self.class.constants.map do |const_name| 
+        const = self.class.const_get(const_name)
       end
       consts.select do |const|
-        const.class == Module
+        const.class == Class
       end
     end
 
-    def self.last_module_name(submodule)
+    def last_module_name(submodule)
       submodule.name.split('::').last.downcase
     end
   end

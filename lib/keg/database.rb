@@ -2,8 +2,12 @@ require 'keg'
 require 'toml'
 
 module Keg
-  module Database
-    def self.switch(db_name)
+  class Database
+    def initialize(root)
+      @root = root
+    end
+
+    def switch(db_name)
       return if db_name.empty?
       
       path = File.join(databases_path, db_name)
@@ -12,18 +16,18 @@ module Keg
       end
     end
 
-    def self.contents(filename)
+    def contents(filename)
       path = File.join(current_path, filename+'.toml')
       if File.exists?(path)
         TOML.load_file(path)
       end
     end
 
-    def self.current
+    def current
       Keg::Configuration.load_db_name
     end
 
-    def self.each
+    def each
       Dir.glob("#{current_path}/**/*.toml") do |path|
           yield TOML.load_file(path)
       end
@@ -31,12 +35,12 @@ module Keg
 
     private
 
-    def self.current_path
+    def current_path
       File.join(databases_path, current)
     end
 
-    def self.databases_path
-      File.join(ENV["HOME"], '.keg', 'databases')
+    def databases_path
+      File.join(@root, '.keg', 'databases')
     end
   end
 end

@@ -5,9 +5,13 @@ module Keg
   class CLI < Thor
     DEFAULT_FORMAT = 'json'
 
+    def initialize
+      @database = Keg::Database.new(ENV["HOME"])
+    end
+
     desc "switch DB_NAME", "switching Database to DB_NAME"
     def switch(db_name)
-      if Keg::Database.switch(db_name)
+      if @database.switch(db_name)
         puts "switch DataBase '#{db_name}'"
       else
         puts "No such directroy '#{db_name}'"
@@ -17,27 +21,27 @@ module Keg
     desc "show filename", "output toml file"
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
-      if Keg::Database.current.nil?
+      if @database.current.nil?
         puts "DB does not set"
         return
       end
 
-      unless contents = Keg::Database.contents(filename)
+      unless contents = @database.contents(filename)
         puts "No such file '#{filename}'"
         return
       end
 
       if Keg::Formatter.available_format?(options["format"])
-        formatter = Keg::Formatter.formatter(options["format"])
+        format = Keg::Formatter.formatter(options["format"])
       else
-        formatter = Keg::Formatter.formatter(DEFAULT_FORMAT)
+        format = Keg::Formatter.formatter(DEFAULT_FORMAT)
       end
-      puts formatter.format(contents) 
+      puts format.format(contents) 
     end
 
     desc "current", "show current Database name"
     def current
-      db_name = Keg::Database.current
+      db_name = @database.current
       if db_name.nil? || db_name.empty? 
         puts 'DB does not set'
         return
@@ -49,19 +53,19 @@ module Keg
     desc "show_all filename", "output all toml file"
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show_all
-      if Keg::Database.current.nil?
+      if @database.current.nil?
         puts 'DB does not set'
         return
       end
 
       if Keg::Formatter.available_format?(options["format"])
-        formatter = Keg::Formatter.formatter(options["format"])
+        format = Keg::Formatter.formatter(options["format"])
       else
-        formatter = Keg::Formatter.formatter(DEFAULT_FORMAT)
+        format = Keg::Formatter.formatter(DEFAULT_FORMAT)
       end
 
-      Keg::Database.each do |contents|
-        puts formatter.format(contents)
+      @database.each do |contents|
+        puts format.format(contents)
       end
     end
   end
