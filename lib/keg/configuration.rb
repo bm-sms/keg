@@ -1,5 +1,4 @@
 require 'keg'
-require 'yaml'
 
 module Keg
   class Configuration
