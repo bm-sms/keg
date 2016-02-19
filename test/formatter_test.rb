@@ -15,4 +15,9 @@ class FormatterTest < Minitest::Test
     formatter = Keg::Formatter.new('aaaa')
     assert_equal formatter.formatter.instance_of?(Keg::Formatter::Json), true
   end
+
+  def test_available_format_symbol
+    formatter = Keg::Formatter.new('a-/.,')
+    assert_equal formatter.formatter.instance_of?(Keg::Formatter::JSON), true
+  end
 end

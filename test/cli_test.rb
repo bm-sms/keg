@@ -48,6 +48,10 @@ class CLITest < Minitest::Test
     assert_equal @oosaka.to_json + "\n", out
   end
 
+  def test_show_unexpected_format
+    assert_raises(ArgumentError) { @cli.invoke(:show, ['oosaka'], { format: '!@#$'}) }
+  end
+
   def test_show_no_such_file
     out, err = capture_io { @cli.show('aaa') }
     assert_equal "No such file 'aaa'\n", out
@@ -65,7 +69,7 @@ class CLITest < Minitest::Test
   end
 
   def test_current_does_not_select_db
-    @confing.save_db_name('')
+    @config.save_db_name('')
     out, err = capture_io { @cli.current }
     assert_equal "DB does not set\n", out
   end
@@ -95,14 +99,18 @@ class CLITest < Minitest::Test
 
   def test_show_all_empty
     @config.save_db_name("empty")
-    out, err = capture_io { @cli.show_all }
+    out, err = capture_io { @cli.invoke(:show_all) }
     assert_equal '', out
   end
 
   def test_show_all_db_does_not_set
     @config.save_db_name('')
-    out, err = capture_io { @cli.show_all }
+    out, err = capture_io { @cli.invoke(:show_all) }
     assert_equal @oosaka.to_json + "\n" +
                  @ranma.to_json  + "\n", out
+  end
+
+  def test_show_all_unexpected_format
+    assert_raises(ArgumentError) { @cli.invoke(:show_all, [], { format: '!@#$' }) }
   end
 end
