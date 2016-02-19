@@ -22,10 +22,7 @@ module Keg
     desc "show filename", "output toml file"
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
-      if @database.current.nil?
-        puts "DB does not set"
-        return
-      end
+      return if db_does_not_set?
 
       unless contents = @database.contents(filename)
         puts "No such file '#{filename}'"
@@ -40,28 +37,29 @@ module Keg
 
     desc "current", "show current Database name"
     def current
-      db_name = @database.current
-      if db_name.nil? || db_name.empty? 
-        puts 'DB does not set'
-        return
-      end
+      return if db_does_not_set?
 
-      puts db_name
+      puts @database.current
     end
 
     desc "show_all filename", "output all toml file"
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show_all
-      if @database.current.nil?
-        puts 'DB does not set'
-        return
-      end
+      return if db_does_not_set?
 
       formatter = Keg::Formatter.new(options["format"])
       format = formatter.formatter
 
       @database.each do |contents|
         puts format.format(contents)
+      end
+    end
+
+    def db_does_not_set?
+      db = @database.current
+      if db.nil? || db.empty?
+        puts 'DB does not set'
+        return true
       end
     end
   end

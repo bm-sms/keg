@@ -60,7 +60,7 @@ class CLITest < Minitest::Test
   def test_show_does_not_select_db
     @config.save_db_name('')
     out, err = capture_io { @cli.show('oosaka') }
-    assert_equal "No such file 'oosaka'\n", out
+    assert_equal "DB does not set\n", out
   end
 
   def test_current_success
@@ -106,8 +106,7 @@ class CLITest < Minitest::Test
   def test_show_all_db_does_not_set
     @config.save_db_name('')
     out, err = capture_io { @cli.invoke(:show_all) }
-    assert_equal @oosaka.to_json + "\n" +
-                 @ranma.to_json  + "\n", out
+    assert_equal "DB does not set\n", out
   end
 
   def test_show_all_unexpected_format
