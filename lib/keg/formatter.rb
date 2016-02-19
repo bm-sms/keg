@@ -14,7 +14,7 @@ module Keg
       format.new
     end
 
-    # private
+    private
 
     def available?
       @myclass.const_defined?(@format.upcase) if alphabet?
