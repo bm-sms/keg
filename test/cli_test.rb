@@ -1,5 +1,4 @@
 require_relative 'test_helper'
-require 'yaml'
 
 class CLITest < Minitest::Test
   def setup
@@ -49,7 +48,8 @@ class CLITest < Minitest::Test
   end
 
   def test_show_unexpected_format
-    assert_raises(ArgumentError) { @cli.invoke(:show, ['oosaka'], { format: '!@#$'}) }
+    out, err = capture_io { @cli.invoke(:show, ['oosaka'], { format: '!@#$'}) }
+    assert_equal @oosaka.to_json + "\n", out
   end
 
   def test_show_no_such_file
@@ -111,6 +111,8 @@ class CLITest < Minitest::Test
   end
 
   def test_show_all_unexpected_format
-    assert_raises(ArgumentError) { @cli.invoke(:show_all, [], { format: '!@#$' }) }
+    out, err = capture_io { @cli.invoke(:show_all, [], { format: '!@#$' }) }
+    assert_equal @oosaka.to_json + "\n" +
+                 @ranma.to_json + "\n", out
   end
 end

@@ -7,7 +7,6 @@ module Keg
 
     def initialize(*arg)
       super
-
       @database = Keg::Database.new(ENV["HOME"])
     end
 
@@ -34,12 +33,8 @@ module Keg
       end
 
       formatter = Keg::Formatter.new(options["format"])
-      begin
-        format = formatter.formatter
-      rescue NameError
-        raise ArgumentError, "unexpected format '#{options["format"]}'"
-      end
-
+      format = formatter.formatter
+      
       puts format.format(contents) 
     end
 
@@ -63,12 +58,8 @@ module Keg
       end
 
       formatter = Keg::Formatter.new(options["format"])
-      begin
-        format = formatter.formatter
-      rescue NameError
-        raise ArgumentError, "unexpected format '#{options["format"]}'"
-      end
-      
+      format = formatter.formatter
+
       @database.each do |contents|
         puts format.format(contents)
       end

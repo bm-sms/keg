@@ -16,8 +16,8 @@ class FormatterTest < Minitest::Test
     assert_equal formatter.formatter.instance_of?(Keg::Formatter::Json), true
   end
 
-  def test_available_format_symbol
-    formatter = Keg::Formatter.new('a-/.,')
-    assert_equal formatter.formatter.instance_of?(Keg::Formatter::JSON), true
+  def test_unexpected_format
+    formatter = Keg::Formatter.new('!@#$')
+    assert_equal formatter.formatter.instance_of?(Keg::Formatter::Json), true
   end
 end
