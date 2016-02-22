@@ -4,20 +4,18 @@ module Keg
   class Formatter
     def initialize(format)
       @format = format
-      @myclass = self.class
     end
 
-    def formatter
-      @format = 'json' unless available?
+    def self.instance_of(format)
+      formatter = new(format)
+      format = 'json' unless formatter.available?
 
-      format = @myclass.const_get(@format.capitalize)
-      format.new
+      format_class = const_get(format.capitalize)
+      format_class.new
     end
-
-    private
 
     def available?
-      @myclass.const_defined?(@format.upcase) if alphabet?
+      self.class.const_defined?(@format.upcase) if alphabet?
     end
 
     def alphabet?
