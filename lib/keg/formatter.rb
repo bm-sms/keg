@@ -2,24 +2,21 @@ require 'keg'
 
 module Keg
   class Formatter
-    def initialize(format)
-      @format = format
-    end
-
-    def self.instance_of(format)
-      formatter = new(format)
-      format = 'json' unless formatter.available?
+    def self.create(format)
+      format = 'json' unless available_format?(format)
 
       format_class = const_get(format.capitalize)
       format_class.new
     end
 
-    def available?
-      self.class.const_defined?(@format.upcase) if alphabet?
+    private
+
+    def self.available_format?(format)
+      const_defined?(format.upcase) if alphabet?(format)
     end
 
-    def alphabet?
-      /[a-zA-Z]/ === @format
+    def self.alphabet?(format)
+      /[a-zA-Z]/ === format
     end
   end
 end

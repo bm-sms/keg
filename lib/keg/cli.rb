@@ -10,7 +10,7 @@ module Keg
       @database = Keg::Database.new(ENV["HOME"])
     end
 
-    desc "switch DB_NAME", "switching Database to DB_NAME."
+    desc "switch DB_NAME", "switching database to DB_NAME."
     def switch(db_name)
       if @database.switch(db_name)
         puts "switch DataBase '#{db_name}'"
@@ -19,7 +19,7 @@ module Keg
       end
     end
 
-    desc "show filename", "output file contents that was formatted in TOML."
+    desc "show filename", "output file contents."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
       return if db_does_not_set?
@@ -29,24 +29,24 @@ module Keg
         return
       end
 
-      format = Keg::Formatter.instance_of(options["format"])
+      format = Keg::Formatter.create(options["format"])
       
       puts format.format(contents) 
     end
 
-    desc "current", "show current Database name."
+    desc "current", "show current database name."
     def current
       return if db_does_not_set?
 
       puts @database.current
     end
 
-    desc "show_all", "output all file contents that was formatted in TOML."
+    desc "show_all", "output all file contents."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show_all
       return if db_does_not_set?
 
-      format = Keg::Formatter.instance_of(options["format"])
+      format = Keg::Formatter.create(options["format"])
 
       @database.each do |contents|
         puts format.format(contents)
