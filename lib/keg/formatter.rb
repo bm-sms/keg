@@ -1,12 +1,12 @@
 require 'keg'
 
 module Keg
-  class Formatter
+  module Formatter
     def self.create(format)
       format = 'json' unless available?(format)
 
-      inner_class = const_get(format.capitalize)
-      inner_class.new
+      format_class = const_get(format.capitalize)
+      format_class.new
     end
 
     private
