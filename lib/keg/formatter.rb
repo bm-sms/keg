@@ -5,8 +5,8 @@ module Keg
     def self.create(format)
       format = 'json' unless available?(format)
 
-      format_class = const_get(format.capitalize)
-      format_class.new
+      formatter = const_get(format.capitalize)
+      formatter.new
     end
 
     private

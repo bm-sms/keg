@@ -2,7 +2,7 @@ require 'keg'
 require 'json'
 
 module Keg
-  class Formatter
+  module Formatter
     class Json
       def format(obj)
         obj.to_json
