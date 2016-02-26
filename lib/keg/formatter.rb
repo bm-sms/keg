@@ -1,7 +1,7 @@
 require 'keg'
 
 module Keg
-  module Formatter
+  class Formatter
     def self.create(format)
       format = 'json' unless available?(format)
 
