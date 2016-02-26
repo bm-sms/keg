@@ -7,15 +7,16 @@ module Keg
 
     def initialize(*args)
       super
-      @database = Keg::Database.new(ENV["HOME"])
+      @database = Database.new(ENV["HOME"])
     end
 
     desc "switch DB_NAME", "switching database to DB_NAME."
     def switch(db_name)
       if @database.switch(db_name)
-        puts "switch DataBase '#{db_name}'"
+        puts "switch DataBase `#{db_name}`."
       else
-        puts "No such directroy '#{db_name}'"
+        warn "Error: No such directroy `#{db_name}`.\nPlease enter a valid DB name."
+        return -1
       end
     end
 
@@ -25,18 +26,18 @@ module Keg
       return if db_does_not_set?
 
       unless contents = @database.contents(filename)
-        puts "No such file '#{filename}'"
-        return
+        warn "Error: No such file `#{filename}`.\nPlease enter a valid file name."
+        return -1
       end
 
-      format = Keg::Formatter.create(options["format"])
+      formatter = Formatter.create(options["format"])
       
-      puts format.format(contents) 
+      puts formatter.format(contents) 
     end
 
     desc "current", "show current database name."
     def current
-      return if db_does_not_set?
+      return -1 if db_does_not_set?
 
       puts @database.current
     end
@@ -44,12 +45,12 @@ module Keg
     desc "show_all", "output all file contents."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show_all
-      return if db_does_not_set?
+      return -1 if db_does_not_set?
 
-      format = Keg::Formatter.create(options["format"])
+      formatter = Formatter.create(options["format"])
 
       @database.each do |contents|
-        puts format.format(contents)
+        puts formatter.format(contents)
       end
     end
 
@@ -58,8 +59,10 @@ module Keg
     def db_does_not_set?
       db = @database.current
       if db.nil? || db.empty?
-        puts 'DB does not set'
+        warn "Error: DB does not set.\nMake sure that `keg switch DB_NAME`."
         return true
+      else 
+        return false
       end
     end
   end

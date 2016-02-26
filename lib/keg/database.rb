@@ -5,15 +5,15 @@ module Keg
   class Database
     def initialize(root)
       @root = root
+      @configuration = Configuration.new(root)
     end
 
     def switch(db_name)
       return if db_name.empty?
       
-      configuration = Keg::Configuration.new(@root)
       path = File.join(databases_path, db_name)
       if File.directory?(path)
-        configuration.save_db_name(db_name)
+        @configuration.save_db_name(db_name)
       end
     end
 
@@ -25,8 +25,7 @@ module Keg
     end
 
     def current
-      configuration = Keg::Configuration.new(@root)
-      configuration.load_db_name
+      @configuration.load_db_name
     end
 
     def each

@@ -14,17 +14,17 @@ class CLITest < Minitest::Test
 
   def test_switch_success
     out, err = capture_io { @cli.switch("glean-daimon-lunch") }
-    assert_equal %Q(switch DataBase 'glean-daimon-lunch'\n), out
+    assert_equal "switch DataBase `glean-daimon-lunch`.\n", out
   end
 
   def test_switch_faild
     out, err = capture_io { @cli.switch("aaa") }
-    assert_equal "No such directroy 'aaa'\n", out
+    assert_equal "Error: No such directroy `aaa`.\nPlease enter a valid DB name.\n", err
   end
 
   def test_switch_blank
     out, err = capture_io { @cli.switch("") }
-    assert_equal "No such directroy ''\n", out
+    assert_equal "Error: No such directroy ``.\nPlease enter a valid DB name.\n", err
   end
 
   def test_show_defalut
@@ -54,13 +54,13 @@ class CLITest < Minitest::Test
 
   def test_show_no_such_file
     out, err = capture_io { @cli.show('aaa') }
-    assert_equal "No such file 'aaa'\n", out
+    assert_equal "Error: No such file `aaa`.\nPlease enter a valid file name.\n", err
   end
 
   def test_show_does_not_select_db
     @config.save_db_name('')
     out, err = capture_io { @cli.show('oosaka') }
-    assert_equal "DB does not set\n", out
+    assert_equal "Error: DB does not set.\nMake sure that `keg switch DB_NAME`.\n", err
   end
 
   def test_current_success
@@ -71,7 +71,7 @@ class CLITest < Minitest::Test
   def test_current_does_not_select_db
     @config.save_db_name('')
     out, err = capture_io { @cli.current }
-    assert_equal "DB does not set\n", out
+    assert_equal "Error: DB does not set.\nMake sure that `keg switch DB_NAME`.\n", err
   end
 
   def test_show_all_defalut
@@ -100,13 +100,13 @@ class CLITest < Minitest::Test
   def test_show_all_empty
     @config.save_db_name("empty")
     out, err = capture_io { @cli.invoke(:show_all) }
-    assert_equal '', out
+    assert_equal '', err
   end
 
   def test_show_all_db_does_not_set
     @config.save_db_name('')
     out, err = capture_io { @cli.invoke(:show_all) }
-    assert_equal "DB does not set\n", out
+    assert_equal "Error: DB does not set.\nMake sure that `keg switch DB_NAME`.\n", err
   end
 
   def test_show_all_unexpected_format
