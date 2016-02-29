@@ -23,12 +23,8 @@ module Keg
     desc "show filename", "output file contents."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
-      return -1 unless check_database
-
-      unless Formatter.available_format?(options["format"])
-        warn "Error: Unavailable format `#{options["format"]}`. Make sure that `keg help show`."
-        return -1
-      end
+      return -1 unless check_database 
+      return -1 unless check_format(options["format"])
 
       unless contents = @database.contents(filename)
         warn "Error: No such file `#{filename}`. Please enter a correct file name."
@@ -51,11 +47,7 @@ module Keg
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show_all
       return -1 unless check_database
-
-      unless Formatter.available_format?(options["format"])
-        warn "Error: Unavailable format `#{options["format"]}`. Make sure that `keg help show_all`."
-        return -1
-      end
+      return -1 unless check_format(options["format"])
 
       formatter = Formatter.create(options["format"])
 
@@ -73,6 +65,15 @@ module Keg
         return false
       elsif !Dir.exist?(@database.current_path)
         warn "Error: Current DB is unknown directory `#{db}`. Make sure that `keg switch DB_NAME`."
+        return false
+      else
+        return true
+      end
+    end
+
+    def check_format(format)
+      unless Formatter.available_format?(format)
+        warn "Error: Unavailable format `#{options["format"]}`. Please enter a available format `json` or `yaml`."
         return false
       else
         return true

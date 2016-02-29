@@ -44,12 +44,12 @@ class CLITest < Minitest::Test
 
   def test_show_unkwon_format
     out, err = capture_io { @cli.invoke(:show, ['oosaka'], { format: 'aaa'} ) }
-    assert_equal "Error: Unavailable format `aaa`. Make sure that `keg help show`.\n", err
+    assert_equal "Error: Unavailable format `aaa`. Please enter a available format `json` or `yaml`.\n", err
   end
 
   def test_show_unexpected_format
     out, err = capture_io { @cli.invoke(:show, ['oosaka'], { format: '!@#$'}) }
-    assert_equal "Error: Unavailable format `!@\#$`. Make sure that `keg help show`.\n", err
+    assert_equal "Error: Unavailable format `!@\#$`. Please enter a available format `json` or `yaml`.\n", err
   end
 
   def test_show_no_such_file
@@ -105,7 +105,7 @@ class CLITest < Minitest::Test
 
   def test_show_all_unkwon_format
     out, err = capture_io { @cli.invoke(:show_all, [], { format: 'aaa' }) }
-    assert_equal "Error: Unavailable format `aaa`. Make sure that `keg help show_all`.\n", err
+    assert_equal "Error: Unavailable format `aaa`. Please enter a available format `json` or `yaml`.\n", err
   end
 
   def test_show_all_no_such_directory
@@ -122,6 +122,6 @@ class CLITest < Minitest::Test
 
   def test_show_all_unexpected_format
     out, err = capture_io { @cli.invoke(:show_all, [], { format: '!@#$' }) }
-    assert_equal "Error: Unavailable format `!@\#$`. Make sure that `keg help show_all`.\n", err
+    assert_equal "Error: Unavailable format `!@\#$`. Please enter a available format `json` or `yaml`.\n", err
   end
 end
