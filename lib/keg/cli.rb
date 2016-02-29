@@ -15,7 +15,7 @@ module Keg
       if @database.switch(db_name)
         puts "switch DataBase `#{db_name}`."
       else
-        warn "Error: No such directroy `#{db_name}`.\nPlease enter a valid DB name."
+        warn "Error: No such directroy `#{db_name}`. Please enter a valid DB name."
         return -1
       end
     end
@@ -26,7 +26,7 @@ module Keg
       return if db_does_not_set?
 
       unless contents = @database.contents(filename)
-        warn "Error: No such file `#{filename}`.\nPlease enter a valid file name."
+        warn "Error: No such file `#{filename}`. Please enter a valid file name."
         return -1
       end
 
@@ -59,7 +59,7 @@ module Keg
     def db_does_not_set?
       db = @database.current
       if db.nil? || db.empty?
-        warn "Error: DB does not set.\nMake sure that `keg switch DB_NAME`."
+        warn "Error: DB does not set. Make sure that `keg switch DB_NAME`."
         return true
       else 
         return false

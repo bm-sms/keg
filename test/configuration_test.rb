@@ -17,7 +17,7 @@ class ConfigureTest < Minitest::Test
 
   def test_load_db_name_no_file_error
     File.delete(@path) if File.exists?(@path)
-    assert_raises(Errno::ENOENT) { @config.load_db_name }
+    assert_nil @config.load_db_name
   end
 
   def test_load_db_name_file_content_empty

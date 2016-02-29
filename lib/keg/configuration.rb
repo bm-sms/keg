@@ -12,7 +12,11 @@ module Keg
     end
 
     def load_db_name
-      config = YAML.load_file(config_path)
+      begin
+        config = YAML.load_file(config_path)
+      rescue
+        File.write(config_path, '')
+      end
       config['database'] if config
     end
 
