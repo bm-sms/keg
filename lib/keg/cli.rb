@@ -26,7 +26,7 @@ module Keg
       return -1 unless check_database
 
       unless Formatter.available_format?(options["format"])
-        warn "Error: Unknown format `#{options["format"]}`."
+        warn "Error: Unavailable format `#{options["format"]}`. Make sure that `keg help show`."
         return -1
       end
 
@@ -53,7 +53,7 @@ module Keg
       return -1 unless check_database
 
       unless Formatter.available_format?(options["format"])
-        warn "Error: Unknown format `#{options["format"]}`."
+        warn "Error: Unavailable format `#{options["format"]}`. Make sure that `keg help show_all`."
         return -1
       end
 
