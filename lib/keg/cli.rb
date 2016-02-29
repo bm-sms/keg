@@ -61,6 +61,9 @@ module Keg
       if db.nil? || db.empty?
         warn "Error: DB does not set. Make sure that `keg switch DB_NAME`."
         return true
+      elsif !File.directory?(File.join(ENV["HOME"], '.keg/databases', db))
+        warn "Error: Current DB is unkwon directory `#{db}`. Make sure that `keg switch DB_NAME`."
+        return true
       else 
         return false
       end

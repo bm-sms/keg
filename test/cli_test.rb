@@ -100,7 +100,7 @@ class CLITest < Minitest::Test
   def test_show_all_no_such_directory
     @config.save_db_name("aaaa")
     out, err = capture_io { @cli.invoke(:show_all) }
-    assert_equal 'Error: No such directory `aaaa`', err
+    assert_equal "Error: Current DB is unkwon directory `aaaa`. Make sure that `keg switch DB_NAME`.\n", err
   end
 
   def test_show_all_db_does_not_set
