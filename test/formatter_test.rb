@@ -2,18 +2,22 @@ require_relative 'test_helper'
 
 class FormatterTest < Minitest::Test
   def test_format_json
-    assert_equal Keg::Formatter.create('json').instance_of?(Keg::Formatter::Json), true
+    assert_instance_of Keg::Formatter::Json, Keg::Formatter.create('json')
   end
 
   def test_format_yaml
-    assert_equal Keg::Formatter.create('yaml').instance_of?(Keg::Formatter::Yaml), true
+    assert_instance_of Keg::Formatter::Yaml, Keg::Formatter.create('yaml')
   end
 
-  def test_format_unavailable
-    assert_equal Keg::Formatter.create('aaaa').instance_of?(Keg::Formatter::Json), true
+  def test_available_format_unavailable
+    assert_equal Keg::Formatter.available_format?('aaaa'), false
   end
 
-  def test_unexpected_format
-    assert_equal Keg::Formatter.create('!@#$').instance_of?(Keg::Formatter::Json), true
+  def test_available_format_unexpected_format
+    assert_equal Keg::Formatter.available_format?('!@#$'), false
+  end
+
+  def test_available_format_blank_format
+    assert_equal Keg::Formatter.available_format?(''), false
   end
 end

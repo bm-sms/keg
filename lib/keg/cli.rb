@@ -15,7 +15,7 @@ module Keg
       if @database.switch(db_name)
         puts "switch DataBase `#{db_name}`."
       else
-        warn "Error: No such directroy `#{db_name}`. Please enter a valid DB name."
+        warn "Error: No such directroy `#{db_name}`. Please enter a correct DB name."
         return -1
       end
     end
@@ -23,10 +23,15 @@ module Keg
     desc "show filename", "output file contents."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
-      return unless check_database
+      return -1 unless check_database
+
+      unless Formatter.available_format?(options["format"])
+        warn "Error: Unknown format `#{options["format"]}`."
+        return -1
+      end
 
       unless contents = @database.contents(filename)
-        warn "Error: No such file `#{filename}`. Please enter a valid file name."
+        warn "Error: No such file `#{filename}`. Please enter a correct file name."
         return -1
       end
 
@@ -46,6 +51,11 @@ module Keg
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show_all
       return -1 unless check_database
+
+      unless Formatter.available_format?(options["format"])
+        warn "Error: Unknown format `#{options["format"]}`."
+        return -1
+      end
 
       formatter = Formatter.create(options["format"])
 

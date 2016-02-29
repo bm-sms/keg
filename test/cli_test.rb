@@ -19,12 +19,12 @@ class CLITest < Minitest::Test
 
   def test_switch_faild
     out, err = capture_io { @cli.switch("aaa") }
-    assert_equal "Error: No such directroy `aaa`. Please enter a valid DB name.\n", err
+    assert_equal "Error: No such directroy `aaa`. Please enter a correct DB name.\n", err
   end
 
   def test_switch_blank
     out, err = capture_io { @cli.switch("") }
-    assert_equal "Error: No such directroy ``. Please enter a valid DB name.\n", err
+    assert_equal "Error: No such directroy ``. Please enter a correct DB name.\n", err
   end
 
   def test_show_defalut
@@ -54,7 +54,7 @@ class CLITest < Minitest::Test
 
   def test_show_no_such_file
     out, err = capture_io { @cli.show('aaa') }
-    assert_equal "Error: No such file `aaa`. Please enter a valid file name.\n", err
+    assert_equal "Error: No such file `aaa`. Please enter a correct file name.\n", err
   end
 
   def test_show_does_not_select_db

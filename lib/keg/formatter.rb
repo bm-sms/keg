@@ -3,17 +3,17 @@ require 'keg'
 module Keg
   class Formatter
     def self.create(format)
-      format = 'json' unless available?(format)
-
       formatter = const_get(format.capitalize)
       formatter.new
     end
 
-    private
-
-    def self.available?(format)
-      const_defined?(format.upcase) if alphabet?(format)
+    def self.available_format?(format)
+      return false unless alphabet?(format)
+      
+      const_defined?(format.upcase)
     end
+
+    private
 
     def self.alphabet?(format)
       /[a-zA-Z]/ === format
