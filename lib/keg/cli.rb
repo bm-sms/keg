@@ -23,7 +23,7 @@ module Keg
     desc "show filename", "output file contents."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
-      return if db_does_not_set?
+      return unless check_database
 
       unless contents = @database.contents(filename)
         warn "Error: No such file `#{filename}`. Please enter a valid file name."
@@ -37,7 +37,7 @@ module Keg
 
     desc "current", "show current database name."
     def current
-      return -1 if db_does_not_set?
+      return -1 unless check_database
 
       puts @database.current
     end
@@ -45,7 +45,7 @@ module Keg
     desc "show_all", "output all file contents."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show_all
-      return -1 if db_does_not_set?
+      return -1 unless check_database
 
       formatter = Formatter.create(options["format"])
 
@@ -56,16 +56,16 @@ module Keg
 
     private
 
-    def db_does_not_set?
+    def check_database
       db = @database.current
       if db.nil? || db.empty?
         warn "Error: DB does not set. Make sure that `keg switch DB_NAME`."
-        return true
-      elsif !File.directory?(File.join(ENV["HOME"], '.keg/databases', db))
-        warn "Error: Current DB is unkwon directory `#{db}`. Make sure that `keg switch DB_NAME`."
-        return true
-      else 
         return false
+      elsif !Dir.exist?(@database.current_path)
+        warn "Error: Current DB is unknown directory `#{db}`. Make sure that `keg switch DB_NAME`."
+        return false
+      else
+        return true
       end
     end
   end

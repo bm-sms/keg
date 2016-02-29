@@ -63,6 +63,12 @@ class CLITest < Minitest::Test
     assert_equal "Error: DB does not set. Make sure that `keg switch DB_NAME`.\n", err
   end
 
+  def test_show_db_unknown_directory
+    @config.save_db_name('aaaa')
+    out, err = capture_io { @cli.show('oosaka') }
+    assert_equal "Error: Current DB is unknown directory `aaaa`. Make sure that `keg switch DB_NAME`.\n", err
+  end
+
   def test_current_success
     out, err = capture_io { @cli.current }
     assert_equal "glean-daimon-lunch\n", out
@@ -72,6 +78,12 @@ class CLITest < Minitest::Test
     @config.save_db_name('')
     out, err = capture_io { @cli.current }
     assert_equal "Error: DB does not set. Make sure that `keg switch DB_NAME`.\n", err
+  end
+
+  def test_current_db_unknown_directory
+    @config.save_db_name('aaaa')
+    out, err = capture_io { @cli.current }
+    assert_equal "Error: Current DB is unknown directory `aaaa`. Make sure that `keg switch DB_NAME`.\n", err
   end
 
   def test_show_all_defalut
@@ -100,7 +112,7 @@ class CLITest < Minitest::Test
   def test_show_all_no_such_directory
     @config.save_db_name("aaaa")
     out, err = capture_io { @cli.invoke(:show_all) }
-    assert_equal "Error: Current DB is unkwon directory `aaaa`. Make sure that `keg switch DB_NAME`.\n", err
+    assert_equal "Error: Current DB is unknown directory `aaaa`. Make sure that `keg switch DB_NAME`.\n", err
   end
 
   def test_show_all_db_does_not_set

@@ -12,7 +12,7 @@ module Keg
       return if db_name.empty?
       
       path = File.join(databases_path, db_name)
-      if File.directory?(path)
+      if Dir.exist?(path)
         @configuration.save_db_name(db_name)
       end
     end
@@ -33,8 +33,6 @@ module Keg
           yield TOML.load_file(path)
       end
     end
-
-    private
 
     def current_path
       File.join(databases_path, current)
