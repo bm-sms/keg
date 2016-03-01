@@ -19,12 +19,12 @@ class CLITest < Minitest::Test
 
   def test_switch_faild
     msg = "Error: No such directroy `aaa`. Please enter a correct DB name.\n"
-    assert_raises(SystemExit, msg) { @cli.switch("aaa") }
+    assert_raises(Thor::Error, msg) { @cli.switch("aaa") }
   end
 
   def test_switch_blank
     msg = "Error: No such directroy `aaa`. Please enter a correct DB name.\n"
-    assert_raises(SystemExit, msg) { @cli.switch("") } 
+    assert_raises(Thor::Error, msg) { @cli.switch("") } 
   end
 
   def test_show_defalut
@@ -44,29 +44,29 @@ class CLITest < Minitest::Test
 
   def test_show_unkwon_format
     msg =  "Error: Unavailable format `aaa`. Please enter a available format `json` or `yaml`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show, ['oosaka'], { format: 'aaa'} ) } 
+    assert_raises(Thor::MalformattedArgumentError, msg) { @cli.invoke(:show, ['oosaka'], { format: 'aaa'} ) } 
   end
 
   def test_show_unexpected_format
     msg =  "Error: Unavailable format `aaa`. Please enter a available format `json` or `yaml`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show, ['oosaka'], { format: '!@#$'}) } 
+    assert_raises(Thor::MalformattedArgumentError, msg) { @cli.invoke(:show, ['oosaka'], { format: '!@#$'}) } 
   end
 
   def test_show_no_such_file
     msg =  "Error: No such file `aaa`. Please enter a correct file name.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show, ['aaa']) } 
+    assert_raises(Thor::Error, msg) { @cli.invoke(:show, ['aaa']) } 
   end
 
   def test_show_does_not_select_db
     @config.save_db_name('')
     msg =  "Error: DB does not set. Make sure that `keg switch DB_NAME`.\n"
-    assert_raises(SystemExit, msg) { @cli.show('oosaka') } 
+    assert_raises(Thor::InvocationError, msg) { @cli.show('oosaka') } 
   end
 
   def test_show_db_unknown_directory
     @config.save_db_name('aaaa')
     msg =  "Error: Current DB is unknown directory `aaaa`. Make sure that `keg switch DB_NAME`.\n"
-    assert_raises(SystemExit, msg) { @cli.show('oosaka') } 
+    assert_raises(Thor::InvocationError, msg) { @cli.show('oosaka') } 
   end
 
   def test_current_success
@@ -77,13 +77,13 @@ class CLITest < Minitest::Test
   def test_current_does_not_select_db
     @config.save_db_name('')
     msg =  "Error: DB does not set. Make sure that `keg switch DB_NAME`.\n"
-    assert_raises(SystemExit, msg) { @cli.current } 
+    assert_raises(Thor::InvocationError, msg) { @cli.current } 
   end
 
   def test_current_db_unknown_directory
     @config.save_db_name('aaaa')
     msg =  "Error: Current DB is unknown directory `aaaa`. Make sure that `keg switch DB_NAME`.\n"
-    assert_raises(SystemExit, msg) { @cli.current } 
+    assert_raises(Thor::InvocationError, msg) { @cli.current } 
   end
 
   def test_show_all_defalut
@@ -105,23 +105,23 @@ class CLITest < Minitest::Test
 
   def test_show_all_unkwon_format
     msg =  "Error: Unavailable format `aaa`. Please enter a available format `json` or `yaml`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show_all, [], { format: 'aaa' }) } 
+    assert_raises(Thor::MalformattedArgumentError, msg) { @cli.invoke(:show_all, [], { format: 'aaa' }) } 
   end
 
   def test_show_all_no_such_directory
     @config.save_db_name("aaaa")
     msg =  "Error: Current DB is unknown directory `aaaa`. Make sure that `keg switch DB_NAME`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show_all) } 
+    assert_raises(Thor::InvocationError, msg) { @cli.invoke(:show_all) } 
   end
 
   def test_show_all_db_does_not_set
     @config.save_db_name('')
     msg =  "Error: DB does not set. Make sure that `keg switch DB_NAME`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show_all) } 
+    assert_raises(Thor::InvocationError, msg) { @cli.invoke(:show_all) } 
   end
 
   def test_show_all_unexpected_format
     msg =  "Error: Unavailable format `!@\#$`. Please enter a available format `json` or `yaml`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show_all, [], { format: '!@#$' }) } 
+    assert_raises(Thor::InvocationError, msg) { @cli.invoke(:show_all, [], { format: '!@#$' }) } 
   end
 end

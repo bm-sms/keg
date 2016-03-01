@@ -14,7 +14,7 @@ module Keg
     def load_db_name
       begin
         config = YAML.load_file(config_path)
-      rescue
+      rescue Errno::ENOENT
         File.write(config_path, '')
       end
       config['database'] if config
