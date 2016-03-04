@@ -20,7 +20,7 @@ module Keg
       @validator.check_dir(db_name)
 
       @database.switch(db_name)
-      puts "switch DataBase `#{db_name}`."
+      puts "switch database `#{db_name}`."
     end
 
     desc "show <filename>", "output file contents in current database."
