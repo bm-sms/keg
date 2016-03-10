@@ -1,41 +1,96 @@
-# Keg [![Circle CI](https://circleci.com/gh/bm-sms/keg.svg?style=svg&circle-token=64f349201f5cb44f1ac47b1172626522253d20ec)](https://circleci.com/gh/bm-sms/keg)
-             
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/keg`. To experiment with that code, run `bin/console` for an interactive prompt.
+Keg [![Circle CI](https://circleci.com/gh/bm-sms/keg.svg?style=svg&circle-token=64f349201f5cb44f1ac47b1172626522253d20ec)](https://circleci.com/gh/bm-sms/keg)
+====
 
-TODO: Delete this and the text above, and describe your gem
+Keg is CLI tool that supports a data management.
+
+## Description
+Keg use the data formatted by [TOML](https://github.com/toml-lang/toml) which is language that easy to read. 
+Keg read a TOML file from the local database and outputs its useful format.
+You need to clone the repository has the TOML file in the local database (`$HOME/.keg/databases`) in advance.
+
+## VS. [glean](https://github.com/glean/glean)
+glean constructs a cache in local from a specific remote repository. In contrast, Keg mainly works with the database was constructed in local. Therefore, you need to pull manually when the repository has updated. However, it run at high speed by using the data in local.
+
+## Requirements
+Ruby 2.0 higher
+
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-```ruby
+```sh
 gem 'keg'
 ```
 
-And then execute:
-
-    $ bundle
-
 Or install it yourself as:
 
-    $ gem install keg
+```sh
+$ gem install keg
+```
 
 ## Usage
+### Preparations: 
+Makes a TOML file:
 
-TODO: Write usage instructions here
+```toml
+# example.toml
+name = 'example'
+email = 'example@example.com'
+```
 
-## Development
+Push this TOML file to git:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment. Run `bundle exec keg` to use the gem in this directory, ignoring other installed copies of this gem.
+```sh
+$ git add example.toml
+$ git commit -m 'add example'
+$ git push origin master
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Constructs databases:
+
+```sh
+$ mkdir -p $HOME/.keg/databases
+$ cd $HOME/.keg/databases 
+$ git clone <your_repo> example_database
+```
+
+### Demo:
+
+Select a database from databases in local (`$HOME/.keg/databases`):
+
+```sh
+$ keg switch example_database   #=> switch database `example_database`
+```
+
+Format and show the TOML file which is requested in the database:
+
+```sh
+$ keg show example               # show $HOME/.keg/databases/example_database/example.toml
+$ keg show --format=json example # show in json format
+$ keg show --format=yaml example # show in yaml format
+```
+
+Show the current database:
+
+```sh
+$ keg current                    #=> example_database
+```
+
+Format and show all TOML files in the database:
+
+```sh
+$ keg show_all                   # show all TOML file in example_database
+$ keg show_all --format=json     # show all in json format
+$ keg show_all --format=yaml     # show all in yaml format
+```
+
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/keg. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/bm-sms/keg. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
