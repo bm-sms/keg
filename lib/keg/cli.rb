@@ -15,18 +15,19 @@ module Keg
       if @database.switch(db_name)
         puts "switch DataBase `#{db_name}`."
       else
-        abort "Error: No such directroy `#{db_name}`. Please enter a correct DB name."
+        warn "Error: No such directroy `#{db_name}`. Please enter a correct DB name."
+        return -1
       end
     end
 
     desc "show filename", "output file contents."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
-      check_database 
-      check_format(options["format"])
+      return -1 unless database_does_set? && available_format?(options["format"])
 
       unless contents = @database.contents(filename)
-        abort "Error: No such file `#{filename}`. Please enter a correct file name."
+        warn "Error: No such file `#{filename}`. Please enter a correct file name."
+        return -1
       end
 
       formatter = Formatter.create(options["format"])
@@ -36,7 +37,7 @@ module Keg
 
     desc "current", "show current database name."
     def current
-      check_database
+      return -1 unless database_does_set?
 
       puts @database.current
     end
@@ -44,8 +45,7 @@ module Keg
     desc "show_all", "output all file contents."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show_all
-      check_database
-      check_format(options["format"])
+      return -1 unless database_does_set? && available_format?(options["format"])
 
       formatter = Formatter.create(options["format"])
 
@@ -56,18 +56,25 @@ module Keg
 
     private
 
-    def check_database
+    def database_does_set?
       db = @database.current
       if db.nil? || db.empty?
-        abort "Error: DB does not set. Make sure that `keg switch DB_NAME`."
+        warn "Error: DB does not set. Make sure that `keg switch DB_NAME`."
+        return false
       elsif !Dir.exist?(@database.current_path)
-        abort "Error: Current DB is unknown directory `#{db}`. Make sure that `keg switch DB_NAME`."
+        warn "Error: Current DB is unknown directory `#{db}`. Make sure that `keg switch DB_NAME`."
+        return false
+      else
+        return true
       end
     end
 
-    def check_format(format)
+    def available_format?(format)
       unless Formatter.available_format?(format)
-        abort "Error: Unavailable format `#{options["format"]}`. Please enter a available format `json` or `yaml`."
+        warn "Error: Unavailable format `#{format}`. Please enter a available format `json` or `yaml`."
+        return false
+      else
+        return true
       end
     end
   end
