@@ -15,29 +15,38 @@ module Keg
       if @database.switch(db_name)
         puts "switch DataBase `#{db_name}`."
       else
-        warn "Error: No such directroy `#{db_name}`. Please enter a correct DB name."
-        return -1
+        abort "Error: No such directroy `#{db_name}`. Please enter a correct DB name."
       end
     end
 
     desc "show filename", "output file contents."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
-      return -1 unless database_does_set? && available_format?(options["format"])
-
-      unless contents = @database.contents(filename)
-        warn "Error: No such file `#{filename}`. Please enter a correct file name."
-        return -1
+      unless database_does_set? 
+        abort "Error: DB does not set. Make sure that `keg switch DB_NAME`."
+      end
+      unless current_database_is_known?
+        abort "Error: Current DB is unknown directory. Make sure that `keg switch DB_NAME`."        
+      end
+      unless Formatter.available_format?(options[:format])
+        abort "Error: Unavailable format `#{options[:format]}`. Please enter a available format `json` or `yaml`."
       end
 
-      formatter = Formatter.create(options["format"])
+      unless contents = @database.contents(filename)
+        abort "Error: No such file `#{filename}`. Please enter a correct file name."
+        
+      end
+
+      formatter = Formatter.create(options[:format])
       
       puts formatter.format(contents) 
     end
 
     desc "current", "show current database name."
     def current
-      return -1 unless database_does_set?
+      unless database_does_set?
+        abort "Error: DB does not set. Make sure that `keg switch DB_NAME`."
+      end
 
       puts @database.current
     end
@@ -45,9 +54,17 @@ module Keg
     desc "show_all", "output all file contents."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show_all
-      return -1 unless database_does_set? && available_format?(options["format"])
+      unless database_does_set? 
+        abort "Error: DB does not set. Make sure that `keg switch DB_NAME`."
+      end
+      unless current_database_is_known?
+        abort "Error: Current DB is unknown directory. Make sure that `keg switch DB_NAME`."        
+      end
+      unless Formatter.available_format?(options[:format])
+        abort "Error: Unavailable format `#{options[:format]}`. Please enter a available format `json` or `yaml`."
+      end
 
-      formatter = Formatter.create(options["format"])
+      formatter = Formatter.create(options[:format])
 
       @database.each do |contents|
         puts formatter.format(contents)
@@ -58,24 +75,11 @@ module Keg
 
     def database_does_set?
       db = @database.current
-      if db.nil? || db.empty?
-        warn "Error: DB does not set. Make sure that `keg switch DB_NAME`."
-        return false
-      elsif !Dir.exist?(@database.current_path)
-        warn "Error: Current DB is unknown directory `#{db}`. Make sure that `keg switch DB_NAME`."
-        return false
-      else
-        return true
-      end
+      !db.nil? && !db.empty?
     end
 
-    def available_format?(format)
-      unless Formatter.available_format?(format)
-        warn "Error: Unavailable format `#{format}`. Please enter a available format `json` or `yaml`."
-        return false
-      else
-        return true
-      end
+    def current_database_is_known?
+      Dir.exist?(@database.current_path)
     end
   end
 end
