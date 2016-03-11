@@ -3,8 +3,8 @@ require_relative 'test_helper'
 class CLITest < Minitest::Test
   def setup
     @cli = Keg::CLI.new
-    @database = Keg::Database.new(ENV["HOME"])
-    @database.switch('glean-daimon-lunch')
+    @interface = Keg::Interface.new(ENV["HOME"])
+    @interface.switch('glean-daimon-lunch')
     @config = Keg::Configuration.new(ENV["HOME"])
     @oosaka = {"name" => "東麻布 逢坂",
                "url"  => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}
@@ -59,13 +59,13 @@ class CLITest < Minitest::Test
 
   def test_show_does_not_select_db
     @config.save_db_name('')
-    msg =  "Error: DB does not set. Make sure that `keg switch DB_NAME`.\n"
+    msg =  "Error: DB does not set. Please set a database.\n"
     assert_raises(SystemExit, msg) { @cli.show('oosaka') } 
   end
 
   def test_show_db_unknown_directory
     @config.save_db_name('aaaa')
-    msg =  "Error: Current DB is unknown directory `aaaa`. Make sure that `keg switch DB_NAME`.\n"
+    msg =  "Error: Current DB is unknown directory `aaaa`. Please set a correct database.\n"
     assert_raises(SystemExit, msg) { @cli.show('oosaka') } 
   end
 
@@ -76,7 +76,7 @@ class CLITest < Minitest::Test
 
   def test_current_does_not_select_db
     @config.save_db_name('')
-    msg =  "Error: DB does not set. Make sure that `keg switch DB_NAME`.\n"
+    msg =  "Error: DB does not set. Please set a database.\n"
     assert_raises(SystemExit, msg) { @cli.current } 
   end
 
@@ -104,13 +104,13 @@ class CLITest < Minitest::Test
 
   def test_show_all_no_such_directory
     @config.save_db_name("aaaa")
-    msg =  "Error: Current DB is unknown directory `aaaa`. Make sure that `keg switch DB_NAME`.\n"
+    msg =  "Error: Current DB is unknown directory `aaaa`. Please set a correct database.\n"
     assert_raises(SystemExit, msg) { @cli.invoke(:show_all) } 
   end
 
   def test_show_all_db_does_not_set
     @config.save_db_name('')
-    msg =  "Error: DB does not set. Make sure that `keg switch DB_NAME`.\n"
+    msg =  "Error: DB does not set. Please set a database.\n"
     assert_raises(SystemExit, msg) { @cli.invoke(:show_all) } 
   end
 
