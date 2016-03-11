@@ -30,12 +30,12 @@ module Keg
     end
 
     def current
-      db = @configuration.load_db_name
-      if blank?(db)
+      db_name = @configuration.load_db_name
+      if blank?(db_name)
         abort "Error: DB does not set. Make sure that `keg switch DB_NAME`."
-      else
-        return db
       end
+
+      db_name
     end
 
     def each
