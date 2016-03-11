@@ -3,20 +3,12 @@ require 'keg'
 module Keg
   class Formatter
     def self.create(format)
-      formatter = const_get(format.capitalize)
+      begin
+        formatter = const_get(format.capitalize)
+      rescue
+        abort "Error: Unavailable format `#{format}`. Please enter a available format `json` or `yaml`."
+      end
       formatter.new
-    end
-
-    def self.available_format?(format)
-      return false unless alphabet?(format)
-      
-      const_defined?(format.upcase)
-    end
-
-    private
-
-    def self.alphabet?(format)
-      /[a-zA-Z]/ === format
     end
   end
 end

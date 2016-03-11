@@ -11,7 +11,7 @@ class DBTest < Minitest::Test
   end
 
   def test_switch_no_such_directroy
-    assert_equal nil, @db.switch("aaa")
+    assert_raises(SystemExit) { @db.switch("aaa") }
   end
 
   def test_contents_success
@@ -23,12 +23,12 @@ class DBTest < Minitest::Test
 
   def test_contents_no_such_file
     @db.switch("glean-daimon-lunch")
-    assert_equal nil, @db.contents('aaa')
+    assert_raises(SystemExit) { @db.contents('aaa') }
   end
 
   def test_contents_invalid_config
     File.write(@path, 'aaa')
-    assert_raises(TypeError) { @db.contents('oosaka') }
+    assert_raises(SystemExit) { @db.contents('oosaka') }
   end
 
   def test_current_success
@@ -39,12 +39,12 @@ class DBTest < Minitest::Test
   def test_current_faild
     config = Keg::Configuration.new(ENV["HOME"])
     config.save_db_name('')
-    assert_equal '', @db.current
+    assert_raises(SystemExit) { @db.current }
   end
 
   def test_current_invaild_config
     File.write(@path, 'aaa')
-    assert_equal nil, @db.current
+    assert_raises(SystemExit) { @db.current }
   end
 
   def test_each

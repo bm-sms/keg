@@ -9,26 +9,37 @@ module Keg
     end
 
     def switch(db_name)
-      return if db_name.empty?
-      
       path = File.join(databases_path, db_name)
-      if Dir.exist?(path)
-        @configuration.save_db_name(db_name)
-      end
+
+      if !Dir.exist?(path) || db_name.empty?
+        abort "Error: No such directroy `#{db_name}`. Please enter a correct DB name."        
+      end  
+      
+      @configuration.save_db_name(db_name)
+      
     end
 
     def contents(filename)
+      check_database_exist
       path = File.join(current_path, filename+'.toml')
       if File.exists?(path)
         TOML.load_file(path)
+      else
+        abort "Error: No such file `#{filename}`. Please enter a correct file name."
       end
     end
 
     def current
-      @configuration.load_db_name
+      db = @configuration.load_db_name
+      if blank?(db)
+        abort "Error: DB does not set. Make sure that `keg switch DB_NAME`."
+      else
+        return db
+      end
     end
 
     def each
+      check_database_exist
       Dir.glob("#{current_path}/**/*.toml") do |path|
           yield TOML.load_file(path)
       end
@@ -40,6 +51,16 @@ module Keg
 
     def databases_path
       File.join(@root, '.keg', 'databases')
+    end
+
+    def blank?(obj)
+      obj.nil? || obj.empty?
+    end
+
+    def check_database_exist
+      unless Dir.exists?(current_path)
+        abort "Error: Current DB is unknown directory `aaaa`. Make sure that `keg switch DB_NAME`.\n"
+      end
     end
   end
 end
