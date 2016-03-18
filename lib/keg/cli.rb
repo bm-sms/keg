@@ -7,6 +7,7 @@ module Keg
 
     def initialize(*args)
       super
+<<<<<<< HEAD
       @db_manager = DBManager.new(ENV["HOME"])
     end
 

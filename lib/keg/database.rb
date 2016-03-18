@@ -15,11 +15,12 @@ module Keg
     def select(filename)
       check_database_exist
       path = File.join(current_path, filename+'.toml')
-      if File.exists?(path)
-        TOML.load_file(path)
-      else
+
+      unless File.exists?(path)
         abort "Error: No such file `#{filename}`. Please enter a correct file name."
       end
+
+      TOML.load_file(path)
     end
 
     def select_all
