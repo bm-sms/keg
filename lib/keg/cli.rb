@@ -7,28 +7,28 @@ module Keg
 
     def initialize(*args)
       super
-      @database = Database.new(ENV["HOME"])
+      @db_manager = DBManager.new(ENV["HOME"])
     end
 
-    desc "switch DB_NAME", "switching database to DB_NAME."
-    def switch(db_name)
-      @database.switch(db_name)
-      puts "switch DataBase `#{db_name}`."
+    desc "switch DB_NAME", "switching db_manager to DB_NAME."
+    def switch(name)
+      @db_manager.switch name
+      puts "switch DataBase `#{name}`."
     end
 
     desc "show filename", "output file contents."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
-      contents = @database.contents(filename)
-      
+      contents = @db_manager.select(filename)
+
       formatter = Formatter.create(options[:format])
-      
-      puts formatter.format(contents) 
+
+      puts formatter.format(contents)
     end
 
-    desc "current", "show current database name."
+    desc "current", "show current db_manager name."
     def current
-      puts @database.current
+      puts @db_manager.current
     end
 
     desc "show_all", "output all file contents."
@@ -36,7 +36,7 @@ module Keg
     def show_all
       formatter = Formatter.create(options[:format])
 
-      @database.each do |contents|
+      @db_manager.select_all.each do |contents|
         puts formatter.format(contents)
       end
     end

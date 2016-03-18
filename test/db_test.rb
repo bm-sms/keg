@@ -7,28 +7,28 @@ class DBTest < Minitest::Test
   end
 
   def test_switch_success
-    assert @db.switch("glean-daimon-lunch")
+    assert @db.use("glean-daimon-lunch")
   end
 
   def test_switch_no_such_directroy
     assert_raises(SystemExit) { @db.switch("aaa") }
   end
 
-  def test_contents_success
+  def test_select_success
     @db.switch("glean-daimon-lunch")
     result = {"name" => "東麻布 逢坂",
               "url" => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}
-    assert_equal result, @db.contents('oosaka')
+    assert_equal result, @db.select('oosaka')
   end
 
-  def test_contents_no_such_file
+  def test_select_no_such_file
     @db.switch("glean-daimon-lunch")
-    assert_raises(SystemExit) { @db.contents('aaa') }
+    assert_raises(SystemExit) { @db.select('aaa') }
   end
 
-  def test_contents_invalid_config
+  def test_select_invalid_config
     File.write(@path, 'aaa')
-    assert_raises(SystemExit) { @db.contents('oosaka') }
+    assert_raises(SystemExit) { @db.select('oosaka') }
   end
 
   def test_current_success
@@ -37,8 +37,8 @@ class DBTest < Minitest::Test
   end
 
   def test_current_faild
-    config = Keg::Configuration.new(ENV["HOME"])
-    config.save_db_name('')
+    config = Keg::Database::Configuration.new(ENV["HOME"])
+    config.save('')
     assert_raises(SystemExit) { @db.current }
   end
 
@@ -47,17 +47,13 @@ class DBTest < Minitest::Test
     assert_raises(SystemExit) { @db.current }
   end
 
-  def test_each
+  def test_select_all
     @db.switch("glean-daimon-lunch")
     result = Array.new
-    result[0] = {"name" => "東麻布 逢坂",
-                 "url"  => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}
-    result[1] = {"name" => "蘭麻",
-                 "url"  =>"http://tabelog.com/tokyo/A1314/A131401/13034212/"}   
-    i = 0
-    @db.each do |toml|
-      assert_equal result[i], toml
-      i += 1
-    end
+    result[0] = { "name" => "東麻布 逢坂",
+                  "url"  => "http://tabelog.com/tokyo/A1314/A131401/13044558/" }
+    result[1] = { "name" => "蘭麻",
+                  "url"  =>"http://tabelog.com/tokyo/A1314/A131401/13034212/" }
+    assert_equal @db.select_all, result
   end
 end
