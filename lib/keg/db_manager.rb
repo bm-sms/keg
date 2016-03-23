@@ -4,7 +4,7 @@ module Keg
   class DBManager
     def initialize(root)
       @db = Database.new(root)
-      @configuration.new(root)
+      @configuration = Configuration.new(root)
     end
 
     def switch(name)
@@ -17,33 +17,17 @@ module Keg
     end
 
     def show(filename)
-      database = @configuration.load
-      @db.use database
+      @db.use current
       content = @db.select(filename)
     end
 
     def current
-      name = @configuration.load
-      if db_doe_set?
-        return name
-      else
-        abort "Error: DB does not set. Make sure that `keg switch DB_NAME`."
-      end
+      @configuration.load
     end
 
     def show_all
-      database = @configuration.load
-      @db.use database
+      @db.use current
       contents = @db.select_all
-    end
-
-    def db_doe_set?
-      name = @configuration.load
-      unless name.nil? || name.empty?
-        return true
-      else
-        return false
-      end
     end
   end
 end

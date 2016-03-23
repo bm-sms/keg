@@ -7,7 +7,6 @@ module Keg
 
     def initialize(*args)
       super
-<<<<<<< HEAD
       @db_manager = DBManager.new(ENV["HOME"])
     end
 
@@ -20,8 +19,7 @@ module Keg
     desc "show filename", "output file contents."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
-      contents = @db_manager.select(filename)
-
+      contents = @db_manager.show(filename)
       formatter = Formatter.create(options[:format])
 
       puts formatter.format(contents)
@@ -37,7 +35,7 @@ module Keg
     def show_all
       formatter = Formatter.create(options[:format])
 
-      @db_manager.select_all.each do |contents|
+      @db_manager.show_all.each do |contents|
         puts formatter.format(contents)
       end
     end

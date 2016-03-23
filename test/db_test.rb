@@ -7,7 +7,7 @@ class DBTest < Minitest::Test
   end
 
   def test_use_success
-    assert @db.use("glean-daimon-lunch")
+    assert_nil @db.use("glean-daimon-lunch")
   end
 
   def test_use_no_such_directroy
@@ -24,27 +24,6 @@ class DBTest < Minitest::Test
   def test_select_no_such_file
     @db.use("glean-daimon-lunch")
     assert_raises(SystemExit) { @db.select('aaa') }
-  end
-
-  def test_select_invalid_config
-    File.write(@path, 'aaa')
-    assert_raises(SystemExit) { @db.select('oosaka') }
-  end
-
-  def test_current_success
-    @db.use("glean-daimon-lunch")
-    assert_equal "glean-daimon-lunch", @db.current
-  end
-
-  def test_current_faild
-    config = Keg::Database::Configuration.new(ENV["HOME"])
-    config.save('')
-    assert_raises(SystemExit) { @db.current }
-  end
-
-  def test_current_invaild_config
-    File.write(@path, 'aaa')
-    assert_raises(SystemExit) { @db.current }
   end
 
   def test_select_all
