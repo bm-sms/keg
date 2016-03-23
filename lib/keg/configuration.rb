@@ -17,7 +17,8 @@ module Keg
       rescue
         save ''
       end
-      unless db_does_set?
+      unless database_does_set?
+        #todo: fixed message
         abort 'Error: DB does not set. Make sure that `keg switch DB_NAME`.'
       end
 
@@ -28,7 +29,7 @@ module Keg
       File.join(@root, '.keg', 'config.yml')
     end
 
-    def db_does_set?
+    def database_does_set?
       return false unless @config
       return false if @config['database'].empty?
       return true

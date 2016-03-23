@@ -18,16 +18,22 @@ module Keg
 
     def show(filename)
       @db.use current
-      content = @db.select(filename)
+      @db.select filename
     end
 
     def current
-      @configuration.load
+      name = @configuration.load
+      path = File.join(@db.databases_path, name)
+      if Dir.exist?(path)
+        return name
+      else
+        abort "Error: Current database is unknown directroy `#{name}`."
+      end
     end
 
     def show_all
       @db.use current
-      contents = @db.select_all
+      @db.select_all
     end
   end
 end
