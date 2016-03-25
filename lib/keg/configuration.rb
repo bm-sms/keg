@@ -18,8 +18,7 @@ module Keg
         save ''
       end
       unless database_does_set?
-        #todo: fixed message
-        abort 'Error: DB does not set. Make sure that `keg switch DB_NAME`.'
+        abort 'Error: Database does not set. You should set a database.'
       end
 
       @config['database']
@@ -30,7 +29,7 @@ module Keg
     end
 
     def database_does_set?
-      return false unless @config
+      return false unless @config # when @config is nil or false
       return false if @config['database'].empty?
       return true
     end

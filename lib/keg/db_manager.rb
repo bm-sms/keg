@@ -10,7 +10,7 @@ module Keg
     def switch(name)
       path = File.join(@db.databases_path, name)
       if !Dir.exist?(path) || name.empty?
-        abort "Error: No such directroy `#{name}`. Please enter a correct DB name."
+        abort "Error: No such directroy `#{name}`. Please enter a exist database name."
       end
 
       @configuration.save name

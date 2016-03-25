@@ -10,13 +10,13 @@ module Keg
       @db_manager = DBManager.new(ENV["HOME"])
     end
 
-    desc "switch DB_NAME", "switching db_manager to DB_NAME."
+    desc "switch DB_NAME", "Database switch to DB_NAME."
     def switch(name)
       @db_manager.switch name
       puts "switch DataBase `#{name}`."
     end
 
-    desc "show filename", "output file contents."
+    desc "show FILE", "output contents from FILE formatted by json or yaml."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
       contents = @db_manager.show(filename)
@@ -25,12 +25,12 @@ module Keg
       puts formatter.format(contents)
     end
 
-    desc "current", "show current db_manager name."
+    desc "current", "show a current database."
     def current
       puts @db_manager.current
     end
 
-    desc "show_all", "output all file contents."
+    desc "show_all", "output all contents from current database."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show_all
       formatter = Formatter.create(options[:format])

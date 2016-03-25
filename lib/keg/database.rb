@@ -36,19 +36,11 @@ module Keg
       File.join(@root, '.keg', 'databases')
     end
 
-    def db_does_set?
-      name = @configuration.load
-      unless name.nil? || name.empty?
-        return true
-      else
-        return false
-      end
-    end
-
     def check_database_exist
       unless Dir.exists?(current_path)
-        #todo: fixed massage
-        abort "Error: Current DB is unknown directory `#{@database}`. Make sure that `keg switch DB_NAME`."
+        abort "Error: Current database is unknown directory `#{@database}`. Please set a exist database."
+      else
+        return true
       end
     end
   end

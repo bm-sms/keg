@@ -7,7 +7,7 @@ class DBTest < Minitest::Test
   end
 
   def test_use_success
-    assert_nil @db.use("glean-daimon-lunch")
+    assert @db.use("glean-daimon-lunch")
   end
 
   def test_use_no_such_directroy
