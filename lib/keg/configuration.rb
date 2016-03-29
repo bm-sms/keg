@@ -1,23 +1,37 @@
 require 'keg'
 
 module Keg
-  module Configuration
-    def self.save_db_name(name)
-      hash = { "database" => name }
-      config = Keg::Formatter::Yaml.format(hash)
-      File.write(config_path, config)
+  class Configuration
+    def initialize(root)
+      @root = root
     end
 
-    def self.load_db_name
-      yaml = File.read(config_path)
-      config = Keg::Formatter::Yaml.parse(yaml)
-      config['database'] if config
+    def save(name)
+      config = { 'database' => name }
+      File.write(config_path, config.to_yaml)
     end
 
-    private
+    def load
+      begin
+        @config = YAML.load_file(config_path)
+      rescue
+        save ''
+      end
+      unless database_does_set?
+        abort 'Error: Database does not set. You should set a database.'
+      end
 
-    def self.config_path
-      File.join(ENV["HOME"], '.keg', 'config.yml')
+      @config['database']
+    end
+
+    def config_path
+      File.join(@root, '.keg', 'config.yml')
+    end
+
+    def database_does_set?
+      return false unless @config # when @config is nil or false
+      return false if @config['database'].empty?
+      return true
     end
   end
 end

@@ -1,19 +1,11 @@
 require_relative 'test_helper'
 
 class FormatterTest < Minitest::Test
-  def setup
-    @formatter = Keg::Formatter
-  end
-
   def test_format_json
-    assert_equal @formatter::Json, @formatter.formatter('json')
+    assert_instance_of Keg::Formatter::Json, Keg::Formatter.create('json')
   end
 
   def test_format_yaml
-    assert_equal @formatter::Yaml, @formatter.formatter('yaml')
-  end
-
-  def test_format_faild
-    assert_equal nil, @formatter.formatter('aaa')
+    assert_instance_of Keg::Formatter::Yaml, Keg::Formatter.create('yaml')
   end
 end
