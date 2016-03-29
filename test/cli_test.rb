@@ -3,8 +3,8 @@ require_relative 'test_helper'
 class CLITest < Minitest::Test
   def setup
     @cli = Keg::CLI.new
-    @db_manager = Keg::DBManager.new(ENV["HOME"])
-    @db_manager.switch('glean-daimon-lunch')
+    @database = Keg::Database.new(ENV["HOME"])
+    @database.switch('glean-daimon-lunch')
     @config = Keg::Configuration.new(ENV["HOME"])
     @oosaka = {"name" => "東麻布 逢坂",
                "url"  => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}

@@ -1,6 +1,5 @@
 require "keg/version"
 require "keg/cli"
-require "keg/db_manager"
 require "keg/database"
 require "keg/configuration"
 require "keg/formatter"
