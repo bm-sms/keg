@@ -18,13 +18,15 @@ class CLITest < Minitest::Test
   end
 
   def test_switch_faild
-    msg = "Error: No such directroy `aaa`. Please enter a correct DB name.\n"
-    assert_raises(SystemExit, msg) { @cli.switch("aaa") }
+    msg = "Error: No such directory `aaa`. Please enter a exist database."
+    exception = assert_raises(SystemExit) { @cli.switch("aaa") }
+    assert_equal msg, exception.message
   end
 
   def test_switch_blank
-    msg = "Error: No such directroy ``. Please enter a correct DB name.\n"
-    assert_raises(SystemExit, msg) { @cli.switch("") }
+    msg = "Error: No such directory ``. Please enter a exist database."
+    exception = assert_raises(SystemExit) { @cli.switch("") }
+    assert_equal msg, exception.message
   end
 
   def test_show_defalut
@@ -43,30 +45,35 @@ class CLITest < Minitest::Test
   end
 
   def test_show_unkwon_format
-    msg =  "Error: Unavailable format `aaa`. Please enter a available format `json` or `yaml`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show, ['oosaka'], { format: 'aaa'} ) }
+    msg =  "Error: Unavailable format `aaa`. Please enter a available format."
+    exception = assert_raises(SystemExit) { @cli.invoke(:show, ['oosaka'], { format: 'aaa'} ) }
+    assert_equal msg, exception.message
   end
 
   def test_show_unexpected_format
-    msg =  "Error: Unavailable format `!@\#$`. Please enter a available format `json` or `yaml`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show, ['oosaka'], { format: '!@#$'}) }
+    msg =  "Error: Unavailable format `!@\#$`. Please enter a available format."
+    exception = assert_raises(SystemExit) { @cli.invoke(:show, ['oosaka'], { format: '!@#$'}) }
+    assert_equal msg, exception.message
   end
 
   def test_show_no_such_file
-    msg =  "Error: No such file `aaa`. Please enter a correct file name.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show, ['aaa']) }
+    msg =  "Error: No such file `aaa`. Please enter a correct file name."
+    exception = assert_raises(SystemExit) { @cli.invoke(:show, ['aaa']) }
+    assert_equal msg, exception.message
   end
 
   def test_show_does_not_select_db
     @config.save('')
-    msg =  "Error: DB does not set. Make sure that `keg switch DB_NAME`.\n"
-    assert_raises(SystemExit, msg) { @cli.show('oosaka') }
+    msg =  "Error: Database does not set. You should set a database."
+    exception = assert_raises(SystemExit) { @cli.show('oosaka') }
+    assert_equal msg, exception.message
   end
 
   def test_show_db_unknown_directory
     @config.save('aaaa')
-    msg =  "Error: Current DB is unknown directory `aaaa`. Make sure that `keg switch DB_NAME`.\n"
-    assert_raises(SystemExit, msg) { @cli.show('oosaka') }
+    msg =  "Error: Current database is unknown directory `aaaa`. Please set a exist database."
+    exception = assert_raises(SystemExit) { @cli.show('oosaka') }
+    assert_equal msg, exception.message
   end
 
   def test_current_success
@@ -76,8 +83,9 @@ class CLITest < Minitest::Test
 
   def test_current_does_not_select_db
     @config.save('')
-    msg =  "Error: DB does not set. Make sure that `keg switch DB_NAME`.\n"
-    assert_raises(SystemExit, msg) { @cli.current }
+    msg =  "Error: Database does not set. You should set a database."
+    exception = assert_raises(SystemExit) { @cli.current }
+    assert_equal msg, exception.message
   end
 
   def test_show_all_defalut
@@ -98,24 +106,28 @@ class CLITest < Minitest::Test
   end
 
   def test_show_all_unkwon_format
-    msg =  "Error: Unavailable format `aaa`. Please enter a available format `json` or `yaml`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show_all, [], { format: 'aaa' }) }
+    msg =  "Error: Unavailable format `aaa`. Please enter a available format."
+    exception = assert_raises(SystemExit) { @cli.invoke(:show_all, [], { format: 'aaa' }) }
+    assert_equal msg, exception.message
   end
 
   def test_show_all_no_such_directory
     @config.save("aaaa")
-    msg =  "Error: Current DB is unknown directory `aaaa`. Make sure that `keg switch DB_NAME`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show_all) }
+    msg =  "Error: Current database is unknown directory `aaaa`. Please set a exist database."
+    exception = assert_raises(SystemExit) { @cli.invoke(:show_all) }
+    assert_equal msg, exception.message
   end
 
   def test_show_all_db_does_not_set
     @config.save('')
-    msg =  "Error: DB does not set. Make sure that `keg switch DB_NAME`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show_all) }
+    msg =  "Error: Database does not set. You should set a database."
+    exception = assert_raises(SystemExit) { @cli.invoke(:show_all) }
+    assert_equal msg, exception.message
   end
 
   def test_show_all_unexpected_format
-    msg =  "Error: Unavailable format `!@\#$`. Please enter a available format `json` or `yaml`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show_all, [], { format: '!@#$' }) }
+    msg =  "Error: Unavailable format `!@\#$`. Please enter a available format."
+    exception = assert_raises(SystemExit) { @cli.invoke(:show_all, [], { format: '!@#$' }) }
+    assert_equal msg, exception.message
   end
 end

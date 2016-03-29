@@ -14,7 +14,7 @@ class DBTest < Minitest::Test
     assert @database.switch "glean-daimon-lunch"
   end
 
-  def test_switch_no_such_directroy
+  def test_switch_no_such_directory
     assert_raises(SystemExit) { @database.switch "aaa" }
   end
 
@@ -47,7 +47,7 @@ class DBTest < Minitest::Test
     assert_raises(SystemExit) { @database.current }
   end
 
-  def test_current_db_is_unknown_directroy
+  def test_current_db_is_unknown_directory
     @configuration.save "aaa"
     assert_raises(SystemExit) { @database.current }
   end
