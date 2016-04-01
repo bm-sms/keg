@@ -10,31 +10,27 @@ module Keg
 
     def switch(name)
       path = File.join(databases_path, name)
-      if Dir.exists?(path) || !name.empty
-        @configuration.save name
-      else
-        return false
-      end
+      return false unless Dir.exists?(path)
+
+      @configuration.save name
     end
 
     def select(filename)
+      return false unless Dir.exists?(current_path)
+
       path = File.join(current_path, filename+'.toml')
       TOML.load_file(path)
     end
 
     def current
-      name = @configuration.load
-      path = File.join(databases_path, name)
-      if Dir.exist?(path)
-        return name
-      else
-        abort "Error: Current database is unknown directory `#{name}`. Please set a exist database."
-      end
+      @configuration.load
     end
 
     def select_all
+      return false unless Dir.exists?(current_path)
+
       Dir.glob("#{current_path}/**/*.toml").map do |path|
-          TOML.load_file(path)
+        TOML.load_file(path)
       end
     end
 

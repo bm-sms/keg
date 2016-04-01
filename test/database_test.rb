@@ -15,11 +15,7 @@ class DBTest < Minitest::Test
   end
 
   def test_switch_no_such_directory
-    assert_raises(Errno::ENOENT) { @database.switch 'aaa' }
-  end
-
-  def test_switch_blank
-    assert_raises(Errno::ENOENT) { @database.switch '' }
+    assert_equal false, @database.switch('aaa')
   end
 
   def test_select_success
@@ -37,6 +33,11 @@ class DBTest < Minitest::Test
     assert_raises(Errno::ENOENT) { @database.select('') }
   end
 
+  def test_select_current_db_is_unknown
+    @configuration.save 'aaa'
+    assert_equal false, @database.select('oosaka')
+  end
+
   def test_current_success
     @database.switch 'glean-daimon-lunch'
     assert_equal 'glean-daimon-lunch', @database.current
@@ -49,11 +50,16 @@ class DBTest < Minitest::Test
 
   def test_current_db_is_unknown_directory
     @configuration.save 'aaa'
-    assert_raises(SystemExit) { @database.current }
+    assert_equal 'aaa', @database.current
   end
 
   def test_select_all
     @database.switch('glean-daimon-lunch')
-    assert_equal [@oosaka, @ranma],@database.select_all
+    assert_equal [@oosaka, @ranma], @database.select_all
+  end
+
+  def test_select_all_current_db_is_unknown
+    @configuration.save 'aaa'
+    assert_equal false, @database.select_all
   end
 end
