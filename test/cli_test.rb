@@ -3,9 +3,10 @@ require_relative 'test_helper'
 class CLITest < Minitest::Test
   def setup
     @cli = Keg::CLI.new
-    @database = Keg::Database.new(ENV["HOME"])
+    @root = ENV["HOME"]
+    @database = Keg::Database.new(@root)
     @database.switch('glean-daimon-lunch')
-    @configuration = Keg::Configuration.new(ENV["HOME"])
+    @configuration = Keg::Configuration.new(@root)
     @oosaka = {"name" => "東麻布 逢坂",
                "url"  => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}
     @ranma  = {"name" => "蘭麻",
@@ -57,7 +58,7 @@ class CLITest < Minitest::Test
   end
 
   def test_show_no_such_file
-    msg =  "No such file or directory @ rb_sysopen - /Users/mura/.keg/databases/glean-daimon-lunch/aaa.toml\nPlease enter a exist file name."
+    msg =  "No such file or directory @ rb_sysopen - #{@root}/.keg/databases/glean-daimon-lunch/aaa.toml\nPlease enter a exist file name."
     exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show, ['aaa']) }
     assert_equal msg, exception.message
   end
