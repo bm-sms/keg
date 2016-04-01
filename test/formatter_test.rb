@@ -10,10 +10,10 @@ class FormatterTest < Minitest::Test
   end
 
   def test_create_faild
-    assert_raises(NameError) { Keg::Formatter.create('aaa') }
+    assert_raises(RuntimeError) { Keg::Formatter.create('aaa') }
   end
 
   def test_create_unavailable_format
-    assert_raises(NameError) { Keg::Formatter.create('!"$%') }
+    assert_raises(RuntimeError) { Keg::Formatter.create('!"$%') }
   end
 end
