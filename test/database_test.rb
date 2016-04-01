@@ -18,6 +18,10 @@ class DBTest < Minitest::Test
     assert_equal false, @database.switch('aaa')
   end
 
+  def test_switch_blank
+    assert_equal false, @database.switch('')
+  end
+
   def test_select_success
     @database.switch 'glean-daimon-lunch'
     assert_equal @oosaka, @database.select('oosaka')

@@ -4,6 +4,7 @@ require 'thor'
 module Keg
   class CLI < Thor
     DEFAULT_FORMAT = 'json'
+    def self.exit_on_failure?; true end
 
     def initialize(*args)
       super
@@ -12,11 +13,11 @@ module Keg
 
     desc "switch <database>", "Database switch to <database>."
     def switch(name)
-      unless @database.switch name
+      if @database.switch name
+        puts "switch DataBase `#{name}`."
+      else
         raise Thor::InvocationError.new("Error: No such directory `#{name}`. Please enter a exist database.")
       end
-
-      puts "switch DataBase `#{name}`."
     end
 
     desc "show <file>", "output contents from <file> formatted by json or yaml."
@@ -26,15 +27,17 @@ module Keg
         content = @database.select(filename)
         formatter = Formatter.create(options[:format])
       rescue Errno::ENOENT => e
-        raise Thor::InvocationError.new("#{e.message}\nPlease enter a exist file name.")
+        err_msg = "#{e.message}\nPlease enter a exist file name."
       rescue NameError
-        raise Thor::InvocationError.new("Error: Unavailable format `#{options[:format]}`. Please enter a available format.")
-      rescue RuntimeError => e
-        raise Thor::InvocationError.new(e.message)
+        err_msg = "Error: Unavailable format `#{options[:format]}`. Please enter a available format."
+      rescue => e
+        err_msg = e.message
+      else
+        unless content
+          err_msg = "Current database is unknown directory. Make sure that `keg switch <database>`."
+        end
       end
-      unless content
-        raise Thor::InvocationError.new("Current database is unknown directory. Make sure that `keg switch <database>`.")
-      end
+      raise Thor::InvocationError.new(err_msg) if err_msg
 
       puts formatter.format(content)
     end
@@ -43,7 +46,7 @@ module Keg
     def current
       begin
         puts @database.current
-      rescue RuntimeError => e
+      rescue => e
         raise Thor::InvocationError.new(e.message)
       end
     end
@@ -54,14 +57,16 @@ module Keg
       begin
         contents = @database.select_all
         formatter = Formatter.create(options[:format])
-      rescue RuntimeError => e
-        raise Thor::InvocationError.new(e.message)
-      rescue NameError => e
-        raise Thor::InvocationError.new("Error: Unavailable format `#{options[:format]}`. Please enter a available format.")
+      rescue NameError
+        err_msg = "Error: Unavailable format `#{options[:format]}`. Please enter a available format."
+      rescue => e
+        err_msg = e.message
+      else
+        unless contents
+          err_msg = "Current database is unknown directory. Make sure that `keg switch <database>`."
+        end
       end
-      unless contents
-        raise Thor::InvocationError.new("Current database is unknown directory. Make sure that `keg switch <database>`.")
-      end
+      raise Thor::InvocationError.new(err_msg) if err_msg
 
       contents.each do |content|
         puts formatter.format(content)

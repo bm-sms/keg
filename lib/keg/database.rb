@@ -10,7 +10,9 @@ module Keg
 
     def switch(name)
       path = File.join(databases_path, name)
-      return false unless Dir.exists?(path)
+      if !Dir.exists?(path) || name.empty?
+        return false
+      end 
 
       @configuration.save name
     end
