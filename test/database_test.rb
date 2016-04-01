@@ -29,12 +29,12 @@ class DBTest < Minitest::Test
 
   def test_select_no_such_file
     @database.switch "glean-daimon-lunch"
-    assert_raises(SystemExit) { @database.select("aaa") }
+    assert_raises(Errno::ENOENT) { @database.select("aaa") }
   end
 
   def test_select_blank
     @database.switch "glean-daimon-lunch"
-    assert_raises(SystemExit) { @database.select("") }
+    assert_raises(Errno::ENOENT) { @database.select("") }
   end
 
   def test_current_success

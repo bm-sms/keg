@@ -14,17 +14,22 @@ module Keg
     def switch(name)
       begin
         @database.switch name
-      rescue
+      rescue Errno::ENOENT
         raise Thor::InvocationError.new("Error: No such directory `#{name}`. Please enter a exist database.")
       end
+
       puts "switch DataBase `#{name}`."
     end
 
     desc "show FILE", "output contents from FILE formatted by json or yaml."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
-      contents = @database.select(filename)
-      formatter = Formatter.create(options[:format])
+      begin
+        contents = @database.select(filename)
+        formatter = Formatter.create(options[:format])
+      rescue Errno::ENOENT
+        raise Thor::InvocationError.new("Error: No such file `#{filename}`. Please enter a correct file name.")
+      end
 
       puts formatter.format(contents)
     end

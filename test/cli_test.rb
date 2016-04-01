@@ -58,7 +58,7 @@ class CLITest < Minitest::Test
 
   def test_show_no_such_file
     msg =  "Error: No such file `aaa`. Please enter a correct file name."
-    exception = assert_raises(SystemExit) { @cli.invoke(:show, ['aaa']) }
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show, ['aaa']) }
     assert_equal msg, exception.message
   end
 

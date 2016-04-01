@@ -11,7 +11,7 @@ module Keg
     def switch(name)
       path = File.join(databases_path, name)
       if !Dir.exists?(path) || name.empty?
-        raise Errno::ENOENT # "Error: No such directory `#{name}`. Please enter a exist database."
+        raise Errno::ENOENT
       end
 
       @configuration.save name
@@ -19,10 +19,6 @@ module Keg
 
     def select(filename)
       path = File.join(current_path, filename+'.toml')
-      unless File.exists?(path)
-        abort "Error: No such file `#{filename}`. Please enter a correct file name."
-      end
-
       TOML.load_file(path)
     end
 
