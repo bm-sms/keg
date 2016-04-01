@@ -10,18 +10,16 @@ module Keg
       @database = Database.new(ENV["HOME"])
     end
 
-    desc "switch DB_NAME", "Database switch to DB_NAME."
+    desc "switch <database>", "Database switch to <database>."
     def switch(name)
-      begin
-        @database.switch name
-      rescue Errno::ENOENT
+      unless @database.switch name
         raise Thor::InvocationError.new("Error: No such directory `#{name}`. Please enter a exist database.")
       end
 
       puts "switch DataBase `#{name}`."
     end
 
-    desc "show FILE", "output contents from FILE formatted by json or yaml."
+    desc "show <file>", "output contents from <file> formatted by json or yaml."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show(filename)
       begin
@@ -36,7 +34,12 @@ module Keg
 
     desc "current", "show a current database."
     def current
-      puts @database.current
+      begin
+        name = @database.current
+      rescue Errno::ENOENT
+        raise Thor::InvocationError.new("Error: Current database is unknown directory `#{name}`. Please set a exist database.")
+      end
+      puts name
     end
 
     desc "show_all", "output all contents from current database."

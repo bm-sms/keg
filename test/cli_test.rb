@@ -70,9 +70,9 @@ class CLITest < Minitest::Test
   end
 
   def test_show_db_unknown_directory
-    @config.save('aaaa')
+    @config.save 'aaaa'
     msg =  "Error: Current database is unknown directory `aaaa`. Please set a exist database."
-    exception = assert_raises(SystemExit) { @cli.show('oosaka') }
+    exception = assert_raises(Thor::InvocationError) { @cli.show('oosaka') }
     assert_equal msg, exception.message
   end
 
@@ -82,9 +82,16 @@ class CLITest < Minitest::Test
   end
 
   def test_current_does_not_select_db
-    @config.save('')
+    @config.save ''
     msg =  "Error: Database does not set. You should set a database."
     exception = assert_raises(SystemExit) { @cli.current }
+    assert_equal msg, exception.message
+  end
+
+  def test_current_db_is_unknown_directory
+    @config.save 'aaa'
+    msg = "Error: Current database is unknown directory `aaa`. Please set a exist database."
+    exception = assert_raises(Thor::InvocationError) { @cli.current }
     assert_equal msg, exception.message
   end
 
@@ -112,9 +119,9 @@ class CLITest < Minitest::Test
   end
 
   def test_show_all_no_such_directory
-    @config.save("aaaa")
+    @config.save 'aaaa'
     msg =  "Error: Current database is unknown directory `aaaa`. Please set a exist database."
-    exception = assert_raises(SystemExit) { @cli.invoke(:show_all) }
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show_all) }
     assert_equal msg, exception.message
   end
 
