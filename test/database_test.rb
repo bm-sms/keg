@@ -15,11 +15,11 @@ class DBTest < Minitest::Test
   end
 
   def test_switch_no_such_directory
-    assert_raises(SystemExit) { @database.switch "aaa" }
+    assert_raises(Errno::ENOENT) { @database.switch "aaa" }
   end
 
   def test_switch_blank
-    assert_raises(SystemExit) { @database.switch "" }
+    assert_raises(Errno::ENOENT) { @database.switch "" }
   end
 
   def test_select_success

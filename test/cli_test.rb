@@ -19,13 +19,13 @@ class CLITest < Minitest::Test
 
   def test_switch_faild
     msg = "Error: No such directory `aaa`. Please enter a exist database."
-    exception = assert_raises(SystemExit) { @cli.switch("aaa") }
+    exception = assert_raises(Thor::InvocationError) { @cli.switch("aaa") }
     assert_equal msg, exception.message
   end
 
   def test_switch_blank
     msg = "Error: No such directory ``. Please enter a exist database."
-    exception = assert_raises(SystemExit) { @cli.switch("") }
+    exception = assert_raises(Thor::InvocationError) { @cli.switch("") }
     assert_equal msg, exception.message
   end
 

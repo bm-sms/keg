@@ -12,7 +12,11 @@ module Keg
 
     desc "switch DB_NAME", "Database switch to DB_NAME."
     def switch(name)
-      @database.switch name
+      begin
+        @database.switch name
+      rescue
+        raise Thor::InvocationError.new("Error: No such directory `#{name}`. Please enter a exist database.")
+      end
       puts "switch DataBase `#{name}`."
     end
 

@@ -11,7 +11,7 @@ module Keg
     def switch(name)
       path = File.join(databases_path, name)
       if !Dir.exists?(path) || name.empty?
-        abort "Error: No such directory `#{name}`. Please enter a exist database."
+        raise Errno::ENOENT # "Error: No such directory `#{name}`. Please enter a exist database."
       end
 
       @configuration.save name
