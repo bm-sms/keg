@@ -46,13 +46,13 @@ class CLITest < Minitest::Test
 
   def test_show_unkwon_format
     msg =  "Error: Unavailable format `aaa`. Please enter a available format."
-    exception = assert_raises(SystemExit) { @cli.invoke(:show, ['oosaka'], { format: 'aaa'} ) }
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show, ['oosaka'], { format: 'aaa'} ) }
     assert_equal msg, exception.message
   end
 
   def test_show_unexpected_format
     msg =  "Error: Unavailable format `!@\#$`. Please enter a available format."
-    exception = assert_raises(SystemExit) { @cli.invoke(:show, ['oosaka'], { format: '!@#$'}) }
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show, ['oosaka'], { format: '!@#$'}) }
     assert_equal msg, exception.message
   end
 
@@ -113,13 +113,13 @@ class CLITest < Minitest::Test
 
   def test_show_all_unkwon_format
     msg =  "Error: Unavailable format `aaa`. Please enter a available format."
-    exception = assert_raises(SystemExit) { @cli.invoke(:show_all, [], { format: 'aaa' }) }
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show_all, [], { format: 'aaa' }) }
     assert_equal msg, exception.message
   end
 
   def test_show_all_unexpected_format
     msg =  "Error: Unavailable format `!@\#$`. Please enter a available format."
-    exception = assert_raises(SystemExit) { @cli.invoke(:show_all, [], { format: '!@#$' }) }
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show_all, [], { format: '!@#$' }) }
     assert_equal msg, exception.message
   end
 

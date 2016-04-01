@@ -8,4 +8,12 @@ class FormatterTest < Minitest::Test
   def test_format_yaml
     assert_instance_of Keg::Formatter::Yaml, Keg::Formatter.create('yaml')
   end
+
+  def test_create_faild
+    assert_raises(NameError) { Keg::Formatter.create('aaa') }
+  end
+
+  def test_create_unavailable_format
+    assert_raises(NameError) { Keg::Formatter.create('!"$%') }
+  end
 end

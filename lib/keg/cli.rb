@@ -27,10 +27,12 @@ module Keg
         formatter = Formatter.create(options[:format])
       rescue Errno::ENOENT => e
         raise Thor::InvocationError.new("#{e.message}\nPlease enter a exist file name.")
+      rescue NameError
+        raise Thor::InvocationError.new("Error: Unavailable format `#{options[:format]}`. Please enter a available format.")
       rescue RuntimeError => e
         raise Thor::InvocationError.new(e.message)
       end
-      if content == false
+      unless content
         raise Thor::InvocationError.new("Current database is unknown directory. Make sure that `keg switch <database>`.")
       end
 
@@ -51,14 +53,16 @@ module Keg
     def show_all
       begin
         contents = @database.select_all
+        formatter = Formatter.create(options[:format])
       rescue RuntimeError => e
         raise Thor::InvocationError.new(e.message)
+      rescue NameError => e
+        raise Thor::InvocationError.new("Error: Unavailable format `#{options[:format]}`. Please enter a available format.")
       end
       unless contents
         raise Thor::InvocationError.new("Current database is unknown directory. Make sure that `keg switch <database>`.")
       end
 
-      formatter = Formatter.create(options[:format])
       contents.each do |content|
         puts formatter.format(content)
       end
