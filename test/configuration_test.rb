@@ -17,11 +17,11 @@ class ConfigureTest < Minitest::Test
 
   def test_load_no_file_error
     File.delete(@path) if File.exists?(@path)
-    assert_raises(SystemExit) { @config.load }
+    assert_raises(RuntimeError) { @config.load }
   end
 
   def test_load_file_content_empty
     File.write(@path, '')
-    assert_raises(SystemExit) { @config.load }
+    assert_raises(RuntimeError) { @config.load }
   end
 end

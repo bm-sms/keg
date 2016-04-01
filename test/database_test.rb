@@ -45,7 +45,7 @@ class DBTest < Minitest::Test
 
   def test_current_db_does_does_not_set
     @configuration.save ''
-    assert_raises(SystemExit) { @database.current }
+    assert_raises(RuntimeError) { @database.current }
   end
 
   def test_current_db_is_unknown_directory

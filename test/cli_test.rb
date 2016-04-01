@@ -65,7 +65,7 @@ class CLITest < Minitest::Test
   def test_show_does_not_select_db
     @configuration.save('')
     msg =  "Error: Database does not set. You should set a database."
-    exception = assert_raises(SystemExit) { @cli.invoke(:show, ['oosaka']) }
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show, ['oosaka']) }
     assert_equal msg, exception.message
   end
 
@@ -90,7 +90,7 @@ class CLITest < Minitest::Test
   def test_current_does_not_select_db
     @configuration.save ''
     msg =  "Error: Database does not set. You should set a database."
-    exception = assert_raises(SystemExit) { @cli.current }
+    exception = assert_raises(Thor::InvocationError) { @cli.current }
     assert_equal msg, exception.message
   end
 
@@ -117,6 +117,12 @@ class CLITest < Minitest::Test
     assert_equal msg, exception.message
   end
 
+  def test_show_all_unexpected_format
+    msg =  "Error: Unavailable format `!@\#$`. Please enter a available format."
+    exception = assert_raises(SystemExit) { @cli.invoke(:show_all, [], { format: '!@#$' }) }
+    assert_equal msg, exception.message
+  end
+
   def test_show_all_no_such_directory
     @configuration.save 'aaaa'
     assert_raises(Thor::InvocationError) { @cli.invoke(:show_all) }
@@ -125,13 +131,7 @@ class CLITest < Minitest::Test
   def test_show_all_db_does_not_set
     @configuration.save('')
     msg =  "Error: Database does not set. You should set a database."
-    exception = assert_raises(SystemExit) { @cli.invoke(:show_all) }
-    assert_equal msg, exception.message
-  end
-
-  def test_show_all_unexpected_format
-    msg =  "Error: Unavailable format `!@\#$`. Please enter a available format."
-    exception = assert_raises(SystemExit) { @cli.invoke(:show_all, [], { format: '!@#$' }) }
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show_all) }
     assert_equal msg, exception.message
   end
 end

@@ -14,11 +14,11 @@ module Keg
     def load
       begin
         @config = YAML.load_file(config_path)
-      rescue
+      rescue Errno::ENOENT
         save ''
       end
       unless database_does_set?
-        abort 'Error: Database does not set. You should set a database.'
+        raise 'Error: Database does not set. You should set a database.'
       end
 
       @config['database']

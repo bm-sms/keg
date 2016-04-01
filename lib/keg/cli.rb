@@ -27,6 +27,8 @@ module Keg
         formatter = Formatter.create(options[:format])
       rescue Errno::ENOENT => e
         raise Thor::InvocationError.new("#{e.message}\nPlease enter a exist file name.")
+      rescue RuntimeError => e
+        raise Thor::InvocationError.new(e.message)
       end
       if content == false
         raise Thor::InvocationError.new("Current database is unknown directory. Make sure that `keg switch <database>`.")
@@ -37,17 +39,26 @@ module Keg
 
     desc "current", "show a current database."
     def current
-      puts @database.current
+      begin
+        puts @database.current
+      rescue RuntimeError => e
+        raise Thor::InvocationError.new(e.message)
+      end
     end
 
     desc "show_all", "output all contents from current database."
     method_option "format", desc: "json, yaml", default: DEFAULT_FORMAT
     def show_all
-      formatter = Formatter.create(options[:format])
-      unless contents = @database.select_all
+      begin
+        contents = @database.select_all
+      rescue RuntimeError => e
+        raise Thor::InvocationError.new(e.message)
+      end
+      unless contents
         raise Thor::InvocationError.new("Current database is unknown directory. Make sure that `keg switch <database>`.")
       end
 
+      formatter = Formatter.create(options[:format])
       contents.each do |content|
         puts formatter.format(content)
       end
