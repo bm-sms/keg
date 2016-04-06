@@ -13,11 +13,12 @@ module Keg
 
     desc "switch <database>", "Database switch to <database>."
     def switch(name)
-      if @database.switch name
-        puts "switch DataBase `#{name}`."
-      else
-        raise Thor::InvocationError.new("Error: No such directory `#{name}`. Please enter a exist database.")
+      begin
+        @database.switch name
+      rescue => e
+        raise Thor::InvocationError.new(e)
       end
+      puts "switch DataBase `#{name}`."
     end
 
     desc "show <file>", "output contents from <file> formatted by json or yaml."
@@ -26,13 +27,8 @@ module Keg
       begin
         content = @database.select(filename)
         formatter = Formatter.create(options[:format])
-      rescue Errno::ENOENT => e
-        raise Thor::InvocationError.new("#{e.message}\nPlease enter a exist file name.")
       rescue => e
-        raise Thor::InvocationError.new(e.message)
-      end
-      unless content
-        raise Thor::InvocationError.new("Current database is unknown directory. Make sure that `keg switch <database>`.")
+        raise Thor::InvocationError.new(e)
       end
 
       puts formatter.format(content)
@@ -54,10 +50,7 @@ module Keg
         contents = @database.select_all
         formatter = Formatter.create(options[:format])
       rescue => e
-        raise Thor::InvocationError.new(e.message)
-      end
-      unless contents
-        raise Thor::InvocationError.new("Current database is unknown directory. Make sure that `keg switch <database>`.")
+        raise Thor::InvocationError.new(e)
       end
 
       contents.each do |content|

@@ -15,11 +15,11 @@ class DBTest < Minitest::Test
   end
 
   def test_switch_no_such_directory
-    assert_equal false, @database.switch('aaa')
+    assert_raises(RuntimeError) { @database.switch('aaa') }
   end
 
   def test_switch_blank
-    assert_equal false, @database.switch('')
+    assert_raises(RuntimeError) { @database.switch('') }
   end
 
   def test_select_success
@@ -39,7 +39,7 @@ class DBTest < Minitest::Test
 
   def test_select_current_db_is_unknown
     @configuration.save 'aaa'
-    assert_equal false, @database.select('oosaka')
+    assert_raises(RuntimeError) { @database.select('oosaka') }
   end
 
   def test_current_success
@@ -64,6 +64,6 @@ class DBTest < Minitest::Test
 
   def test_select_all_current_db_is_unknown
     @configuration.save 'aaa'
-    assert_equal false, @database.select_all
+    assert_raises(RuntimeError) { @database.select_all }
   end
 end

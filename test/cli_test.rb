@@ -46,19 +46,19 @@ class CLITest < Minitest::Test
   end
 
   def test_show_unkwon_format
-    msg =  "Error: Unavailable format `aaa`. Please enter a available format."
+    msg =  "Error: Unavailable format `aaa`. Please enter a available format `JSON` or `YAML`."
     exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show, ['oosaka'], { format: 'aaa'} ) }
     assert_equal msg, exception.message
   end
 
   def test_show_unexpected_format
-    msg =  "Error: Unavailable format `!@\#$`. Please enter a available format."
+    msg =  "Error: Unavailable format `!@\#$`. Please enter a available format `JSON` or `YAML`."
     exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show, ['oosaka'], { format: '!@#$'}) }
     assert_equal msg, exception.message
   end
 
   def test_show_no_such_file
-    msg =  "No such file or directory @ rb_sysopen - #{@root}/.keg/databases/glean-daimon-lunch/aaa.toml\nPlease enter a exist file name."
+    msg =  "No such file or directory @ rb_sysopen - #{@root}/.keg/databases/glean-daimon-lunch/aaa.toml"
     exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show, ['aaa']) }
     assert_equal msg, exception.message
   end
@@ -72,7 +72,7 @@ class CLITest < Minitest::Test
 
   def test_show_db_unknown_directory
     @configuration.save 'aaaa'
-    msg =  "Current database is unknown directory. Make sure that `keg switch <database>`."
+    msg =  "Current database is unknown directory `aaaa`. Please set a exist database."
     exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show,['oosaka']) }
     assert_equal msg, exception.message
   end
@@ -113,13 +113,13 @@ class CLITest < Minitest::Test
   end
 
   def test_show_all_unkwon_format
-    msg =  "Error: Unavailable format `aaa`. Please enter a available format."
+    msg =  "Error: Unavailable format `aaa`. Please enter a available format `JSON` or `YAML`."
     exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show_all, [], { format: 'aaa' }) }
     assert_equal msg, exception.message
   end
 
   def test_show_all_unexpected_format
-    msg =  "Error: Unavailable format `!@\#$`. Please enter a available format."
+    msg =  "Error: Unavailable format `!@\#$`. Please enter a available format `JSON` or `YAML`."
     exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show_all, [], { format: '!@#$' }) }
     assert_equal msg, exception.message
   end
