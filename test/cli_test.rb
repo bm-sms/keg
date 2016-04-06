@@ -3,9 +3,10 @@ require_relative 'test_helper'
 class CLITest < Minitest::Test
   def setup
     @cli = Keg::CLI.new
-    @db_manager = Keg::DBManager.new(ENV["HOME"])
-    @db_manager.switch('glean-daimon-lunch')
-    @config = Keg::Configuration.new(ENV["HOME"])
+    @root = ENV["HOME"]
+    @database = Keg::Database.new(@root)
+    @database.switch('glean-daimon-lunch')
+    @configuration = Keg::Configuration.new(@root)
     @oosaka = {"name" => "東麻布 逢坂",
                "url"  => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}
     @ranma  = {"name" => "蘭麻",
@@ -13,18 +14,20 @@ class CLITest < Minitest::Test
   end
 
   def test_switch_success
-    out, err = capture_io { @cli.switch("glean-daimon-lunch") }
+    out, err = capture_io { @cli.invoke(:switch, ['glean-daimon-lunch']) }
     assert_equal "switch DataBase `glean-daimon-lunch`.\n", out
   end
 
   def test_switch_faild
-    msg = "Error: No such directroy `aaa`. Please enter a correct DB name.\n"
-    assert_raises(SystemExit, msg) { @cli.switch("aaa") }
+    msg = "Error: No such directory `aaa`. Please enter a exist database."
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:switch, ["aaa"]) }
+    assert_equal msg, exception.message
   end
 
   def test_switch_blank
-    msg = "Error: No such directroy ``. Please enter a correct DB name.\n"
-    assert_raises(SystemExit, msg) { @cli.switch("") }
+    msg = "Error: No such directory ``. Please enter a exist database."
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:switch, [""]) }
+    assert_equal msg, exception.message
   end
 
   def test_show_defalut
@@ -43,41 +46,53 @@ class CLITest < Minitest::Test
   end
 
   def test_show_unkwon_format
-    msg =  "Error: Unavailable format `aaa`. Please enter a available format `json` or `yaml`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show, ['oosaka'], { format: 'aaa'} ) }
+    msg =  "Error: Unavailable format `aaa`. Please enter a available format `JSON` or `YAML`."
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show, ['oosaka'], { format: 'aaa'} ) }
+    assert_equal msg, exception.message
   end
 
   def test_show_unexpected_format
-    msg =  "Error: Unavailable format `!@\#$`. Please enter a available format `json` or `yaml`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show, ['oosaka'], { format: '!@#$'}) }
+    msg =  "Error: Unavailable format `!@\#$`. Please enter a available format `JSON` or `YAML`."
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show, ['oosaka'], { format: '!@#$'}) }
+    assert_equal msg, exception.message
   end
 
   def test_show_no_such_file
-    msg =  "Error: No such file `aaa`. Please enter a correct file name.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show, ['aaa']) }
+    msg =  "No such file or directory @ rb_sysopen - #{@root}/.keg/databases/glean-daimon-lunch/aaa.toml"
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show, ['aaa']) }
+    assert_equal msg, exception.message
   end
 
   def test_show_does_not_select_db
-    @config.save('')
-    msg =  "Error: DB does not set. Make sure that `keg switch DB_NAME`.\n"
-    assert_raises(SystemExit, msg) { @cli.show('oosaka') }
+    @configuration.save('')
+    msg =  "Error: Database does not set. You should set a database."
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show, ['oosaka']) }
+    assert_equal msg, exception.message
   end
 
   def test_show_db_unknown_directory
-    @config.save('aaaa')
-    msg =  "Error: Current DB is unknown directory `aaaa`. Make sure that `keg switch DB_NAME`.\n"
-    assert_raises(SystemExit, msg) { @cli.show('oosaka') }
+    @configuration.save 'aaaa'
+    msg =  "Current database is unknown directory `aaaa`. Please set a exist database."
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show,['oosaka']) }
+    assert_equal msg, exception.message
   end
 
   def test_current_success
-    out, err = capture_io { @cli.current }
+    out, err = capture_io { @cli.invoke(:current) }
     assert_equal "glean-daimon-lunch\n", out
   end
 
+  def test_current_db_is_unknown_directory
+    @configuration.save 'aaa'
+    out, err = capture_io { @cli.invoke(:current) }
+    assert_equal "aaa\n", out
+  end
+
   def test_current_does_not_select_db
-    @config.save('')
-    msg =  "Error: DB does not set. Make sure that `keg switch DB_NAME`.\n"
-    assert_raises(SystemExit, msg) { @cli.current }
+    @configuration.save ''
+    msg =  "Error: Database does not set. You should set a database."
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:current) }
+    assert_equal msg, exception.message
   end
 
   def test_show_all_defalut
@@ -98,24 +113,26 @@ class CLITest < Minitest::Test
   end
 
   def test_show_all_unkwon_format
-    msg =  "Error: Unavailable format `aaa`. Please enter a available format `json` or `yaml`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show_all, [], { format: 'aaa' }) }
-  end
-
-  def test_show_all_no_such_directory
-    @config.save("aaaa")
-    msg =  "Error: Current DB is unknown directory `aaaa`. Make sure that `keg switch DB_NAME`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show_all) }
-  end
-
-  def test_show_all_db_does_not_set
-    @config.save('')
-    msg =  "Error: DB does not set. Make sure that `keg switch DB_NAME`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show_all) }
+    msg =  "Error: Unavailable format `aaa`. Please enter a available format `JSON` or `YAML`."
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show_all, [], { format: 'aaa' }) }
+    assert_equal msg, exception.message
   end
 
   def test_show_all_unexpected_format
-    msg =  "Error: Unavailable format `!@\#$`. Please enter a available format `json` or `yaml`.\n"
-    assert_raises(SystemExit, msg) { @cli.invoke(:show_all, [], { format: '!@#$' }) }
+    msg =  "Error: Unavailable format `!@\#$`. Please enter a available format `JSON` or `YAML`."
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show_all, [], { format: '!@#$' }) }
+    assert_equal msg, exception.message
+  end
+
+  def test_show_all_no_such_directory
+    @configuration.save 'aaaa'
+    assert_raises(Thor::InvocationError) { @cli.invoke(:show_all) }
+  end
+
+  def test_show_all_db_does_not_set
+    @configuration.save('')
+    msg =  "Error: Database does not set. You should set a database."
+    exception = assert_raises(Thor::InvocationError) { @cli.invoke(:show_all) }
+    assert_equal msg, exception.message
   end
 end

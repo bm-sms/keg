@@ -5,43 +5,48 @@ module Keg
   class Database
     def initialize(root)
       @root = root
+      @configuration = Configuration.new(root)
     end
 
-    def use(name)
-      @database = name
-      check_database_exist
+    def switch(name)
+      path = File.join(databases_path, name)
+      if !Dir.exists?(path) || name.empty?
+        raise "Error: No such directory `#{name}`. Please enter a exist database."
+      end
+
+      @configuration.save name
     end
 
     def select(filename)
-      path = File.join(current_path, filename+'.toml')
-
-      unless File.exists?(path)
-        abort "Error: No such file `#{filename}`. Please enter a correct file name."
+      unless Dir.exists?(current_path)
+        raise "Current database is unknown directory `#{current}`. Please set a exist database."
       end
 
+      path = File.join(current_path, filename+'.toml')
       TOML.load_file(path)
     end
 
+    def current
+      @current = @configuration.load if @current.nil?
+      @current
+    end
+
     def select_all
+      unless Dir.exists?(current_path)
+        raise "Current database is unknown directory `#{current}`. Please set a exist database."
+      end
+
       Dir.glob("#{current_path}/**/*.toml").map do |path|
-          TOML.load_file(path)
+        TOML.load_file(path)
       end
     end
 
     def current_path
-      File.join(databases_path, @database)
+      File.join(databases_path, current)
     end
 
     def databases_path
       File.join(@root, '.keg', 'databases')
-    end
-
-    def check_database_exist
-      unless Dir.exists?(current_path)
-        abort "Error: Current database is unknown directory `#{@database}`. Please set a exist database."
-      else
-        return true
-      end
     end
   end
 end

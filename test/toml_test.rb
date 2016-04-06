@@ -3,7 +3,8 @@ require_relative 'test_helper'
 class TomlTest < Minitest::Test
   def setup
     @cli = Keg::CLI.new
-    @cli.switch('example')
+    @database = Keg::Database.new(ENV["HOME"])
+    @database.switch('example')
   end
 
   def test_string

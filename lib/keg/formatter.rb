@@ -6,7 +6,7 @@ module Keg
       begin
         formatter = const_get(format.capitalize)
       rescue
-        abort "Error: Unavailable format `#{format}`. Please enter a available format."
+        raise "Error: Unavailable format `#{format}`. Please enter a available format `JSON` or `YAML`."
       end
       formatter.new
     end
