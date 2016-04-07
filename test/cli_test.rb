@@ -15,7 +15,7 @@ class CLITest < Minitest::Test
 
   def test_switch_success
     out, err = capture_io { @cli.invoke(:switch, ['glean-daimon-lunch']) }
-    assert_equal "switch DataBase `glean-daimon-lunch`.\n", out
+    assert_equal "Switch dataBase `glean-daimon-lunch`.\n", out
   end
 
   def test_switch_faild
