@@ -18,7 +18,7 @@ module Keg
       rescue => e
         raise Thor::InvocationError.new(e)
       end
-      puts "switch DataBase `#{name}`."
+      puts "switch dataBase `#{name}`."
     end
 
     desc "show <file>", "output contents from <file> formatted by json or yaml."
