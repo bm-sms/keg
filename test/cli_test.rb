@@ -4,8 +4,8 @@ class CLITest < Minitest::Test
   def setup
     @cli = Keg::CLI.new
     @root = ENV["HOME"]
-    @database = Keg::Database.new(@root)
-    @database.switch('glean-daimon-lunch')
+    @core = Keg::Core.new(@root)
+    @core.switch('glean-daimon-lunch')
     @configuration = Keg::Configuration.new(@root)
     @oosaka = {"name" => "東麻布 逢坂",
                "url"  => "http://tabelog.com/tokyo/A1314/A131401/13044558/"}

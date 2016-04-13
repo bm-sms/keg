@@ -8,7 +8,7 @@ module Keg
 
     def initialize(*args)
       super
-      @database = Database.new(ENV["HOME"])
+      @database = Core.new(ENV["HOME"])
     end
 
     desc "switch <database>", "Database switch to <database>."
