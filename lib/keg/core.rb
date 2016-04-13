@@ -2,7 +2,7 @@ require 'keg'
 require 'toml'
 
 module Keg
-  class Database
+  class Core
     def initialize(root)
       @root = root
       @configuration = Configuration.new(root)
