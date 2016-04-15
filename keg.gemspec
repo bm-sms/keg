@@ -6,21 +6,13 @@ require 'keg/version'
 Gem::Specification.new do |spec|
   spec.name          = "keg"
   spec.version       = Keg::VERSION
-  spec.authors       = ["s1513114"]
+  spec.authors       = ["yuta-muramoto"]
   spec.email         = ["s1513114@u.tsukuba.ac.jp"]
 
-  spec.summary       = %q{this yet_anoter_glean}
-  spec.description   = %q{read README.md}
-  # spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{This is CLI tool that supports a data management.}
+  spec.description   = %q{}
+  spec.homepage      = "https://github.com/bm-sms/keg"
   spec.license       = "MIT"
-
-  # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
-  # delete this section to allow pushing this gem to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
-  end
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
