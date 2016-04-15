@@ -10,7 +10,11 @@ Gem::Specification.new do |spec|
   spec.email         = ["s1513114@u.tsukuba.ac.jp"]
 
   spec.summary       = %q{This is CLI tool that supports a data management.}
-  spec.description   = %q{}
+  spec.description   = <<-EOF
+  Keg use the data formatted by TOML which is language that easy to read.
+  Keg read a TOML file from the local database and outputs its useful format.
+  You need to clone the repository has the TOML file in the local database (`$HOME/.keg/databases`) in advance.
+  EOF
   spec.homepage      = "https://github.com/bm-sms/keg"
   spec.license       = "MIT"
 
