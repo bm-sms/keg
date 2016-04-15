@@ -29,7 +29,8 @@ module Keg
     end
 
     def database_does_set?
-      return false unless @config # when @config is nil or false
+      return false unless @config
+      return false if @config['database'].nil?
       return false if @config['database'].empty?
       return true
     end
