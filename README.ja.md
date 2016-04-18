@@ -87,7 +87,7 @@ $ keg show_all --format=yaml    # show all in yaml format
 ```
 
 ## Contributing
-バグレポートとプルリクエストはhttps://github.com/bm-sms/kegにてお待ちしております。コントリビューアは[Contributor Covenant](http://contributor-covenant.org)に殉ずる事をお願いします。
+バグレポートとプルリクエストは https://github.com/bm-sms/keg にてお待ちしております。コントリビューアは [Contributor Covenant](http://contributor-covenant.org) に殉ずる事をお願いします。
 
 ## License
 このgemは[MIT License](http://opensource.org/licenses/MIT)の元で利用可能です。
